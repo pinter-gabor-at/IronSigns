@@ -34,7 +34,7 @@ Standard MIT license. Feel free to learn from it and incorporate it in your own 
 
 ## Source code
 
-Available on [GitLab](https://gitlab.com/pintergabor/ironsigns.git) or on [GitHub](https://github.com/pintergabor/ironsigns.git).
+Available on [GitLab](https://gitlab.com/pintergabor/ironsigns.git) or on [GitHub](https://github.com/pinter-gabor-at/IronSigns.git).
 
 ## For developers
 
