@@ -1,6 +1,6 @@
 # Iron Signs (Fabric)  
 
-Iron Signs themselves are not much better than Vanilla wooden signs. They are inexpensive, and stack up to 64, but They are just dull gray, slightly rusted places of iron plates.
+Iron Signs themselves are not much better than Vanilla wooden signs. They are inexpensive, and stack up to 64, but they are just dull gray, slightly rusted pieces of iron plates.
 
 ![Screenshot](./images/screenshot1.png "Screenshot")
 
