@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:stick"
+    },
+    "P": {
+      "tag": "c:lime_dyes"
+    },
+    "S": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SPS",
+    " I "
+  ],
+  "result": {
+    "count": 20,
+    "item": "ironsigns:lime_sign"
+  },
+  "show_notification": true
+}

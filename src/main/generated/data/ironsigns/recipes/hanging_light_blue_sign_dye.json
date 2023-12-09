@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "ironsigns:hanging_item_tag"
+    },
+    {
+      "tag": "c:light_blue_dyes"
+    }
+  ],
+  "result": {
+    "item": "ironsigns:hanging_light_blue_sign"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "ironsigns:iron_sign",
+    "ironsigns:white_sign",
+    "ironsigns:orange_sign",
+    "ironsigns:magenta_sign",
+    "ironsigns:light_blue_sign",
+    "ironsigns:yellow_sign",
+    "ironsigns:lime_sign",
+    "ironsigns:pink_sign",
+    "ironsigns:gray_sign",
+    "ironsigns:light_gray_sign",
+    "ironsigns:cyan_sign",
+    "ironsigns:purple_sign",
+    "ironsigns:blue_sign",
+    "ironsigns:brown_sign",
+    "ironsigns:green_sign",
+    "ironsigns:red_sign",
+    "ironsigns:black_sign"
+  ]
+}

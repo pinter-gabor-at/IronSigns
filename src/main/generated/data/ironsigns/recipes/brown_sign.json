@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:stick"
+    },
+    "P": {
+      "tag": "c:brown_dyes"
+    },
+    "S": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SPS",
+    " I "
+  ],
+  "result": {
+    "count": 20,
+    "item": "ironsigns:brown_sign"
+  },
+  "show_notification": true
+}
