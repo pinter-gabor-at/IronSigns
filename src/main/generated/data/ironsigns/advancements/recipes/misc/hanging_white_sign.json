@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:hanging_white_sign"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

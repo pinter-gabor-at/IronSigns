@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:cyan_sign_dye"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -13,8 +13,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class IronWallHangingSignBlock extends WallHangingSignBlock {
 
-    public IronWallHangingSignBlock(Settings settings, WoodType woodType) {
-        super(settings, woodType);
+    public IronWallHangingSignBlock(WoodType woodType, Settings settings) {
+        super(woodType, settings);
     }
 
     @Override

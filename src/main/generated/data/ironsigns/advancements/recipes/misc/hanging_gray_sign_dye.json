@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:hanging_gray_sign_dye"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

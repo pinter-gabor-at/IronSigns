@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:hanging_yellow_sign"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -104,13 +104,13 @@ public class SignVariant {
 		final FabricBlockSettings settings = FabricBlockSettings.create()
 				.solid().noCollision().strength(0.5f, 6.0f).requiresTool();
 		block = registerBlock(name,
-				new IronSignBlock(settings, woodType));
+				new IronSignBlock(woodType, settings));
 		wallBlock = registerBlock("wall_" + name,
-				new IronWallSignBlock(settings, woodType));
+				new IronWallSignBlock(woodType, settings));
 		hangingBlock = registerBlock("hanging_" + name,
-				new IronHangingSignBlock(settings, woodType));
+				new IronHangingSignBlock(woodType, settings));
 		hangingWallBlock = registerBlock("hanging_wall_" + name,
-				new IronWallHangingSignBlock(settings, woodType));
+				new IronWallHangingSignBlock(woodType, settings));
 		// Items
 		item = registerItem(name,
 				new SignItem(

@@ -9,8 +9,8 @@ import net.minecraft.util.math.BlockPos;
 
 public class IronSignBlock extends SignBlock {
 
-	public IronSignBlock(Settings settings, WoodType woodType) {
-		super(settings, woodType);
+	public IronSignBlock(WoodType woodType, Settings settings) {
+		super(woodType, settings);
 	}
 
 	@Override

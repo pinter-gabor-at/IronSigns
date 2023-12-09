@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:hanging_light_blue_sign_dye"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
