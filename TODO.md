@@ -1,0 +1,2 @@
+- Write a mixin: override ServerPlayerNetworkHandler.OnUpdateSign to prevent stripping of formatting
+- Create buttons in GUI to format text
