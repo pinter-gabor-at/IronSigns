@@ -13,6 +13,9 @@ public class ModConfig implements ConfigData {
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableColorSigns = true;
 
+	@ConfigEntry.Gui.Tooltip
+	public boolean enableTextFormatting = true;
+
 	public static void init() {
 		AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
 	}
