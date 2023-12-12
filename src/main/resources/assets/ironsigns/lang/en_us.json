@@ -36,6 +36,8 @@
 	"text.autoconfig.ironsigns.title": "Iron Signs Options",
 	"text.autoconfig.ironsigns.option.enableColorSigns": "Enable Color Sign Recipes",
 	"text.autoconfig.ironsigns.option.enableColorSigns.@Tooltip": "It has no effect on existing signs",
-	"text.autoconfig.ironsigns.option.enableTextFormatting": "Enable Text Formatting",
-	"text.autoconfig.ironsigns.option.enableTextFormatting.@Tooltip": "It has no effect on existing signs"
+	"text.autoconfig.ironsigns.option.enableIronSignTextFormatting": "Enable Iron Sign Text Formatting",
+	"text.autoconfig.ironsigns.option.enableIronSignTextFormatting.@Tooltip": "It has no effect on existing signs",
+	"text.autoconfig.ironsigns.option.enableWoodenSignTextFormatting": "Enable Wooden Sign Text Formatting",
+	"text.autoconfig.ironsigns.option.enableWoodenSignTextFormatting.@Tooltip": "It has no effect on existing signs"
 }
