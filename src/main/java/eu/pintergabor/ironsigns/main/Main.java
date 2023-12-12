@@ -4,7 +4,7 @@ import eu.pintergabor.ironsigns.Mod;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
 import eu.pintergabor.ironsigns.util.ModIdentifier;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.Item;
@@ -12,6 +12,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
+
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 
 
 public final class Main {
@@ -116,37 +118,37 @@ public final class Main {
 		HANGING_IRON_SIGN_ITEM_TAG = TagKey.of(RegistryKeys.ITEM, new ModIdentifier("hanging_item_tag"));
 		// Entity builders
 		FabricBlockEntityTypeBuilder<IronSignBlockEntity> signEntityBuilder =
-				FabricBlockEntityTypeBuilder.create(IronSignBlockEntity::new);
+			FabricBlockEntityTypeBuilder.create(IronSignBlockEntity::new);
 		FabricBlockEntityTypeBuilder<HangingIronSignBlockEntity> hangingSignEntityBuilder =
-				FabricBlockEntityTypeBuilder.create(HangingIronSignBlockEntity::new);
+			FabricBlockEntityTypeBuilder.create(HangingIronSignBlockEntity::new);
 		// Iron sign
 		ironSign = new SignVariant("iron_sign");
 		signEntityBuilder
-				.addBlock(ironSign.getWallBlock())
-				.addBlock(ironSign.getBlock());
+			.addBlock(ironSign.getWallBlock())
+			.addBlock(ironSign.getBlock());
 		hangingSignEntityBuilder
-				.addBlock(ironSign.getHangingWallBlock())
-				.addBlock(ironSign.getHangingBlock());
+			.addBlock(ironSign.getHangingWallBlock())
+			.addBlock(ironSign.getHangingBlock());
 		// Colored signs
 		signColors = SignColor.values();
 		colorSigns = new SignVariant[signColors.length];
 		for (int i = 0; i < signColors.length; i++) {
 			colorSigns[i] = new SignVariant(getSignColors(i).getName() + "_sign");
 			signEntityBuilder
-					.addBlock(colorSigns[i].getWallBlock())
-					.addBlock(colorSigns[i].getBlock());
+				.addBlock(colorSigns[i].getWallBlock())
+				.addBlock(colorSigns[i].getBlock());
 			hangingSignEntityBuilder
-					.addBlock(colorSigns[i].getHangingWallBlock())
-					.addBlock(colorSigns[i].getHangingBlock());
+				.addBlock(colorSigns[i].getHangingWallBlock())
+				.addBlock(colorSigns[i].getHangingBlock());
 		}
 		// Register entities
 		ironSignEntity = Registry.register(
-				Registries.BLOCK_ENTITY_TYPE,
-				new ModIdentifier("iron_sign_entity"),
-				signEntityBuilder.build());
+			Registries.BLOCK_ENTITY_TYPE,
+			new ModIdentifier("iron_sign_entity"),
+			signEntityBuilder.build());
 		hangingIronSignEntity = Registry.register(
-				Registries.BLOCK_ENTITY_TYPE,
-				new ModIdentifier("hanging_iron_sign_entity"),
-				hangingSignEntityBuilder.build(null));
+			Registries.BLOCK_ENTITY_TYPE,
+			new ModIdentifier("hanging_iron_sign_entity"),
+			hangingSignEntityBuilder.build(null));
 	}
 }

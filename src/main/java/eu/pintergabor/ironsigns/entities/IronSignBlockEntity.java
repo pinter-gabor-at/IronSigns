@@ -1,6 +1,7 @@
 package eu.pintergabor.ironsigns.entities;
 
 import eu.pintergabor.ironsigns.main.Main;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.SignBlockEntity;
