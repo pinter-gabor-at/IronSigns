@@ -2,7 +2,7 @@ plugins {
 	id 'fabric-loom' version '1.4-SNAPSHOT'
 }
 
-version = project.mod_version+"+mc"+project.minecraft_version
+version = project.mod_version + "+mc" + project.minecraft_version
 group = project.maven_group
 
 base {
@@ -10,10 +10,13 @@ base {
 }
 
 repositories {
+	maven { url = "https://maven.fabricmc.net/" } // Fabric
+	maven { url = "https://maven.shedaniel.me/" } // Cloth Config
+	maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
 }
 
 loom {
-    runs {
+	runs {
 		// This adds a new gradle task that runs the datagen API: "gradlew runDatagen"
 		datagen {
 			inherit server
@@ -21,7 +24,7 @@ loom {
 			vmArg "-Dfabric-api.datagen"
 			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
 			vmArg "-Dfabric-api.datagen.modid=${project.archives_base_name}"
- 
+
 			runDir "build/datagen"
 		}
 	}
@@ -32,7 +35,7 @@ sourceSets {
 	main {
 		resources {
 			srcDirs += [
-					'src/main/generated'
+				'src/main/generated'
 			]
 		}
 	}
@@ -42,9 +45,13 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	// ModMenu and ClothConfig
+	modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
 }
 
 processResources {

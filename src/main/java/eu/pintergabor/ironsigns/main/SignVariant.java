@@ -87,8 +87,8 @@ public class SignVariant {
 	 * @param name The name of the IronSign
 	 */
 	public SignVariant(String name) {
-		// WoodType, which is not really a wood, but a definition of the location of the texture files,
-		// and the definition of sounds.
+		// WoodType is not really any type of wood, but a definition
+		// of the location of the texture files, and the definition of sounds.
 		// Sign entity: resources/assets/<MODID>/textures/entity/signs/<name>.png
 		// WallSign entity is the hard-coded part of the Sign entity.
 		// Sign and WallSign GUIs are the same, and they are hard-coded part of the Sign entity.
