@@ -11,6 +11,5 @@
 		"SharedConstantsMixin"
 	],
 	"client": [
-		"TextFieldWidgetMixin"
 	]
 }
