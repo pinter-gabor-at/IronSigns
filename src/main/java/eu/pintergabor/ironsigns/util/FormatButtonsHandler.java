@@ -74,7 +74,7 @@ public class FormatButtonsHandler {
 	 */
 	private static void onScreenOpened(Screen screen) {
 		if (!(screen instanceof AbstractSignEditScreen) ||
-			!ModConfig.getInstance().enableTextFormatting) {
+			!ModConfig.getInstance().enableIronSignTextFormatting) {
 			return;
 		}
 		// Color buttons, 4x4

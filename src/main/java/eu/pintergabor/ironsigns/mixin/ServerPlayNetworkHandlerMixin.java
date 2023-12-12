@@ -19,7 +19,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
 		Stream<String> instance, Function<String, String> function) {
 		// function === Formatting::strip
 		// Strip formatting only if text formatting is disabled in config
-		return ModConfig.getInstance().enableTextFormatting ?
+		return ModConfig.getInstance().enableIronSignTextFormatting ?
 			instance :
 			instance.map(function);
 	}

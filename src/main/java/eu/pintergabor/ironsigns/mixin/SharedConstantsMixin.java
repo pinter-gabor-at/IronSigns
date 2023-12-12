@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class SharedConstantsMixin {
 	@Inject(method = "isValidChar", at = @At("HEAD"), cancellable = true)
 	private static void isValidChar(char p, CallbackInfoReturnable<Boolean> ci) {
-		if (ModConfig.getInstance().enableTextFormatting) {
+		if (ModConfig.getInstance().enableIronSignTextFormatting) {
 			// Allow items and signs to contain the formatting code prefix
 			if (p == Formatting.FORMATTING_CODE_PREFIX) {
 				ci.setReturnValue(true);
