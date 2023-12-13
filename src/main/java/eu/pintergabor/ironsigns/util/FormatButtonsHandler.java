@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eu.pintergabor.ironsigns.config.ModConfig;
+import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
+import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
+import eu.pintergabor.ironsigns.mixin.AbstractSignEditScreenAccessor;
 import org.jetbrains.annotations.NotNull;
 
+import net.minecraft.block.entity.HangingSignBlockEntity;
+import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.AbstractSignEditScreen;
 import net.minecraft.client.gui.tooltip.Tooltip;
@@ -73,22 +78,62 @@ public class FormatButtonsHandler {
 	 * @param screen Edit screen
 	 */
 	private static void onScreenOpened(Screen screen) {
-		if (!(screen instanceof AbstractSignEditScreen) ||
-			!ModConfig.getInstance().enableIronSignTextFormatting) {
+		// A quick check if it is a sign edit screen
+		if (!(screen instanceof AbstractSignEditScreen es)) {
 			return;
 		}
+		// Check configuration and add buttons if enabled
+		var config = ModConfig.getInstance();
+		if ((!config.enableIronSignTextFormatting || !isIronSign(es)) &&
+			(!config.enableWoodenSignTextFormatting || !isWoodenSign(es))) {
+			return;
+		}
+		addButtonsToScreen(es);
+	}
+
+	/**
+	 * Add color and style formatting button to screen
+	 * @param es edit screen
+	 */
+	private static void addButtonsToScreen(AbstractSignEditScreen es) {
 		// Color buttons, 4x4
 		final var colorButtons = getFormatButtons(
-			screen, colorFormattings,
-			(screen.width / 2) - 170, 70, 4);
-		// Format buttons, 1x6
+			es, colorFormattings,
+			(es.width / 2) - 170, 70, 4);
+		// Style formatting buttons, 1x6
 		final var modifierButtons = getFormatButtons(
-			screen, modifierFormattings,
-			(screen.width / 2) + 50, 70, 6);
-
-		var screenButtons = Screens.getButtons(screen);
+			es, modifierFormattings,
+			(es.width / 2) + 50, 70, 6);
+		// Add them to the screen
+		var screenButtons = Screens.getButtons(es);
 		screenButtons.addAll(colorButtons);
 		screenButtons.addAll(modifierButtons);
+	}
+
+	/**
+	 * @param screen edit screen
+	 * @return true if the edit screen is associated with a Wooden Sign or with a Hanging Wooden Sign
+	 */
+	private static boolean isWoodenSign(AbstractSignEditScreen screen) {
+		final var sbeclass =
+			((AbstractSignEditScreenAccessor) screen)
+				.getBlockEntity()
+				.getClass();
+		return (sbeclass == SignBlockEntity.class) ||
+			(sbeclass == HangingSignBlockEntity.class);
+	}
+
+	/**
+	 * @param screen edit screen
+	 * @return true if the edit screen is associated with an Iron Sign or with a Hanging Iron Sign
+	 */
+	private static boolean isIronSign(AbstractSignEditScreen screen) {
+		final var sbeclass =
+			((AbstractSignEditScreenAccessor) screen)
+				.getBlockEntity()
+				.getClass();
+		return (sbeclass == IronSignBlockEntity.class) ||
+			(sbeclass == HangingIronSignBlockEntity.class);
 	}
 
 	/**
