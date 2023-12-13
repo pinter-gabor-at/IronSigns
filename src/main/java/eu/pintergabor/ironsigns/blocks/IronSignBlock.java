@@ -24,6 +24,8 @@ import net.minecraft.util.math.RotationPropertyHelper;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
+// ERROR: It does not display the stick, because SignBlockEntityRenderer.render()
+// enables it only for descendant of SignBlock
 public class IronSignBlock extends AbstractSignBlock {
 	public static final MapCodec<SignBlock> CODEC = SignBlock.CODEC;
 	public static final IntProperty ROTATION = Properties.ROTATION;
