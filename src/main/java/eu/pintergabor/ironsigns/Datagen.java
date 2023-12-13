@@ -1,6 +1,11 @@
 package eu.pintergabor.ironsigns;
 
-import eu.pintergabor.ironsigns.datagen.*;
+import eu.pintergabor.ironsigns.datagen.ModBlockLootTableGenerator;
+import eu.pintergabor.ironsigns.datagen.ModBlockTagProvider;
+import eu.pintergabor.ironsigns.datagen.ModItemTagProvider;
+import eu.pintergabor.ironsigns.datagen.ModModelProvider;
+import eu.pintergabor.ironsigns.datagen.ModRecipeGenerator;
+
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 

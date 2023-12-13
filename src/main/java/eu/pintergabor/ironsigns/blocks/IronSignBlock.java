@@ -1,6 +1,7 @@
 package eu.pintergabor.ironsigns.blocks;
 
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SignBlock;
 import net.minecraft.block.WoodType;

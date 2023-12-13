@@ -2,6 +2,7 @@ package eu.pintergabor.ironsigns.datagen;
 
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
+
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 
@@ -24,8 +25,8 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
 	}
 
 	/**
-	 * A SignBlock and a WallSignBlock drop a SignItem and
-	 * a HangingSign and a HangingwallSign drop a HangingSignItem.
+	 * A SignBlock and a WallSignBlock drop a SignItem and a HangingSign and a
+	 * HangingwallSign drop a HangingSignItem.
 	 * @param sv {@link SignVariant}
 	 */
 	private void generateSignBlockLoot(SignVariant sv) {
