@@ -24,13 +24,24 @@ Or to your enemies:
 
 ![Screenshot](./images/screenshot3.png "Screenshot")
 
+Or to your customers:
+
+![Screenshot](./images/screenshot4.png "Screenshot")
+
+Since 1.0.2 with sign text coloring and formatting: 
+
+![Sign editing](./images/sign_editing.png "Screenshot")
+
 ## Requires
 
 - [Fabric API](https://modrinth.com/mod/fabric-api)  
+- [Cloth Config API](https://modrinth.com/mod/cloth-config)
+- Optional, but recommended [Mod Menu](https://modrinth.com/mod/modmenu)
 
 ## License
 
-Standard MIT license. Feel free to learn from it and incorporate it in your own projects.
+Standard MIT license. Feel free to learn from it and incorporate it in your own projects.  
+Some parts of the code are based on the source code of [Text Utilities](https://github.com/ChristopherHaws/mc-text-utilities), which is LGPL-3 licensed. 
 
 ## Source code
 
@@ -38,19 +49,16 @@ Available on [GitLab](https://gitlab.com/pintergabor/ironsigns.git) or on [GitHu
 
 ## For developers
 
-Quite often, when I start learning programming on a new platform, I find even the simplest examples too complicated.
-Tutorials, written by experts, with years of experience programming on that platform, sometimes forget how difficult those first step are.
-This is why I decided to make my first Minecraft mods publicly available.
-
 The project is still in BETA, because it has not been tested in large modpacks and on large servers. Feedback is welcome.  
-[Email: Pintér Gábor <pinter.gabor@gmx.at>](mailto://pinter.gabor@gmx.at)
+[Email: Pintér Gábor <pinter.gabor@gmx.at>](mailto://pinter.gabor@gmx.at)  
+There are still plenty of bugs in sign editing, I know.
 
 ## Future plans
 
 - Pointer Signs
-- Colored and styled text
-- Forge port (only after the Fabric version is feature complete)
+- Forge port (only after the Fabric version is feature complete, and fully tested)
 
 ## Thanks
 
-Thanks to Kaupenjoe for his excellent [Modding By Kaupenjoe: Minecraft Modding 1.20.X for Fabric](https://www.udemy.com/course/minecraft-modding-120x-for-fabric/) course.
+Thanks to Kaupenjoe for his excellent [Modding By Kaupenjoe: Minecraft Modding 1.20.X for Fabric](https://www.udemy.com/course/minecraft-modding-120x-for-fabric/) course.  
+Thanks to [Chaws](https://modrinth.com/user/Chaws) for making available the source code of [Text Utilities](https://modrinth.com/mod/text-utilities).
