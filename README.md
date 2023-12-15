@@ -49,7 +49,7 @@ Available on [GitLab](https://gitlab.com/pintergabor/ironsigns.git) or on [GitHu
 
 ## For developers
 
-The project is still in BETA, because it has not been tested in large modpacks and on large servers. Feedback is welcome.  
+The mod has not been extensively tested in large modpacks and on large servers. Feedback is welcome.  
 [Email: Pintér Gábor <pinter.gabor@gmx.at>](mailto://pinter.gabor@gmx.at)
 
 ## Future plans
