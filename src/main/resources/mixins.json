@@ -8,9 +8,11 @@
   "mixins": [
     "RecipeManagerMixin",
     "ServerPlayNetworkHandlerMixin",
-    "SharedConstantsMixin"
+    "SharedConstantsMixin",
+    "UtilMixin"
   ],
   "client": [
-    "AbstractSignEditScreenAccessor"
-    ]
+    "AbstractSignEditScreenAccessor",
+    "AbstractSignEditScreenMixin"
+  ]
 }

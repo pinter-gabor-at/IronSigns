@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "ironsigns:hanging_item_tag"
+      "tag": "ironsigns:item_tag"
     },
     {
       "tag": "c:blue_dyes"

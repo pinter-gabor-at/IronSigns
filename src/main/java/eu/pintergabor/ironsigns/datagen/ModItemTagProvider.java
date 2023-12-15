@@ -19,16 +19,16 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 	@Override
 	protected void configure(RegistryWrapper.WrapperLookup arg) {
 		FabricTagBuilder tagBuilder =
-			getOrCreateTagBuilder(Main.getIronSignItemTag());
+			getOrCreateTagBuilder(Main.IRON_SIGN_ITEM_TAG);
 		FabricTagBuilder hangingTagBuilder =
-			getOrCreateTagBuilder(Main.getHangingIronSignItemTag());
+			getOrCreateTagBuilder(Main.IRON_SIGN_ITEM_TAG);
 		// Iron sign
-		tagBuilder.add(Main.getIronSign().getItem());
-		hangingTagBuilder.add(Main.getIronSign().getHangingItem());
+		tagBuilder.add(Main.ironSign.item);
+		hangingTagBuilder.add(Main.ironSign.hangingItem);
 		// Color signs
-		for (int i = 0; i < Main.getColorSignLength(); i++) {
-			tagBuilder.add(Main.getColorSign(i).getItem());
-			hangingTagBuilder.add(Main.getColorSign(i).getHangingItem());
+		for (int i = 0; i < Main.colorSigns.length; i++) {
+			tagBuilder.add(Main.colorSigns[i].item);
+			hangingTagBuilder.add(Main.colorSigns[i].hangingItem);
 		}
 	}
 }

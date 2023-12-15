@@ -19,8 +19,8 @@ public class RecipeManagerUtil {
 	 */
 	public static void configRecipes(Map<Identifier, JsonElement> map) {
 		if (!ModConfig.getInstance().enableColorSigns) {
-			for (int i = 0; i < Main.getColorSignLength(); i++) {
-				SignVariant sv = Main.getColorSign(i);
+			for (int i = 0; i < Main.colorSigns.length; i++) {
+				SignVariant sv = Main.colorSigns[i];
 				removeItemRecipe(map, sv);
 				removeHangingItemRecipe(map, sv);
 				removePaintItemRecipe(map, sv);
@@ -36,7 +36,7 @@ public class RecipeManagerUtil {
 	 */
 	private static void removeItemRecipe(
 		Map<Identifier, JsonElement> map, SignVariant sv) {
-		map.remove(new ModIdentifier(sv.getItem().toString()));
+		map.remove(new ModIdentifier(sv.item.toString()));
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class RecipeManagerUtil {
 	 */
 	private static void removeHangingItemRecipe(
 		Map<Identifier, JsonElement> map, SignVariant sv) {
-		map.remove(new ModIdentifier(sv.getHangingItem().toString()));
+		map.remove(new ModIdentifier(sv.hangingItem.toString()));
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class RecipeManagerUtil {
 	 */
 	private static void removePaintItemRecipe(
 		Map<Identifier, JsonElement> map, SignVariant sv) {
-		map.remove(new ModIdentifier(sv.getItem().toString() + "_dye"));
+		map.remove(new ModIdentifier(sv.item.toString() + "_dye"));
 	}
 
 	/**
@@ -66,6 +66,6 @@ public class RecipeManagerUtil {
 	 */
 	private static void removePaintHangingItemRecipe(
 		Map<Identifier, JsonElement> map, SignVariant sv) {
-		map.remove(new ModIdentifier(sv.getHangingItem().toString() + "_dye"));
+		map.remove(new ModIdentifier(sv.hangingItem.toString() + "_dye"));
 	}
 }

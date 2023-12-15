@@ -19,21 +19,21 @@ public class ModClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		// Entities
-		BlockEntityRendererFactories.register(Main.getIronSignEntity(),
+		BlockEntityRendererFactories.register(Main.ironSignEntity,
 				SignBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(Main.getHangingIronSignEntity(),
+		BlockEntityRendererFactories.register(Main.hangingIronSignEntity,
 				HangingSignBlockEntityRenderer::new);
 		// Textures
-		texture(Main.getIronSign());
-		for (int i = 0; i < Main.getColorSignLength(); i++) {
-			texture(Main.getColorSign(i));
+		texture(Main.ironSign);
+		for (int i = 0; i < Main.colorSigns.length; i++) {
+			texture(Main.colorSigns[i]);
 		}
 		// Screen handler
 		FormatButtonsHandler.init();
 	}
 
 	private void texture(SignVariant sv) {
-		WoodType wt = sv.getWoodType();
+		WoodType wt = sv.woodType;
 		TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(wt,
 				TexturedRenderLayers.getSignTextureId(wt));
 	}

@@ -17,10 +17,10 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
 	@Override
 	public void generate() {
 		// Iron sign
-		generateSignBlockLoot(Main.getIronSign());
+		generateSignBlockLoot(Main.ironSign);
 		// Color signs
-		for (int i = 0; i < Main.getColorSignLength(); i++) {
-			generateSignBlockLoot(Main.getColorSign(i));
+		for (int i = 0; i < Main.colorSigns.length; i++) {
+			generateSignBlockLoot(Main.colorSigns[i]);
 		}
 	}
 
@@ -30,9 +30,9 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
 	 * @param sv {@link SignVariant}
 	 */
 	private void generateSignBlockLoot(SignVariant sv) {
-		addDrop(sv.getBlock(), sv.getItem());
-		addDrop(sv.getWallBlock(), sv.getItem());
-		addDrop(sv.getHangingBlock(), sv.getHangingItem());
-		addDrop(sv.getHangingWallBlock(), sv.getHangingItem());
+		addDrop(sv.block, sv.item);
+		addDrop(sv.wallBlock, sv.item);
+		addDrop(sv.hangingBlock, sv.hangingItem);
+		addDrop(sv.hangingWallBlock, sv.hangingItem);
 	}
 }

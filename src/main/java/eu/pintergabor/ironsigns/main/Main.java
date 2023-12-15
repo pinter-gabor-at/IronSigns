@@ -18,95 +18,63 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityT
 
 public final class Main {
 	private Main() {
-		// Static class
 	}
 
 	/**
 	 * All {@link SignColor} enum values in an array
+	 * <p>
+	 * Read-only outside its class.
 	 */
-	private static SignColor[] signColors;
+	public static SignColor[] signColors;
 
 	/**
-	 * Get one item from {@link SignColor} enum by index
-	 * @param ix
-	 * @return {@link SignColor} enum
+	 * The Iron Sign
+	 * <p>
+	 * Read-only outside its class.
 	 */
-	public static SignColor getSignColors(int ix) {
-		return signColors[ix];
-	}
-
-	private static SignVariant ironSign;
-	private static SignVariant[] colorSigns;
-
-	private static BlockEntityType<IronSignBlockEntity> ironSignEntity;
-	private static BlockEntityType<HangingIronSignBlockEntity> hangingIronSignEntity;
-
-	public static SignVariant getIronSign() {
-		return ironSign;
-	}
+	public static SignVariant ironSign;
 
 	/**
-	 * The number of colors
-	 * @return (currently 16)
+	 * Colored Iron Signs
+	 * <p>
+	 * Read-only outside its class.
 	 */
-	public static int getColorSignLength() {
-		return colorSigns.length;
-	}
+	public static SignVariant[] colorSigns;
 
 	/**
-	 * Get one colored sign by index
-	 * @param ix index
-	 * @return Colored sign
+	 * The BlockEntity of all Iron Signs
+	 * <p>
+	 * Read-only outside its class.
 	 */
-	public static SignVariant getColorSign(int ix) {
-		return colorSigns[ix];
-	}
+	public static BlockEntityType<IronSignBlockEntity> ironSignEntity;
 
 	/**
-	 * The only entity for all IronSigns
+	 * The HangingBlockEntity of all Hanging Iron Signs
+	 * <p>
+	 * Read-only outside its class.
 	 */
-	public static BlockEntityType<IronSignBlockEntity> getIronSignEntity() {
-		return ironSignEntity;
-	}
-
-	/**
-	 * The only entity for all hanging IronSigns
-	 */
-	public static BlockEntityType<HangingIronSignBlockEntity> getHangingIronSignEntity() {
-		return hangingIronSignEntity;
-	}
-
-	private static TagKey<Block> IRON_SIGN_BLOCK_TAG;
-	private static TagKey<Item> IRON_SIGN_ITEM_TAG;
-	private static TagKey<Item> HANGING_IRON_SIGN_ITEM_TAG;
+	public static BlockEntityType<HangingIronSignBlockEntity> hangingIronSignEntity;
 
 	/**
 	 * All sign and hanging sign blocks
 	 * <p>
-	 * Used to set up mineable rules
+	 * Used to set up mineable rules. Read-only outside its class.
 	 */
-	public static TagKey<Block> getIronSignBlockTag() {
-		return IRON_SIGN_BLOCK_TAG;
-	}
+	public static TagKey<Block> IRON_SIGN_BLOCK_TAG;
 
 	/**
 	 * All sign items
 	 * <p>
-	 * Used in coloring recipes
+	 * Used in coloring recipes. Read-only outside its class.
 	 */
-	public static TagKey<Item> getIronSignItemTag() {
-		return IRON_SIGN_ITEM_TAG;
-	}
+	public static TagKey<Item> IRON_SIGN_ITEM_TAG;
 
 	/**
 	 * All hanging sign items
 	 * <p>
-	 * Used in coloring recipes
+	 * Used in coloring recipes. Read-only outside its class.
 	 */
-	public static TagKey<Item> getHangingIronSignItemTag() {
-		return HANGING_IRON_SIGN_ITEM_TAG;
-	}
-
+	public static TagKey<Item> HANGING_IRON_SIGN_ITEM_TAG;
 
 	/**
 	 * Called from {@link Mod#onInitialize()}
@@ -124,22 +92,22 @@ public final class Main {
 		// Iron sign
 		ironSign = new SignVariant("iron_sign");
 		signEntityBuilder
-			.addBlock(ironSign.getWallBlock())
-			.addBlock(ironSign.getBlock());
+			.addBlock(ironSign.wallBlock)
+			.addBlock(ironSign.block);
 		hangingSignEntityBuilder
-			.addBlock(ironSign.getHangingWallBlock())
-			.addBlock(ironSign.getHangingBlock());
+			.addBlock(ironSign.hangingWallBlock)
+			.addBlock(ironSign.hangingBlock);
 		// Colored signs
 		signColors = SignColor.values();
 		colorSigns = new SignVariant[signColors.length];
 		for (int i = 0; i < signColors.length; i++) {
-			colorSigns[i] = new SignVariant(getSignColors(i).getName() + "_sign");
+			colorSigns[i] = new SignVariant(signColors[i].getName() + "_sign");
 			signEntityBuilder
-				.addBlock(colorSigns[i].getWallBlock())
-				.addBlock(colorSigns[i].getBlock());
+				.addBlock(colorSigns[i].wallBlock)
+				.addBlock(colorSigns[i].block);
 			hangingSignEntityBuilder
-				.addBlock(colorSigns[i].getHangingWallBlock())
-				.addBlock(colorSigns[i].getHangingBlock());
+				.addBlock(colorSigns[i].hangingWallBlock)
+				.addBlock(colorSigns[i].hangingBlock);
 		}
 		// Register entities
 		ironSignEntity = Registry.register(

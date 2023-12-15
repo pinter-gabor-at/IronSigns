@@ -62,13 +62,15 @@ public class FormatButtonsHandler {
 	};
 
 	/**
-	 * Register {@link ##onScreenOpened(Screen)} callback after opening the
-	 * screen
+	 * Register {@link ##onScreenOpened(Screen)} callback after opening the screen
 	 */
 	public static void init() {
-		ScreenEvents.AFTER_INIT.register((client, screen, width, height) ->
-			onScreenOpened(screen)
-		);
+		// But only if Text Formatting is enabled
+		if (ModConfig.enableTextFormatting()) {
+			ScreenEvents.AFTER_INIT.register((client, screen, width, height) ->
+				onScreenOpened(screen)
+			);
+		}
 	}
 
 	/**
@@ -78,7 +80,7 @@ public class FormatButtonsHandler {
 	 * @param screen Edit screen
 	 */
 	private static void onScreenOpened(Screen screen) {
-		// A quick check if it is a sign edit screen
+		// A quick check to see if it is a sign edit screen
 		if (!(screen instanceof AbstractSignEditScreen es)) {
 			return;
 		}
@@ -89,6 +91,32 @@ public class FormatButtonsHandler {
 			return;
 		}
 		addButtonsToScreen(es);
+	}
+
+	/**
+	 * @param screen edit screen
+	 * @return true if the edit screen is associated with an Iron Sign or with a Hanging Iron Sign
+	 */
+	private static boolean isIronSign(AbstractSignEditScreen screen) {
+		final var sbeclass =
+			((AbstractSignEditScreenAccessor) screen)
+				.getBlockEntity()
+				.getClass();
+		return (sbeclass == IronSignBlockEntity.class) ||
+			(sbeclass == HangingIronSignBlockEntity.class);
+	}
+
+	/**
+	 * @param screen edit screen
+	 * @return true if the edit screen is associated with a Wooden Sign or with a Hanging Wooden Sign
+	 */
+	private static boolean isWoodenSign(AbstractSignEditScreen screen) {
+		final var sbeclass =
+			((AbstractSignEditScreenAccessor) screen)
+				.getBlockEntity()
+				.getClass();
+		return (sbeclass == SignBlockEntity.class) ||
+			(sbeclass == HangingSignBlockEntity.class);
 	}
 
 	/**
@@ -111,37 +139,12 @@ public class FormatButtonsHandler {
 	}
 
 	/**
-	 * @param screen edit screen
-	 * @return true if the edit screen is associated with a Wooden Sign or with a Hanging Wooden Sign
-	 */
-	private static boolean isWoodenSign(AbstractSignEditScreen screen) {
-		final var sbeclass =
-			((AbstractSignEditScreenAccessor) screen)
-				.getBlockEntity()
-				.getClass();
-		return (sbeclass == SignBlockEntity.class) ||
-			(sbeclass == HangingSignBlockEntity.class);
-	}
-
-	/**
-	 * @param screen edit screen
-	 * @return true if the edit screen is associated with an Iron Sign or with a Hanging Iron Sign
-	 */
-	private static boolean isIronSign(AbstractSignEditScreen screen) {
-		final var sbeclass =
-			((AbstractSignEditScreenAccessor) screen)
-				.getBlockEntity()
-				.getClass();
-		return (sbeclass == IronSignBlockEntity.class) ||
-			(sbeclass == HangingIronSignBlockEntity.class);
-	}
-
-	/**
 	 * Create a list of color buttons
 	 * @param screen Edit screen
 	 * @param formats List of formatting codes
 	 * @param xOffset Left X of the button field
 	 * @param yOffset Top Y of the button field
+	 * @param rows Number of rows
 	 * @return The list
 	 */
 	@SuppressWarnings("SameParameterValue")
