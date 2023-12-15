@@ -22,10 +22,10 @@ public class ModModelProvider extends FabricModelProvider {
 	public void generateBlockStateModels(
 		BlockStateModelGenerator blockStateModelGenerator) {
 		// Iron sign
-		generateSignBlockStates(blockStateModelGenerator, Main.getIronSign());
+		generateSignBlockStates(blockStateModelGenerator, Main.ironSign);
 		// Color signs
-		for (int i = 0; i < Main.getColorSignLength(); i++) {
-			generateSignBlockStates(blockStateModelGenerator, Main.getColorSign(i));
+		for (int i = 0; i < Main.colorSigns.length; i++) {
+			generateSignBlockStates(blockStateModelGenerator, Main.colorSigns[i]);
 		}
 	}
 
@@ -39,10 +39,10 @@ public class ModModelProvider extends FabricModelProvider {
 		// There is no WoodBlock associated with Sign, so it behaves like a HangingSign,
 		// and it is registered the same way as a HangingSign.
 		blockStateModelGenerator.registerHangingSign(Blocks.IRON_BLOCK,
-			sv.getBlock(), sv.getWallBlock());
+			sv.block, sv.wallBlock);
 		// Generate blockstates, block and item models for HangingSign and HangingWallSign.
 		blockStateModelGenerator.registerHangingSign(Blocks.IRON_BLOCK,
-			sv.getHangingBlock(), sv.getHangingWallBlock());
+			sv.hangingBlock, sv.hangingWallBlock);
 	}
 
 	@Override

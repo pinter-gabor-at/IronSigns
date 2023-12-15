@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 /**
  * Common entity for all IronSign blocks
  * <p>
- * There is only one instance {@link Main#getIronSignEntity()}
+ * There is only one instance {@link Main#ironSignEntity}
  */
 public class IronSignBlockEntity extends SignBlockEntity {
 
@@ -20,6 +20,6 @@ public class IronSignBlockEntity extends SignBlockEntity {
 
 	@Override
 	public BlockEntityType<?> getType() {
-		return Main.getIronSignEntity();
+		return Main.ironSignEntity;
 	}
 }

@@ -27,62 +27,54 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
  * One IronSign variant
  */
 public class SignVariant {
-	private final WoodType woodType;
-	private final Block block;
-	private final Block wallBlock;
-	private final Block hangingBlock;
-	private final Block hangingWallBlock;
-	private final Item item;
-	private final Item hangingItem;
-
 	/**
 	 * Needed for loading textures
+	 * <p>
+	 * Read only outside class.
 	 */
-	public WoodType getWoodType() {
-		return woodType;
-	}
+	public WoodType woodType;
 
 	/**
 	 * Standing sign block
+	 * <p>
+	 * Read only outside class.
 	 */
-	public Block getBlock() {
-		return block;
-	}
+	public Block block;
 
 	/**
 	 * Sign block attached to a wall
+	 * <p>
+	 * Read only outside class.
 	 */
-	public Block getWallBlock() {
-		return wallBlock;
-	}
+	public Block wallBlock;
 
 	/**
 	 * Hanging sign block
+	 * <p>
+	 * Read only outside class.
 	 */
-	public Block getHangingBlock() {
-		return hangingBlock;
-	}
+	public Block hangingBlock;
 
 	/**
 	 * Hanging sign block attaced to a wall
+	 * <p>
+	 * Read only outside class.
 	 */
-	public Block getHangingWallBlock() {
-		return hangingWallBlock;
-	}
+	public Block hangingWallBlock;
 
 	/**
 	 * Sign item
+	 * <p>
+	 * Read only outside class.
 	 */
-	public Item getItem() {
-		return item;
-	}
+	public Item item;
 
 	/**
 	 * Hanging sign item
+	 * <p>
+	 * Read only outside class.
 	 */
-	public Item getHangingItem() {
-		return hangingItem;
-	}
+	public Item hangingItem;
 
 	/**
 	 * Create one variant of IronSign

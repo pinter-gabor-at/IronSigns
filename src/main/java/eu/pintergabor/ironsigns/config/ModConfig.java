@@ -13,6 +13,7 @@ public class ModConfig implements ConfigData {
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableColorSigns = true;
 
+	@ConfigEntry.Gui.PrefixText
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableIronSignTextFormatting = true;
 
@@ -25,5 +26,13 @@ public class ModConfig implements ConfigData {
 
 	public static ModConfig getInstance() {
 		return AutoConfig.getConfigHolder(ModConfig.class).getConfig();
+	}
+
+	/**
+	 * @return true if any Text Formatting is enabled
+	 */
+	public static boolean enableTextFormatting() {
+		final ModConfig m = getInstance();
+		return m.enableIronSignTextFormatting || m.enableWoodenSignTextFormatting;
 	}
 }

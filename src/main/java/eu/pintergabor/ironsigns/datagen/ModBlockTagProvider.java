@@ -21,27 +21,27 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 	@Override
 	protected void configure(RegistryWrapper.WrapperLookup arg) {
 		FabricTagBuilder tagBuilder =
-			getOrCreateTagBuilder(Main.getIronSignBlockTag());
+			getOrCreateTagBuilder(Main.IRON_SIGN_BLOCK_TAG);
 		// Iron sign
-		builderAdd(tagBuilder, Main.getIronSign());
+		builderAdd(tagBuilder, Main.ironSign);
 		// Color signs
-		for (int i = 0; i < Main.getColorSignLength(); i++) {
-			builderAdd(tagBuilder, Main.getColorSign(i));
+		for (int i = 0; i < Main.colorSigns.length; i++) {
+			builderAdd(tagBuilder, Main.colorSigns[i]);
 		}
 		// Make them mineable with axe and pickaxe
 		getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
-			.forceAddTag(Main.getIronSignBlockTag());
+			.forceAddTag(Main.IRON_SIGN_BLOCK_TAG);
 		getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-			.forceAddTag(Main.getIronSignBlockTag());
+			.forceAddTag(Main.IRON_SIGN_BLOCK_TAG);
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
 	private FabricTagBuilder builderAdd(
 		FabricTagBuilder tagBuilder, SignVariant sv) {
 		return tagBuilder
-			.add(sv.getBlock())
-			.add(sv.getWallBlock())
-			.add(sv.getHangingBlock())
-			.add(sv.getHangingWallBlock());
+			.add(sv.block)
+			.add(sv.wallBlock)
+			.add(sv.hangingBlock)
+			.add(sv.hangingWallBlock);
 	}
 }

@@ -17,11 +17,13 @@ import net.minecraft.util.profiler.Profiler;
 @Mixin(RecipeManager.class)
 public abstract class RecipeManagerMixin {
 
-	@Inject(method = "apply*", at = @At("HEAD"))
+	/**
+	 * Remove Color Sign Recipes, if they are disabled in config
+	 */
+	@Inject(method = "apply(Ljava/util/Map;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/util/profiler/Profiler;)V", at = @At("HEAD"))
 	private void apply(
 		Map<Identifier, JsonElement> map,
 		ResourceManager resourceManager, Profiler profiler, CallbackInfo info) {
-		// Remove Color Sign Recipes, if they are disabled in config
 		RecipeManagerUtil.configRecipes(map);
 	}
 }

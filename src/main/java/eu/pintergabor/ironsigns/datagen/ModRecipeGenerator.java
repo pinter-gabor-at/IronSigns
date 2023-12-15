@@ -24,25 +24,25 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
 	public void generate(RecipeExporter exporter) {
 		// Iron sign
 		generateIronSignItemRecipe(exporter,
-			Main.getIronSign().getItem(),
+			Main.ironSign.item,
 			ItemTags.PLANKS);
 		generateHangingIronSignItemRecipe(exporter,
-			Main.getIronSign().getHangingItem(),
+			Main.ironSign.hangingItem,
 			ItemTags.PLANKS);
 		// Color signs
-		for (int i = 0; i < Main.getColorSignLength(); i++) {
+		for (int i = 0; i < Main.colorSigns.length; i++) {
 			generateIronSignItemRecipe(exporter,
-				Main.getColorSign(i).getItem(),
-				Main.getSignColors(i).getDyeTagKey());
+				Main.colorSigns[i].item,
+				Main.signColors[i].getDyeTagKey());
 			generateHangingIronSignItemRecipe(exporter,
-				Main.getColorSign(i).getHangingItem(),
-				Main.getSignColors(i).getDyeTagKey());
+				Main.colorSigns[i].hangingItem,
+				Main.signColors[i].getDyeTagKey());
 			paintIronSignItemRecipe(exporter,
-				Main.getColorSign(i).getItem(),
-				Main.getSignColors(i).getDyeTagKey());
+				Main.colorSigns[i].item,
+				Main.signColors[i].getDyeTagKey());
 			paintHangingIronSignItemRecipe(exporter,
-				Main.getColorSign(i).getHangingItem(),
-				Main.getSignColors(i).getDyeTagKey());
+				Main.colorSigns[i].hangingItem,
+				Main.signColors[i].getDyeTagKey());
 		}
 
 	}
@@ -94,7 +94,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
 	private void paintIronSignItemRecipe(
 		RecipeExporter exporter, Item signitem, TagKey<Item> dye) {
 		ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, signitem)
-			.input(Main.getIronSignItemTag())
+			.input(Main.IRON_SIGN_ITEM_TAG)
 			.input(dye)
 			.criterion(hasItem(Items.IRON_INGOT),
 				conditionsFromItem(Items.IRON_INGOT))
@@ -109,7 +109,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
 	private void paintHangingIronSignItemRecipe(
 		RecipeExporter exporter, Item signitem, TagKey<Item> dye) {
 		ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, signitem)
-			.input(Main.getHangingIronSignItemTag())
+			.input(Main.IRON_SIGN_ITEM_TAG)
 			.input(dye)
 			.criterion(hasItem(Items.IRON_INGOT),
 				conditionsFromItem(Items.IRON_INGOT))
