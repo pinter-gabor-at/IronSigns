@@ -1,6 +1,5 @@
 package eu.pintergabor.ironsigns.mixin;
 
-import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.config.ModConfig;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;

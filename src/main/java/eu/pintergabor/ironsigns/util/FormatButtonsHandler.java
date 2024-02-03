@@ -62,7 +62,7 @@ public class FormatButtonsHandler {
 	};
 
 	/**
-	 * Register {@link ##onScreenOpened(Screen)} callback after opening the screen
+	 * Register {@link #onScreenOpened(Screen)} callback after opening the screen
 	 */
 	public static void init() {
 		// But only if Text Formatting is enabled
@@ -81,16 +81,14 @@ public class FormatButtonsHandler {
 	 */
 	private static void onScreenOpened(Screen screen) {
 		// A quick check to see if it is a sign edit screen
-		if (!(screen instanceof AbstractSignEditScreen es)) {
-			return;
+		if (screen instanceof AbstractSignEditScreen es) {
+			// Check configuration and add buttons if enabled
+			var config = ModConfig.getInstance();
+			if ((config.enableIronSignTextFormatting && isIronSign(es)) ||
+				(config.enableWoodenSignTextFormatting && isWoodenSign(es))) {
+				addButtonsToScreen(es);
+			}
 		}
-		// Check configuration and add buttons if enabled
-		var config = ModConfig.getInstance();
-		if ((!config.enableIronSignTextFormatting || !isIronSign(es)) &&
-			(!config.enableWoodenSignTextFormatting || !isWoodenSign(es))) {
-			return;
-		}
-		addButtonsToScreen(es);
 	}
 
 	/**

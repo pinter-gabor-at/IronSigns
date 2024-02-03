@@ -57,6 +57,7 @@ public enum SignColor {
 		return dyeTagKey;
 	}
 
+	@SuppressWarnings("unused")
 	public String asString() {
 		return this.name;
 	}

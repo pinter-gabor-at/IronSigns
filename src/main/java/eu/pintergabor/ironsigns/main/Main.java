@@ -17,8 +17,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityT
 
 
 public final class Main {
-	private Main() {
-	}
 
 	/**
 	 * All {@link SignColor} enum values in an array
@@ -76,39 +74,55 @@ public final class Main {
 	 */
 	public static TagKey<Item> HANGING_IRON_SIGN_ITEM_TAG;
 
+	private static void initTags() {
+		IRON_SIGN_BLOCK_TAG = TagKey.of(RegistryKeys.BLOCK, new ModIdentifier("block_tag"));
+		IRON_SIGN_ITEM_TAG = TagKey.of(RegistryKeys.ITEM, new ModIdentifier("item_tag"));
+		HANGING_IRON_SIGN_ITEM_TAG = TagKey.of(RegistryKeys.ITEM, new ModIdentifier("hanging_item_tag"));
+	}
+
+	private static SignVariant addToEntityBulder(
+		FabricBlockEntityTypeBuilder<IronSignBlockEntity> signEntityBuilder,
+		FabricBlockEntityTypeBuilder<HangingIronSignBlockEntity> hangingSignEntityBuilder,
+		String svname) {
+		SignVariant sv = new SignVariant(svname);
+		signEntityBuilder
+			.addBlock(sv.wallBlock)
+			.addBlock(sv.block);
+		hangingSignEntityBuilder
+			.addBlock(sv.hangingWallBlock)
+			.addBlock(sv.hangingBlock);
+		return sv;
+	}
+
+	private static SignVariant[] addToEntityBulder(
+		FabricBlockEntityTypeBuilder<IronSignBlockEntity> signEntityBuilder,
+		FabricBlockEntityTypeBuilder<HangingIronSignBlockEntity> hangingSignEntityBuilder,
+		SignVariant[] svs) {
+		for (int i = 0; i < svs.length; i++) {
+			svs[i] = addToEntityBulder(signEntityBuilder, hangingSignEntityBuilder,
+				signColors[i].getName() + "_sign");
+		}
+		return svs;
+	}
+
 	/**
 	 * Called from {@link Mod#onInitialize()}
 	 */
 	public static void init() {
 		// Tags
-		IRON_SIGN_BLOCK_TAG = TagKey.of(RegistryKeys.BLOCK, new ModIdentifier("block_tag"));
-		IRON_SIGN_ITEM_TAG = TagKey.of(RegistryKeys.ITEM, new ModIdentifier("item_tag"));
-		HANGING_IRON_SIGN_ITEM_TAG = TagKey.of(RegistryKeys.ITEM, new ModIdentifier("hanging_item_tag"));
+		initTags();
 		// Entity builders
 		FabricBlockEntityTypeBuilder<IronSignBlockEntity> signEntityBuilder =
 			FabricBlockEntityTypeBuilder.create(IronSignBlockEntity::new);
 		FabricBlockEntityTypeBuilder<HangingIronSignBlockEntity> hangingSignEntityBuilder =
 			FabricBlockEntityTypeBuilder.create(HangingIronSignBlockEntity::new);
 		// Iron sign
-		ironSign = new SignVariant("iron_sign");
-		signEntityBuilder
-			.addBlock(ironSign.wallBlock)
-			.addBlock(ironSign.block);
-		hangingSignEntityBuilder
-			.addBlock(ironSign.hangingWallBlock)
-			.addBlock(ironSign.hangingBlock);
+		ironSign = addToEntityBulder(signEntityBuilder, hangingSignEntityBuilder,
+			"iron_sign");
 		// Colored signs
 		signColors = SignColor.values();
-		colorSigns = new SignVariant[signColors.length];
-		for (int i = 0; i < signColors.length; i++) {
-			colorSigns[i] = new SignVariant(signColors[i].getName() + "_sign");
-			signEntityBuilder
-				.addBlock(colorSigns[i].wallBlock)
-				.addBlock(colorSigns[i].block);
-			hangingSignEntityBuilder
-				.addBlock(colorSigns[i].hangingWallBlock)
-				.addBlock(colorSigns[i].hangingBlock);
-		}
+		colorSigns = addToEntityBulder(signEntityBuilder, hangingSignEntityBuilder,
+			new SignVariant[signColors.length]);
 		// Register entities
 		ironSignEntity = Registry.register(
 			Registries.BLOCK_ENTITY_TYPE,
