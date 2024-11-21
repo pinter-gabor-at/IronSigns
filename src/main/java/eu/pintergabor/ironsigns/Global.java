@@ -1,10 +1,9 @@
 package eu.pintergabor.ironsigns;
 
-
-import net.minecraft.resources.ResourceLocation;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.minecraft.resources.ResourceLocation;
 
 
 public final class Global {
@@ -18,6 +17,7 @@ public final class Global {
 
 	/**
 	 * Create a mod specific identifier.
+	 *
 	 * @param path Name, as in lang/*.json files without "*.modid." prefix.
 	 */
 	public static ResourceLocation ModIdentifier(String path) {

@@ -1,7 +1,7 @@
 package eu.pintergabor.ironsigns.main;
 
 import eu.pintergabor.ironsigns.Global;
-import eu.pintergabor.ironsigns.Mod;
+import eu.pintergabor.ironsigns.ModCommon;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
 
@@ -154,7 +154,7 @@ public final class Main {
 	}
 
 	/**
-	 * Called from {@link Mod#onInitialize()}.
+	 * Called from {@link ModCommon}.
 	 */
 	public static void init() {
 		// Tags.
