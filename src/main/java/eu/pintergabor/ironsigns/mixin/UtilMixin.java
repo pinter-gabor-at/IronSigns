@@ -18,7 +18,7 @@ public abstract class UtilMixin {
 	private static void newMoveCursor(
 		String string, int cursor, int delta,
 		CallbackInfoReturnable<Integer> cir){
-		if (ModConfig.enableTextFormatting()) {
+		if (ModConfig.enableSignTextFormatting()) {
 			cir.setReturnValue(StringUtil.moveCursor(string, cursor, delta));
 		}
 	}

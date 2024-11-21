@@ -81,8 +81,8 @@ public final class Main {
 	}
 
 	private static SignVariant addToEntityBulder(
-		FabricBlockEntityTypeBuilder<IronSignBlockEntity> signEntityBuilder,
-		FabricBlockEntityTypeBuilder<HangingIronSignBlockEntity> hangingSignEntityBuilder,
+		BlockEntityType.Builder<IronSignBlockEntity> signEntityBuilder,
+		BlockEntityType.Builder<HangingIronSignBlockEntity> hangingSignEntityBuilder,
 		String svname) {
 		SignVariant sv = new SignVariant(svname);
 		signEntityBuilder
@@ -112,10 +112,10 @@ public final class Main {
 		// Tags
 		initTags();
 		// Entity builders
-		FabricBlockEntityTypeBuilder<IronSignBlockEntity> signEntityBuilder =
+		BlockEntityType.Builder<IronSignBlockEntity> signEntityBuilder =
 			FabricBlockEntityTypeBuilder.create(IronSignBlockEntity::new);
-		FabricBlockEntityTypeBuilder<HangingIronSignBlockEntity> hangingSignEntityBuilder =
-			FabricBlockEntityTypeBuilder.create(HangingIronSignBlockEntity::new);
+		BlockEntityType.Builder<HangingIronSignBlockEntity> hangingSignEntityBuilder =
+			BlockEntityType.Builder.create(HangingIronSignBlockEntity::new);
 		// Iron sign
 		ironSign = addToEntityBulder(signEntityBuilder, hangingSignEntityBuilder,
 			"iron_sign");

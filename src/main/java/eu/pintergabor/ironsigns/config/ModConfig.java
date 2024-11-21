@@ -31,7 +31,7 @@ public class ModConfig implements ConfigData {
 	/**
 	 * @return true if any Text Formatting is enabled
 	 */
-	public static boolean enableTextFormatting() {
+	public static boolean enableSignTextFormatting() {
 		final ModConfig m = getInstance();
 		return m.enableIronSignTextFormatting || m.enableWoodenSignTextFormatting;
 	}

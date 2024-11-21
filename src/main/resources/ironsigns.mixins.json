@@ -9,6 +9,7 @@
     "RecipeManagerMixin",
     "ServerPlayNetworkHandlerMixin",
     "SharedConstantsMixin",
+    "StringHelperMixin",
     "UtilMixin"
   ],
   "client": [

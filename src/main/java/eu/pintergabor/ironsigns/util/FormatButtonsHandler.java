@@ -66,7 +66,7 @@ public class FormatButtonsHandler {
 	 */
 	public static void init() {
 		// But only if Text Formatting is enabled
-		if (ModConfig.enableTextFormatting()) {
+		if (ModConfig.enableSignTextFormatting()) {
 			ScreenEvents.AFTER_INIT.register((client, screen, width, height) ->
 				onScreenOpened(screen)
 			);
