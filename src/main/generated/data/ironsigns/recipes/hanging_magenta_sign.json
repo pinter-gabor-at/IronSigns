@@ -6,7 +6,7 @@
       "item": "minecraft:chain"
     },
     "P": {
-      "tag": "c:magenta_dyes"
+      "tag": "c:dyes/magenta"
     },
     "S": {
       "item": "minecraft:iron_ingot"
@@ -19,6 +19,6 @@
   ],
   "result": {
     "count": 20,
-    "item": "ironsigns:hanging_magenta_sign"
+    "id": "ironsigns:hanging_magenta_sign"
   }
 }

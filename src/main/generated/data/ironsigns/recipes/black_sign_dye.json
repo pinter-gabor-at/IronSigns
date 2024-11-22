@@ -6,10 +6,11 @@
       "tag": "ironsigns:item_tag"
     },
     {
-      "tag": "c:black_dyes"
+      "tag": "c:dyes/black"
     }
   ],
   "result": {
-    "item": "ironsigns:black_sign"
+    "count": 1,
+    "id": "ironsigns:black_sign"
   }
 }

@@ -87,7 +87,7 @@ public class SignVariant {
         // HangingSign entity is the hard-coded part of the HangingWallSign entity.
         // HangingWallSign entity: resources/assets/<MODID>/textures/entity/signs/hanging/<name>.png
         // HangingSign GUI: resources/assets/<MODID>/textures/gui/hanging_signs/<name>.png
-        woodType = (new WoodTypeBuilder())
+        woodType = new WoodTypeBuilder()
                 .soundGroup(BlockSoundGroup.METAL)
                 .hangingSignSoundGroup(BlockSoundGroup.METAL)
                 .register(

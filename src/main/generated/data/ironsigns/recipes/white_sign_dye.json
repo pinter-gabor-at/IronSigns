@@ -6,10 +6,11 @@
       "tag": "ironsigns:item_tag"
     },
     {
-      "tag": "c:white_dyes"
+      "tag": "c:dyes/white"
     }
   ],
   "result": {
-    "item": "ironsigns:white_sign"
+    "count": 1,
+    "id": "ironsigns:white_sign"
   }
 }

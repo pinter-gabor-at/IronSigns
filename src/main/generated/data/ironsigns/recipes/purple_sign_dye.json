@@ -6,10 +6,11 @@
       "tag": "ironsigns:item_tag"
     },
     {
-      "tag": "c:purple_dyes"
+      "tag": "c:dyes/purple"
     }
   ],
   "result": {
-    "item": "ironsigns:purple_sign"
+    "count": 1,
+    "id": "ironsigns:purple_sign"
   }
 }

@@ -6,10 +6,11 @@
       "tag": "ironsigns:item_tag"
     },
     {
-      "tag": "c:red_dyes"
+      "tag": "c:dyes/red"
     }
   ],
   "result": {
-    "item": "ironsigns:red_sign"
+    "count": 1,
+    "id": "ironsigns:red_sign"
   }
 }

@@ -6,10 +6,11 @@
       "tag": "ironsigns:item_tag"
     },
     {
-      "tag": "c:orange_dyes"
+      "tag": "c:dyes/orange"
     }
   ],
   "result": {
-    "item": "ironsigns:orange_sign"
+    "count": 1,
+    "id": "ironsigns:orange_sign"
   }
 }

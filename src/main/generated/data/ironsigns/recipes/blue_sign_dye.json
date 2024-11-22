@@ -6,10 +6,11 @@
       "tag": "ironsigns:item_tag"
     },
     {
-      "tag": "c:blue_dyes"
+      "tag": "c:dyes/blue"
     }
   ],
   "result": {
-    "item": "ironsigns:blue_sign"
+    "count": 1,
+    "id": "ironsigns:blue_sign"
   }
 }

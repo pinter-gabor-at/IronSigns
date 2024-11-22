@@ -6,10 +6,11 @@
       "tag": "ironsigns:item_tag"
     },
     {
-      "tag": "c:light_gray_dyes"
+      "tag": "c:dyes/light_gray"
     }
   ],
   "result": {
-    "item": "ironsigns:light_gray_sign"
+    "count": 1,
+    "id": "ironsigns:light_gray_sign"
   }
 }

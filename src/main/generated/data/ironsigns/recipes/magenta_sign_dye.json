@@ -6,10 +6,11 @@
       "tag": "ironsigns:item_tag"
     },
     {
-      "tag": "c:magenta_dyes"
+      "tag": "c:dyes/magenta"
     }
   ],
   "result": {
-    "item": "ironsigns:magenta_sign"
+    "count": 1,
+    "id": "ironsigns:magenta_sign"
   }
 }

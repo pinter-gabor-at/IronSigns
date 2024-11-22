@@ -6,10 +6,11 @@
       "tag": "ironsigns:item_tag"
     },
     {
-      "tag": "c:gray_dyes"
+      "tag": "c:dyes/gray"
     }
   ],
   "result": {
-    "item": "ironsigns:hanging_gray_sign"
+    "count": 1,
+    "id": "ironsigns:hanging_gray_sign"
   }
 }

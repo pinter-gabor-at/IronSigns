@@ -6,10 +6,11 @@
       "tag": "ironsigns:item_tag"
     },
     {
-      "tag": "c:lime_dyes"
+      "tag": "c:dyes/lime"
     }
   ],
   "result": {
-    "item": "ironsigns:lime_sign"
+    "count": 1,
+    "id": "ironsigns:lime_sign"
   }
 }

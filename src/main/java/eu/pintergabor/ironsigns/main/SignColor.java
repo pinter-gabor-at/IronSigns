@@ -3,7 +3,7 @@ package eu.pintergabor.ironsigns.main;
 import net.minecraft.item.Item;
 import net.minecraft.registry.tag.TagKey;
 
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 
 /**
  * Color names, primary colors and dye item tags
