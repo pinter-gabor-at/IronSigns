@@ -1,5 +1,6 @@
 package eu.pintergabor.ironsigns.util;
 
+import eu.pintergabor.ironsigns.Global;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -22,7 +23,7 @@ public final class Register {
     public static Item registerItem(String name, Item item) {
         return Registry.register(
                 Registries.ITEM,
-                new ModIdentifier(name),
+                Global.ModIdentifier(name),
                 item);
     }
 
@@ -37,7 +38,7 @@ public final class Register {
     public static Block registerBlock(String name, Block block) {
         return Registry.register(
                 Registries.BLOCK,
-                new ModIdentifier(name),
+                Global.ModIdentifier(name),
                 block);
     }
 
@@ -50,7 +51,7 @@ public final class Register {
     public static void registerBlockItem(String name, Block block) {
         Registry.register(
                 Registries.ITEM,
-                new ModIdentifier(name),
+                Global.ModIdentifier(name),
                 new BlockItem(block, new Item.Settings()));
     }
 
@@ -66,7 +67,7 @@ public final class Register {
         registerBlockItem(name, block);
         return Registry.register(
                 Registries.BLOCK,
-                new ModIdentifier(name),
+                Global.ModIdentifier(name),
                 block);
     }
 }

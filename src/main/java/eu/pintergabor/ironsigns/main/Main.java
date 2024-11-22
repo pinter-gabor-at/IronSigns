@@ -1,9 +1,9 @@
 package eu.pintergabor.ironsigns.main;
 
+import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.Mod;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
-import eu.pintergabor.ironsigns.util.ModIdentifier;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.Item;
@@ -75,9 +75,9 @@ public final class Main {
      * Initialize tags
      */
     private static void initTags() {
-        IRON_SIGN_BLOCK_TAG = TagKey.of(RegistryKeys.BLOCK, new ModIdentifier("block_tag"));
-        IRON_SIGN_ITEM_TAG = TagKey.of(RegistryKeys.ITEM, new ModIdentifier("item_tag"));
-        HANGING_IRON_SIGN_ITEM_TAG = TagKey.of(RegistryKeys.ITEM, new ModIdentifier("hanging_item_tag"));
+        IRON_SIGN_BLOCK_TAG = TagKey.of(RegistryKeys.BLOCK, Global.ModIdentifier("block_tag"));
+        IRON_SIGN_ITEM_TAG = TagKey.of(RegistryKeys.ITEM, Global.ModIdentifier("item_tag"));
+        HANGING_IRON_SIGN_ITEM_TAG = TagKey.of(RegistryKeys.ITEM, Global.ModIdentifier("hanging_item_tag"));
     }
 
     /**
@@ -114,7 +114,7 @@ public final class Main {
         // Register entity
         ironSignEntity = Registry.register(
                 Registries.BLOCK_ENTITY_TYPE,
-                new ModIdentifier("iron_sign_entity"),
+                Global.ModIdentifier("iron_sign_entity"),
                 signEntityBuilder.build());
     }
 
@@ -138,7 +138,7 @@ public final class Main {
         // Register entity
         hangingIronSignEntity = Registry.register(
                 Registries.BLOCK_ENTITY_TYPE,
-                new ModIdentifier("hanging_iron_sign_entity"),
+                Global.ModIdentifier("hanging_iron_sign_entity"),
                 hangingSignEntityBuilder.build(null));
     }
 

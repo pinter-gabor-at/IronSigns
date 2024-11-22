@@ -1,5 +1,6 @@
 package eu.pintergabor.ironsigns.datagen;
 
+import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.main.Main;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -12,7 +13,6 @@ import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -67,7 +67,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('I', Items.STICK)
                 .criterion(hasItem(Items.IRON_INGOT),
                         conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, new Identifier(getRecipeName(signitem)));
+                .offerTo(exporter);
     }
 
     /**
@@ -88,7 +88,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('S', Items.IRON_INGOT)
                 .criterion(hasItem(Items.IRON_INGOT),
                         conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, new Identifier(getRecipeName(signitem)));
+                .offerTo(exporter);
     }
 
     /**
@@ -104,7 +104,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input(dye)
                 .criterion(hasItem(Items.IRON_INGOT),
                         conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, new Identifier(getRecipeName(signitem) + "_dye"));
+                .offerTo(exporter, Global.ModIdentifier(getRecipeName(signitem) + "_dye"));
     }
 
     /**
@@ -120,6 +120,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input(dye)
                 .criterion(hasItem(Items.IRON_INGOT),
                         conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, new Identifier(getRecipeName(signitem) + "_dye"));
+                .offerTo(exporter, Global.ModIdentifier(getRecipeName(signitem) + "_dye"));
     }
 }

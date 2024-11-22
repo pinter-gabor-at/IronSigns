@@ -3,6 +3,7 @@ package eu.pintergabor.ironsigns.util;
 import java.util.Map;
 
 import com.google.gson.JsonElement;
+import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.config.ModConfig;
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
@@ -36,7 +37,7 @@ public class RecipeManagerUtil {
 	 */
 	private static void removeItemRecipe(
 		Map<Identifier, JsonElement> map, SignVariant sv) {
-		map.remove(new ModIdentifier(sv.item.toString()));
+		map.remove(Global.ModIdentifier(sv.item.toString()));
 	}
 
 	/**
@@ -46,7 +47,7 @@ public class RecipeManagerUtil {
 	 */
 	private static void removeHangingItemRecipe(
 		Map<Identifier, JsonElement> map, SignVariant sv) {
-		map.remove(new ModIdentifier(sv.hangingItem.toString()));
+		map.remove(Global.ModIdentifier(sv.hangingItem.toString()));
 	}
 
 	/**
@@ -56,7 +57,7 @@ public class RecipeManagerUtil {
 	 */
 	private static void removePaintItemRecipe(
 		Map<Identifier, JsonElement> map, SignVariant sv) {
-		map.remove(new ModIdentifier(sv.item.toString() + "_dye"));
+		map.remove(Global.ModIdentifier(sv.item.toString() + "_dye"));
 	}
 
 	/**
@@ -66,6 +67,6 @@ public class RecipeManagerUtil {
 	 */
 	private static void removePaintHangingItemRecipe(
 		Map<Identifier, JsonElement> map, SignVariant sv) {
-		map.remove(new ModIdentifier(sv.hangingItem.toString() + "_dye"));
+		map.remove(Global.ModIdentifier(sv.hangingItem.toString() + "_dye"));
 	}
 }

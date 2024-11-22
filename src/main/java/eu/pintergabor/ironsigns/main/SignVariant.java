@@ -1,10 +1,10 @@
 package eu.pintergabor.ironsigns.main;
 
+import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.blocks.IronHangingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallHangingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallSignBlock;
-import eu.pintergabor.ironsigns.util.ModIdentifier;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.minecraft.block.AbstractBlock;
@@ -91,7 +91,7 @@ public class SignVariant {
                 .soundGroup(BlockSoundGroup.METAL)
                 .hangingSignSoundGroup(BlockSoundGroup.METAL)
                 .register(
-                        new ModIdentifier(name), BlockSetType.IRON);
+                        Global.ModIdentifier(name), BlockSetType.IRON);
         // Blocks
         final AbstractBlock.Settings settings = AbstractBlock.Settings.create()
                 .solid().noCollision().strength(0.5f, 6.0f).requiresTool();
