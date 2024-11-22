@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "ironsigns:item_tag"
-    },
-    {
-      "tag": "c:dyes/brown"
-    }
+    "#ironsigns:item_tag",
+    "#c:dyes/brown"
   ],
   "result": {
     "count": 1,

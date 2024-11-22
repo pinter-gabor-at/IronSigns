@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "ironsigns:item_tag"
-    },
-    {
-      "tag": "c:dyes/magenta"
-    }
+    "#ironsigns:item_tag",
+    "#c:dyes/magenta"
   ],
   "result": {
     "count": 1,

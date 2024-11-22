@@ -4,6 +4,7 @@ import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.Mod;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.Item;
@@ -107,8 +108,8 @@ public final class Main {
             signBlocks[2 * i + 3] = colorSigns[i].wallBlock;
         }
         // Build entity
-        BlockEntityType.Builder<IronSignBlockEntity> signEntityBuilder =
-                BlockEntityType.Builder.create(
+        FabricBlockEntityTypeBuilder<IronSignBlockEntity> signEntityBuilder =
+                FabricBlockEntityTypeBuilder.create(
                         IronSignBlockEntity::new,
                         signBlocks);
         // Register entity
@@ -131,8 +132,8 @@ public final class Main {
             hangingSignBlocks[2 * i + 3] = colorSigns[i].hangingWallBlock;
         }
         // Build entity
-        BlockEntityType.Builder<HangingIronSignBlockEntity> hangingSignEntityBuilder =
-                BlockEntityType.Builder.create(
+        FabricBlockEntityTypeBuilder<HangingIronSignBlockEntity> hangingSignEntityBuilder =
+                FabricBlockEntityTypeBuilder.create(
                         HangingIronSignBlockEntity::new,
                         hangingSignBlocks);
         // Register entity
