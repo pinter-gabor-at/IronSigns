@@ -1,9 +1,7 @@
 package eu.pintergabor.ironsigns.entities;
 
 import eu.pintergabor.ironsigns.main.Main;
-
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.util.math.BlockPos;
 
@@ -14,12 +12,7 @@ import net.minecraft.util.math.BlockPos;
  */
 public class IronSignBlockEntity extends SignBlockEntity {
 
-	public IronSignBlockEntity(BlockPos pos, BlockState state) {
-		super(pos, state);
-	}
-
-	@Override
-	public BlockEntityType<?> getType() {
-		return Main.ironSignEntity;
-	}
+    public IronSignBlockEntity(BlockPos pos, BlockState state) {
+        super(Main.ironSignEntity, pos, state);
+    }
 }

@@ -30,7 +30,7 @@ public abstract class AbstractSignEditScreenMixin {
 	@Inject(method = "keyPressed", at = @At("HEAD"), cancellable = true)
 	private void keyPessed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> cir) {
 		// Global.LOGGER.info("Keycode: {}, Modifiers: {}", keyCode, modifiers);
-		if (ModConfig.enableTextFormatting() &&
+		if (ModConfig.enableSignTextFormatting() &&
 			keyCode == GLFW.GLFW_KEY_LEFT_BRACKET && ((modifiers & GLFW.GLFW_MOD_CONTROL) != 0)) {
 			// Global.LOGGER.info("Ctrl+[");
 			if (selectionManager != null) {
