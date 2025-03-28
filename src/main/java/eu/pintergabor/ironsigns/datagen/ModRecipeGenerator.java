@@ -2,8 +2,8 @@ package eu.pintergabor.ironsigns.datagen;
 
 import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.main.Main;
-import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.RecipeGenerator;
+import net.minecraft.data.recipe.RecipeExporter;
+import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;

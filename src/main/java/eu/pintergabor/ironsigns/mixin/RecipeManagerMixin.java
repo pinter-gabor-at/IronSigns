@@ -17,15 +17,20 @@ import java.util.SortedMap;
 
 @Mixin(ServerRecipeManager.class)
 public abstract class RecipeManagerMixin {
+
     /**
-     * Remove Color Sign Recipes, if they are disabled in config
+     * Remove recipes, if they are disabled in config
+     * <p>
+     * Inject code right after loading the recipes from JSON.
      */
     @Inject(method = "prepare(Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/util/profiler/Profiler;)Lnet/minecraft/recipe/PreparedRecipes;",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/resource/JsonDataLoader;load(Lnet/minecraft/resource/ResourceManager;Ljava/lang/String;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/util/Map;)V",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/resource/JsonDataLoader;load(Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/resource/ResourceFinder;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/util/Map;)V",
                     shift = At.Shift.AFTER))
-    private void afterLoad(ResourceManager resourceManager, Profiler profiler, CallbackInfoReturnable<PreparedRecipes> cir, @Local SortedMap<Identifier, Recipe<?>> sortedMap) {
+    private void editMap(
+            ResourceManager resourceManager,
+            Profiler profiler,
+            CallbackInfoReturnable<PreparedRecipes> cir,
+            @Local SortedMap<Identifier, Recipe<?>> sortedMap) {
         RecipeManagerUtil.configRecipes(sortedMap);
     }
 }
