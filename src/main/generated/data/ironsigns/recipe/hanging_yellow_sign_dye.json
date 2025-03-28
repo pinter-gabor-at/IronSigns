@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#ironsigns:item_tag",
+    "#c:dyes/yellow"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ironsigns:hanging_yellow_sign"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": "minecraft:stick",
+    "P": "#c:dyes/red",
+    "S": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "SSS",
+    "SPS",
+    " I "
+  ],
+  "result": {
+    "count": 20,
+    "id": "ironsigns:red_sign"
+  }
+}

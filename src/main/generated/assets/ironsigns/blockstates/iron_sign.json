@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ironsigns:block/iron_sign"
+    }
+  }
+}
