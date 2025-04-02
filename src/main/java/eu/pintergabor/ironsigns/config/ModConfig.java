@@ -7,6 +7,7 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import org.jetbrains.annotations.ApiStatus;
 
+
 @ApiStatus.Internal
 @Config(name = "ironsigns")
 public class ModConfig implements ConfigData {
@@ -29,7 +30,7 @@ public class ModConfig implements ConfigData {
 	}
 
 	/**
-	 * @return true if any Text Formatting is enabled
+	 * @return true if any Text Formatting is enabled.
 	 */
 	public static boolean enableSignTextFormatting() {
 		final ModConfig m = getInstance();

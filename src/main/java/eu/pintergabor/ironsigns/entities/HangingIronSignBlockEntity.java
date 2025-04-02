@@ -1,16 +1,20 @@
 package eu.pintergabor.ironsigns.entities;
 
 import eu.pintergabor.ironsigns.main.Main;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.SignBlockEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+
+import org.jetbrains.annotations.NotNull;
+
 
 /**
- * Common entity for all IronSign blocks
+ * Common entity for all hanging IronSign blocks.
  * <p>
- * There is only one instance {@link Main#hangingIronSignEntity}
+ * There is only one instance {@link Main#hangingIronSignEntity}.
  */
 public class HangingIronSignBlockEntity extends SignBlockEntity {
     private static final int MAX_TEXT_WIDTH = 60;
@@ -26,12 +30,13 @@ public class HangingIronSignBlockEntity extends SignBlockEntity {
     }
 
     @Override
-    public int getMaxTextWidth() {
+    public int getMaxTextLineWidth() {
         return MAX_TEXT_WIDTH;
     }
 
     @Override
-    public SoundEvent getInteractionFailSound() {
-        return SoundEvents.BLOCK_HANGING_SIGN_WAXED_INTERACT_FAIL;
+	@NotNull
+    public SoundEvent getSignInteractionFailedSoundEvent() {
+        return SoundEvents.WAXED_HANGING_SIGN_INTERACT_FAIL;
     }
 }

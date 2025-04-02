@@ -5,21 +5,23 @@ import java.util.concurrent.CompletableFuture;
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
 
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.BlockTags;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 
+
 public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
+
 	public ModBlockTagProvider(
 		FabricDataOutput output,
-		CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+		CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 
 	@Override
-	protected void configure(RegistryWrapper.WrapperLookup arg) {
+	protected void addTags(HolderLookup.Provider wrapperLookup) {
 		FabricTagBuilder tagBuilder =
 			getOrCreateTagBuilder(Main.IRON_SIGN_BLOCK_TAG);
 		// Iron sign
@@ -29,9 +31,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 			builderAdd(tagBuilder, Main.colorSigns[i]);
 		}
 		// Make them mineable with axe and pickaxe
-		getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE)
 			.forceAddTag(Main.IRON_SIGN_BLOCK_TAG);
-		getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
 			.forceAddTag(Main.IRON_SIGN_BLOCK_TAG);
 	}
 

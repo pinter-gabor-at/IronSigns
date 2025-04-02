@@ -1,14 +1,16 @@
 package eu.pintergabor.ironsigns.entities;
 
 import eu.pintergabor.ironsigns.main.Main;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.SignBlockEntity;
-import net.minecraft.util.math.BlockPos;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+
 
 /**
- * Common entity for all IronSign blocks
+ * Common entity for all IronSign blocks.
  * <p>
- * There is only one instance {@link Main#ironSignEntity}
+ * There is only one instance {@link Main#ironSignEntity}.
  */
 public class IronSignBlockEntity extends SignBlockEntity {
 
