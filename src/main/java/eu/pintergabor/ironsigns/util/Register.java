@@ -26,7 +26,7 @@ public final class Register {
 	public static Item registerItem(String name, Item item) {
 		return Registry.register(
 			BuiltInRegistries.ITEM,
-			Global.ModIdentifier(name),
+			Global.modId(name),
 			item);
 	}
 
@@ -41,7 +41,7 @@ public final class Register {
 	public static Block registerBlock(String name, Block block) {
 		return Registry.register(
 			BuiltInRegistries.BLOCK,
-			Global.ModIdentifier(name),
+			Global.modId(name),
 			block);
 	}
 
@@ -55,7 +55,7 @@ public final class Register {
 	public static void registerBlockItem(String name, Block block) {
 		Registry.register(
 			BuiltInRegistries.ITEM,
-			Global.ModIdentifier(name),
+			Global.modId(name),
 			new BlockItem(block, new Item.Properties()));
 	}
 
@@ -71,7 +71,7 @@ public final class Register {
 		registerBlockItem(name, block);
 		return Registry.register(
 			BuiltInRegistries.BLOCK,
-			Global.ModIdentifier(name),
+			Global.modId(name),
 			block);
 	}
 }

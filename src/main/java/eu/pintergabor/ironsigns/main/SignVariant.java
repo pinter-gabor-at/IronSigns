@@ -8,6 +8,7 @@ import eu.pintergabor.ironsigns.blocks.IronWallSignBlock;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -18,9 +19,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
-
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 
 
 /**
@@ -90,11 +88,10 @@ public class SignVariant {
 		// HangingSign entity is the hard-coded part of the HangingWallSign entity.
 		// HangingWallSign entity: resources/assets/<MODID>/textures/entity/signs/hanging/<name>.png
 		// HangingSign GUI: resources/assets/<MODID>/textures/gui/hanging_signs/<name>.png
-		woodType = new WoodTypeBuilder()
-			.soundGroup(SoundType.IRON)
-			.hangingSignSoundGroup(SoundType.IRON)
-			.register(
-				Global.ModIdentifier(name), BlockSetType.IRON);
+		woodType = new WoodType(
+			Global.modName(name), BlockSetType.IRON,
+			SoundType.IRON, SoundType.IRON,
+			SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN);
 		// Blocks.
 		final BlockBehaviour.Properties blockSettings = BlockBehaviour.Properties.of()
 			.forceSolidOn()
@@ -102,29 +99,29 @@ public class SignVariant {
 			.strength(0.5F, 6.0F)
 			.requiresCorrectToolForDrops();
 		block = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.ModIdentifier(name)),
+			ResourceKey.create(Registries.BLOCK, Global.modId(name)),
 			settings -> new IronSignBlock(woodType, settings),
 			blockSettings);
 		wallBlock = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.ModIdentifier("wall_" + name)),
+			ResourceKey.create(Registries.BLOCK, Global.modId("wall_" + name)),
 			settings -> new IronWallSignBlock(woodType, settings),
 			blockSettings);
 		hangingBlock = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.ModIdentifier("hanging_" + name)),
+			ResourceKey.create(Registries.BLOCK, Global.modId("hanging_" + name)),
 			settings -> new IronHangingSignBlock(woodType, settings),
 			blockSettings);
 		hangingWallBlock = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.ModIdentifier("hanging_wall_" + name)),
+			ResourceKey.create(Registries.BLOCK, Global.modId("hanging_wall_" + name)),
 			settings -> new IronWallHangingSignBlock(woodType, settings),
 			blockSettings);
 		// Items.
 		final Item.Properties itemSettings = new Item.Properties().stacksTo(64);
 		item = Items.registerItem(
-			ResourceKey.create(Registries.ITEM, Global.ModIdentifier(name)),
+			ResourceKey.create(Registries.ITEM, Global.modId(name)),
 			settings -> new SignItem(block, wallBlock, settings),
 			itemSettings);
 		hangingItem = Items.registerItem(
-			ResourceKey.create(Registries.ITEM, Global.ModIdentifier("hanging_" + name)),
+			ResourceKey.create(Registries.ITEM, Global.modId("hanging_" + name)),
 			settings -> new SignItem(hangingBlock, hangingWallBlock, settings),
 			itemSettings);
 		// Item groups.

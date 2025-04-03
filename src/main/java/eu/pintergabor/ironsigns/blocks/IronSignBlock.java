@@ -18,7 +18,8 @@ public class IronSignBlock extends StandingSignBlock {
 
 	@Override
 	@NotNull
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(
+		@NotNull BlockPos pos, @NotNull BlockState state) {
 		return new IronSignBlockEntity(pos, state);
 	}
 }

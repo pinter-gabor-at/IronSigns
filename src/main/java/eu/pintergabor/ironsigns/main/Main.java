@@ -78,9 +78,9 @@ public final class Main {
 	 * Initialize tags.
 	 */
 	private static void initTags() {
-		IRON_SIGN_BLOCK_TAG = TagKey.create(Registries.BLOCK, Global.ModIdentifier("block_tag"));
-		IRON_SIGN_ITEM_TAG = TagKey.create(Registries.ITEM, Global.ModIdentifier("item_tag"));
-		HANGING_IRON_SIGN_ITEM_TAG = TagKey.create(Registries.ITEM, Global.ModIdentifier("hanging_item_tag"));
+		IRON_SIGN_BLOCK_TAG = TagKey.create(Registries.BLOCK, Global.modId("block_tag"));
+		IRON_SIGN_ITEM_TAG = TagKey.create(Registries.ITEM, Global.modId("item_tag"));
+		HANGING_IRON_SIGN_ITEM_TAG = TagKey.create(Registries.ITEM, Global.modId("hanging_item_tag"));
 	}
 
 	/**
@@ -117,7 +117,7 @@ public final class Main {
 		// Register entity.
 		ironSignEntity = Registry.register(
 			BuiltInRegistries.BLOCK_ENTITY_TYPE,
-			Global.ModIdentifier("iron_sign_entity"),
+			Global.modId("iron_sign_entity"),
 			signEntityBuilder.build());
 	}
 
@@ -141,7 +141,7 @@ public final class Main {
 		// Register entity
 		hangingIronSignEntity = Registry.register(
 			BuiltInRegistries.BLOCK_ENTITY_TYPE,
-			Global.ModIdentifier("hanging_iron_sign_entity"),
+			Global.modId("hanging_iron_sign_entity"),
 			hangingSignEntityBuilder.build());
 	}
 

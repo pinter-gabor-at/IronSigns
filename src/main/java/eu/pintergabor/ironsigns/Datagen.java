@@ -1,17 +1,22 @@
 package eu.pintergabor.ironsigns;
 
-import eu.pintergabor.ironsigns.datagen.*;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
-
+import eu.pintergabor.ironsigns.datagen.ModBlockLootTableGenerator;
+import eu.pintergabor.ironsigns.datagen.ModModelProvider;
+import eu.pintergabor.ironsigns.datagen.ModRecipeRunner;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-import java.util.concurrent.CompletableFuture;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Global.MODID, value = Dist.CLIENT)
@@ -29,6 +34,10 @@ public class DataGen {
 
 //        pack.addProvider(ModBlockTagProvider::new);
 //        pack.addProvider(ModItemTagProvider::new);
-//        pack.addProvider(ModBlockLootTableGenerator::new);
-    }
+		// Create loot tables.
+		event.addProvider(new LootTableProvider(output, Set.of(), List.of(
+			new LootTableProvider.SubProviderEntry(
+				ModBlockLootTableGenerator::new,
+				LootContextParamSets.BLOCK)), lookupProvider));
+	}
 }
