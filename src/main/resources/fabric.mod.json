@@ -35,9 +35,10 @@
     "java": ">=21",
     "minecraft": "${minecraft_version}",
     "fabricloader": "${loader_version}",
-    "fabric-api": "${fabric_version}"
-	},
-	"suggests": {
-		"modmenu": ">=13"
-	}
+    "fabric-api": "${fabric_version}",
+    "cloth-config": "${cloth_config_version}"
+  },
+  "suggests": {
+    "modmenu": "${modmenu_version}"
+  }
 }

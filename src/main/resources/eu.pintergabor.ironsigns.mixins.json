@@ -8,7 +8,7 @@
   "mixins": [
     "RecipeManagerMixin",
     "ServerPlayNetworkHandlerMixin",
-    "StringHelperMixin",
+    "StringUtilMixin",
     "UtilMixin"
   ],
   "client": [

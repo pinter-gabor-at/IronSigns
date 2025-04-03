@@ -1,21 +1,24 @@
 package eu.pintergabor.ironsigns.blocks;
 
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
+import org.jetbrains.annotations.NotNull;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.WallSignBlock;
-import net.minecraft.block.WoodType;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.WallSignBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.WoodType;
+
 
 public class IronWallSignBlock extends WallSignBlock {
 
-	public IronWallSignBlock(WoodType woodType, Settings settings) {
+	public IronWallSignBlock(WoodType woodType, Properties settings) {
 		super(woodType, settings);
 	}
 
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	@NotNull
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new IronSignBlockEntity(pos, state);
 	}
 }

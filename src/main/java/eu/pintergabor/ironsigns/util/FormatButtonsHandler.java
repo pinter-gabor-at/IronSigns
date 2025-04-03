@@ -9,14 +9,14 @@ import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
 import eu.pintergabor.ironsigns.mixin.AbstractSignEditScreenAccessor;
 import org.jetbrains.annotations.NotNull;
 
-import net.minecraft.block.entity.HangingSignBlockEntity;
-import net.minecraft.block.entity.SignBlockEntity;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.ingame.AbstractSignEditScreen;
-import net.minecraft.client.gui.tooltip.Tooltip;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -28,43 +28,43 @@ import net.fabricmc.fabric.api.client.screen.v1.Screens;
 public class FormatButtonsHandler {
 
 	/**
-	 * An array of all color formatting enums, defined in {@link Formatting}.
+	 * An array of all color formatting enums, defined in {@link ChatFormatting}.
 	 */
-	private static final Formatting[] colorFormattings = {
-		Formatting.BLACK,
-		Formatting.DARK_GRAY,
-		Formatting.DARK_BLUE,
-		Formatting.BLUE,
-		Formatting.DARK_GREEN,
-		Formatting.GREEN,
-		Formatting.DARK_AQUA,
-		Formatting.AQUA,
-		Formatting.DARK_RED,
-		Formatting.RED,
-		Formatting.DARK_PURPLE,
-		Formatting.LIGHT_PURPLE,
-		Formatting.GOLD,
-		Formatting.YELLOW,
-		Formatting.GRAY,
-		Formatting.WHITE
+	private static final ChatFormatting[] colorFormattings = {
+		ChatFormatting.BLACK,
+		ChatFormatting.DARK_GRAY,
+		ChatFormatting.DARK_BLUE,
+		ChatFormatting.BLUE,
+		ChatFormatting.DARK_GREEN,
+		ChatFormatting.GREEN,
+		ChatFormatting.DARK_AQUA,
+		ChatFormatting.AQUA,
+		ChatFormatting.DARK_RED,
+		ChatFormatting.RED,
+		ChatFormatting.DARK_PURPLE,
+		ChatFormatting.LIGHT_PURPLE,
+		ChatFormatting.GOLD,
+		ChatFormatting.YELLOW,
+		ChatFormatting.GRAY,
+		ChatFormatting.WHITE
 	};
 
 	/**
-	 * An array of all style formatting enums, defined in {@link Formatting}.
+	 * An array of all style formatting enums, defined in {@link ChatFormatting}.
 	 */
-	private static final Formatting[] modifierFormattings = {
-		Formatting.BOLD,
-		Formatting.ITALIC,
-		Formatting.UNDERLINE,
-		Formatting.STRIKETHROUGH,
-		Formatting.RESET
+	private static final ChatFormatting[] modifierFormattings = {
+		ChatFormatting.BOLD,
+		ChatFormatting.ITALIC,
+		ChatFormatting.UNDERLINE,
+		ChatFormatting.STRIKETHROUGH,
+		ChatFormatting.RESET
 	};
 
 	/**
 	 * Register {@link #onScreenOpened(Screen)} callback after opening the screen.
 	 */
 	public static void init() {
-		// But only if Text Formatting is enabled
+		// But only if Text ChatFormatting is enabled
 		if (ModConfig.enableSignTextFormatting()) {
 			ScreenEvents.AFTER_INIT.register((client, screen, width, height) ->
 				onScreenOpened(screen)
@@ -98,7 +98,7 @@ public class FormatButtonsHandler {
 	private static boolean isIronSign(AbstractSignEditScreen screen) {
 		final var sbeclass =
 			((AbstractSignEditScreenAccessor) screen)
-				.getBlockEntity()
+				.getSign()
 				.getClass();
 		return (sbeclass == IronSignBlockEntity.class) ||
 			(sbeclass == HangingIronSignBlockEntity.class);
@@ -111,7 +111,7 @@ public class FormatButtonsHandler {
 	private static boolean isWoodenSign(AbstractSignEditScreen screen) {
 		final var sbeclass =
 			((AbstractSignEditScreenAccessor) screen)
-				.getBlockEntity()
+				.getSign()
 				.getClass();
 		return (sbeclass == SignBlockEntity.class) ||
 			(sbeclass == HangingSignBlockEntity.class);
@@ -148,11 +148,11 @@ public class FormatButtonsHandler {
 	 * @return The list.
 	 */
 	@SuppressWarnings("SameParameterValue")
-	private static @NotNull List<ButtonWidget> getFormatButtons(
-		Screen screen, Formatting[] formats,
+	private static @NotNull List<Button> getFormatButtons(
+		Screen screen, ChatFormatting[] formats,
 		int xOffset, int yOffset,
 		int rows) {
-		List<ButtonWidget> list = new ArrayList<>();
+		List<Button> list = new ArrayList<>();
 		final int gap = 0;
 		final int buttonSize = 20;
 		for (int i = 0; i < formats.length; i++) {
@@ -180,46 +180,46 @@ public class FormatButtonsHandler {
 	 * @return The button.
 	 */
 	@SuppressWarnings("SameParameterValue")
-	private static ButtonWidget getFormatButton(
+	private static Button getFormatButton(
 		Screen screen,
 		int buttonX, int buttonY,
 		int buttonWidth, int buttonHeight,
-		Formatting formatting) {
+		ChatFormatting formatting) {
 		// Build a button that emulates the typing of two characters:
 		// The first is the formatting prefix '§',
 		// the second is the formatting code.
-		if (formatting.isModifier() || formatting == Formatting.RESET) {
+		if (formatting.isFormat() || formatting == ChatFormatting.RESET) {
 			// Text is the name of the formatting, prefixed with the formatting code.
 			final String label = formatting.toString().concat(formatting.getName());
 			// Build a wide button.
-			return ButtonWidget
+			return Button
 				.builder(
-					Text.literal(label),
+					Component.literal(label),
 					cod -> {
-						screen.charTyped(Formatting.FORMATTING_CODE_PREFIX, 0);
-						screen.charTyped(formatting.getCode(), 0);
+						screen.charTyped(ChatFormatting.PREFIX_CODE, 0);
+						screen.charTyped(formatting.getChar(), 0);
 					}
 				)
-				.position(buttonX, buttonY)
+				.pos(buttonX, buttonY)
 				.size(buttonWidth * 4, buttonHeight)
-				.tooltip(Tooltip.of(Text.literal(label)))
+				.tooltip(Tooltip.create(Component.literal(label)))
 				.build();
 		}
 		// Text is a square, prefixed with the formatting code.
 		final String label = formatting.toString().concat("⬛");
 		final String tooltip = formatting.toString().concat(formatting.getName());
 		// Build a normal button.
-		return ButtonWidget
+		return Button
 			.builder(
-				Text.literal(label),
+				Component.literal(label),
 				cod -> {
-					screen.charTyped(Formatting.FORMATTING_CODE_PREFIX, 0);
-					screen.charTyped(formatting.getCode(), 0);
+					screen.charTyped(ChatFormatting.PREFIX_CODE, 0);
+					screen.charTyped(formatting.getChar(), 0);
 				}
 			)
-			.position(buttonX, buttonY)
+			.pos(buttonX, buttonY)
 			.size(buttonWidth, buttonHeight)
-			.tooltip(Tooltip.of(Text.literal(tooltip)))
+			.tooltip(Tooltip.create(Component.literal(tooltip)))
 			.build();
 	}
 }

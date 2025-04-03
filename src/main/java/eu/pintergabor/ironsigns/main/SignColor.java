@@ -1,12 +1,14 @@
 package eu.pintergabor.ironsigns.main;
 
-import net.minecraft.item.Item;
-import net.minecraft.registry.tag.TagKey;
 
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+
+
 /**
- * Color names, primary colors and dye item tags
+ * Color names, primary colors and dye item tags.
  */
 public enum SignColor {
 	WHITE("white", 0xF9FFFE, ConventionalItemTags.WHITE_DYES),
@@ -44,14 +46,14 @@ public enum SignColor {
 	}
 
 	/**
-	 * Primary color of the corresponding items and entities
+	 * Primary color of the corresponding items and entities.
 	 */
 	public int getColor() {
 		return this.color;
 	}
 
 	/**
-	 * Dye used in the crafting recipes of the corresponding items
+	 * Dye used in the crafting recipes of the corresponding items.
 	 */
 	public TagKey<Item> getDyeTagKey() {
 		return dyeTagKey;
