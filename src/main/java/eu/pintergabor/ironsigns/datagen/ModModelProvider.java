@@ -1,33 +1,21 @@
 package eu.pintergabor.ironsigns.datagen;
 
+import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.ModelProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Blocks;
 
-import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 
+public class ModModelProvider extends ModelProvider {
 
-public class ModModelProvider extends FabricModelProvider {
-	public ModModelProvider(FabricDataOutput output) {
-		super(output);
-	}
-
-	/**
-	 * Generate blockstates, block and item models.
-	 */
-	@Override
-	public void generateBlockStateModels(
-		BlockModelGenerators blockStateModelGenerator) {
-		// Iron sign
-		generateSignBlockStates(blockStateModelGenerator, Main.ironSign);
-		// Color signs
-		for (int i = 0; i < Main.colorSigns.length; i++) {
-			generateSignBlockStates(blockStateModelGenerator, Main.colorSigns[i]);
-		}
+	public ModModelProvider(PackOutput output) {
+		super(output, Global.MODID);
 	}
 
 	/**
@@ -41,13 +29,24 @@ public class ModModelProvider extends FabricModelProvider {
 		// There is no WoodBlock associated with Sign, so it behaves like a HangingSign,
 		// and it is registered the same way as a HangingSign.
 		blockStateModelGenerator.createHangingSign(Blocks.IRON_BLOCK,
-			sv.block, sv.wallBlock);
+			sv.block.get(), sv.wallBlock.get());
 		// Generate blockstates, block and item models for HangingSign and HangingWallSign.
 		blockStateModelGenerator.createHangingSign(Blocks.IRON_BLOCK,
-			sv.hangingBlock, sv.hangingWallBlock);
+			sv.hangingBlock.get(), sv.hangingWallBlock.get());
 	}
 
+	/**
+	 * Generate blockstates, block and item models.
+	 */
 	@Override
-	public void generateItemModels(ItemModelGenerators itemModelGenerator) {
+	protected void registerModels(
+		@NotNull BlockModelGenerators blockModels,
+		@NotNull ItemModelGenerators itemModels) {
+		// Iron sign.
+		generateSignBlockStates(blockModels, Main.ironSign);
+		// Color signs.
+		for (int i = 0; i < Main.colorSigns.length; i++) {
+			generateSignBlockStates(blockModels, Main.colorSigns[i]);
+		}
 	}
 }

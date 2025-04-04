@@ -34,7 +34,7 @@ ordering = "NONE"
 side = "BOTH"
 [[dependencies.${ mod_id }]]
 modId = "cloth-config"
-type = "required"
+type = "optional"
 versionRange = "[${cloth_config_version}]"
 ordering = "NONE"
 side = "BOTH"

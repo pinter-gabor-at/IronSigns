@@ -8,6 +8,10 @@ import eu.pintergabor.ironsigns.main.SignVariant;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.level.block.Block;
+
+import org.checkerframework.checker.units.qual.N;
+import org.jetbrains.annotations.NotNull;
 
 
 public class ModBlockLootTableGenerator extends BlockLootSubProvider {
@@ -23,10 +27,21 @@ public class ModBlockLootTableGenerator extends BlockLootSubProvider {
 	 * @param sv {@link SignVariant}.
 	 */
 	private void generateSignBlockLoot(SignVariant sv) {
-		dropOther(sv.block, sv.item);
-		dropOther(sv.wallBlock, sv.item);
-		dropOther(sv.hangingBlock, sv.hangingItem);
-		dropOther(sv.hangingWallBlock, sv.hangingItem);
+		dropOther(sv.block.get(), sv.item.get());
+		dropOther(sv.wallBlock.get(), sv.item.get());
+		dropOther(sv.hangingBlock.get(), sv.hangingItem.get());
+		dropOther(sv.hangingWallBlock.get(), sv.hangingItem.get());
+	}
+
+	@Override
+	@NotNull
+	protected Iterable<Block> getKnownBlocks() {
+		// The contents of our DeferredRegister.
+		return Main.BLOCKS.getEntries()
+			.stream()
+			// Cast to Block here, otherwise it will be a ? extends Block and Java will complain.
+			.map(e -> (Block) e.get())
+			.toList();
 	}
 
 	/**

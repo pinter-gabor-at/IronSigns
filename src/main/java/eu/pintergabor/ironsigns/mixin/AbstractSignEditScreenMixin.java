@@ -1,6 +1,8 @@
 package eu.pintergabor.ironsigns.mixin;
 
 import eu.pintergabor.ironsigns.config.ModConfig;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,11 +15,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.font.TextFieldHelper;
 import net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 
-
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Mixin(AbstractSignEditScreen.class)
 public abstract class AbstractSignEditScreenMixin {
 	@Shadow

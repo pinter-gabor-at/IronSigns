@@ -3,6 +3,10 @@ package eu.pintergabor.ironsigns;
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
 import eu.pintergabor.ironsigns.util.FormatButtonsHandler;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -10,33 +14,29 @@ import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
-import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Global.MODID, value = Dist.CLIENT)
+public final class ModClient {
 
-@Environment(EnvType.CLIENT)
-public class ModClient implements ClientModInitializer {
-
-	private void texture(SignVariant sv) {
+	private static void texture(SignVariant sv) {
 		WoodType wt = sv.woodType;
 		Sheets.SIGN_MATERIALS.put(wt,
 			Sheets.getSignMaterial(wt));
 	}
 
-	@Override
-	public void onInitializeClient() {
-		// Entities
-		BlockEntityRenderers.register(Main.ironSignEntity,
+	@SubscribeEvent
+	public static void onClientSetup(FMLClientSetupEvent event) {
+		// Entities.
+		BlockEntityRenderers.register(Main.ironSignEntity.get(),
 			SignRenderer::new);
-		BlockEntityRenderers.register(Main.hangingIronSignEntity,
+		BlockEntityRenderers.register(Main.hangingIronSignEntity.get(),
 			HangingSignRenderer::new);
-		// Textures
+		// Textures.
 		texture(Main.ironSign);
 		for (int i = 0; i < Main.colorSigns.length; i++) {
 			texture(Main.colorSigns[i]);
 		}
-		// Screen handler
+		// Screen handler.
 		FormatButtonsHandler.init();
 	}
 }

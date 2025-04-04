@@ -18,13 +18,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
-import net.fabricmc.fabric.api.client.screen.v1.Screens;
 
-
-@Environment(EnvType.CLIENT)
 public class FormatButtonsHandler {
 
 	/**
@@ -64,11 +58,11 @@ public class FormatButtonsHandler {
 	 * Register {@link #onScreenOpened(Screen)} callback after opening the screen.
 	 */
 	public static void init() {
-		// But only if Text ChatFormatting is enabled
+		// But only if Text Formatting is enabled.
 		if (ModConfig.enableSignTextFormatting()) {
-			ScreenEvents.AFTER_INIT.register((client, screen, width, height) ->
-				onScreenOpened(screen)
-			);
+//			ScreenEvents.AFTER_INIT.register((client, screen, width, height) ->
+//				onScreenOpened(screen)
+//			);
 		}
 	}
 
@@ -123,18 +117,18 @@ public class FormatButtonsHandler {
 	 * @param es edit screen.
 	 */
 	private static void addButtonsToScreen(AbstractSignEditScreen es) {
-		// Color buttons, 4x4
+		// Color buttons, 4x4.
 		final var colorButtons = getFormatButtons(
 			es, colorFormattings,
 			(es.width / 2) - 170, 70, 4);
-		// Style formatting buttons, 1x5
+		// Style formatting buttons, 1x5.
 		final var modifierButtons = getFormatButtons(
 			es, modifierFormattings,
 			(es.width / 2) + 50, 70, modifierFormattings.length);
-		// Add them to the screen
-		var screenButtons = Screens.getButtons(es);
-		screenButtons.addAll(colorButtons);
-		screenButtons.addAll(modifierButtons);
+		// Add them to the screen.
+//		var screenButtons = Screens.getButtons(es);
+//		screenButtons.addAll(colorButtons);
+//		screenButtons.addAll(modifierButtons);
 	}
 
 	/**

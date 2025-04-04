@@ -21,7 +21,7 @@ public class HangingIronSignBlockEntity extends SignBlockEntity {
     private static final int TEXT_LINE_HEIGHT = 9;
 
     public HangingIronSignBlockEntity(BlockPos pos, BlockState state) {
-        super(Main.hangingIronSignEntity, pos, state);
+        super(Main.hangingIronSignEntity.get(), pos, state);
     }
 
     @Override

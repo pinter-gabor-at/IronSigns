@@ -1,20 +1,24 @@
 package eu.pintergabor.ironsigns.main;
 
+import java.util.function.Supplier;
+
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.blocks.IronHangingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallHangingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallSignBlock;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SignBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -25,6 +29,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
  * One IronSign variant.
  */
 public class SignVariant {
+
 	/**
 	 * Needed for loading textures.
 	 * <p>
@@ -37,42 +42,60 @@ public class SignVariant {
 	 * <p>
 	 * Read only outside class.
 	 */
-	public Block block;
+	public DeferredBlock<Block> block;
 
 	/**
 	 * Sign block attached to a wall.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public Block wallBlock;
+	public DeferredBlock<Block> wallBlock;
 
 	/**
 	 * Hanging sign block.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public Block hangingBlock;
+	public DeferredBlock<Block> hangingBlock;
 
 	/**
 	 * Hanging sign block attaced to a wall.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public Block hangingWallBlock;
+	public DeferredBlock<Block> hangingWallBlock;
 
 	/**
 	 * Sign item.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public Item item;
+	public DeferredItem<Item> item;
 
 	/**
 	 * Hanging sign item.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public Item hangingItem;
+	public DeferredItem<Item> hangingItem;
+
+
+	public static Supplier<MapCodec<? extends SignBlock>> COMPLEX_CODEC;
+
+	public static MapCodec<IronSignBlock> CODEC = RecordCodecBuilder.mapCodec(instance ->
+		instance.group(
+			WoodType.CODEC.fieldOf("wood_type").forGetter(IronSignBlock::type),
+			BlockBehaviour.propertiesCodec()
+		).apply(instance, IronSignBlock::new)
+	);
+
+	public static void Tmo() {
+		COMPLEX_CODEC = Main.BLOCK_TYPES.register(
+			"ironsign_blocktype",
+			() -> IronSignBlock.CODEC
+		);
+	}
+
 
 	/**
 	 * Create one variant of IronSign.
@@ -98,37 +121,25 @@ public class SignVariant {
 			.noCollission()
 			.strength(0.5F, 6.0F)
 			.requiresCorrectToolForDrops();
-		block = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.modId(name)),
-			settings -> new IronSignBlock(woodType, settings),
-			blockSettings);
-		wallBlock = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.modId("wall_" + name)),
-			settings -> new IronWallSignBlock(woodType, settings),
-			blockSettings);
-		hangingBlock = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.modId("hanging_" + name)),
-			settings -> new IronHangingSignBlock(woodType, settings),
-			blockSettings);
-		hangingWallBlock = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.modId("hanging_wall_" + name)),
-			settings -> new IronWallHangingSignBlock(woodType, settings),
-			blockSettings);
+		block = Main.BLOCKS.register(name, id ->
+			new IronSignBlock(woodType, blockSettings
+				.setId(ResourceKey.create(Registries.BLOCK, id))));
+		wallBlock = Main.BLOCKS.register("wall_" + name, id ->
+			new IronWallSignBlock(woodType, blockSettings
+				.setId(ResourceKey.create(Registries.BLOCK, id))));
+		hangingBlock = Main.BLOCKS.register("hanging_" + name, id ->
+			new IronHangingSignBlock(woodType, blockSettings
+				.setId(ResourceKey.create(Registries.BLOCK, id))));
+		hangingWallBlock = Main.BLOCKS.register("hanging_wall_" + name, id ->
+			new IronWallHangingSignBlock(woodType, blockSettings
+				.setId(ResourceKey.create(Registries.BLOCK, id))));
 		// Items.
 		final Item.Properties itemSettings = new Item.Properties().stacksTo(64);
-		item = Items.registerItem(
-			ResourceKey.create(Registries.ITEM, Global.modId(name)),
-			settings -> new SignItem(block, wallBlock, settings),
+		item = Main.ITEMS.registerItem(name,
+			settings -> new SignItem(block.get(), wallBlock.get(), settings),
 			itemSettings);
-		hangingItem = Items.registerItem(
-			ResourceKey.create(Registries.ITEM, Global.modId("hanging_" + name)),
-			settings -> new SignItem(hangingBlock, hangingWallBlock, settings),
+		hangingItem = Main.ITEMS.registerItem("hanging_" + name,
+			settings -> new SignItem(hangingBlock.get(), hangingWallBlock.get(), settings),
 			itemSettings);
-		// Item groups.
-		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(
-			entries -> {
-				entries.prepend(item);
-				entries.prepend(hangingItem);
-			});
 	}
 }

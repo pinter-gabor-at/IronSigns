@@ -20,19 +20,10 @@ repositories {
 		name = "Cloth Config"
 		url = "https://maven.shedaniel.me/"
 	}
-	maven {
-		name = "Mod Menu"
-		url = "https://maven.terraformersmc.com/releases/"
-	}
-	maven {
-		name = "Mod Menu dependency"
-		url = "https://maven.nucleoid.xyz/"
-	}
 }
 
 dependencies {
-	// ModMenu and ClothConfig.
-	implementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+	// ClothConfig.
 	implementation "me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}"
 }
 

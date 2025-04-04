@@ -2,48 +2,42 @@ package eu.pintergabor.ironsigns.datagen;
 
 import java.util.concurrent.CompletableFuture;
 
+import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.world.level.block.Block;
 
 
-public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
+public class ModBlockTagProvider extends BlockTagsProvider {
 
 	public ModBlockTagProvider(
-		FabricDataOutput output,
-		CompletableFuture<HolderLookup.Provider> registriesFuture) {
-		super(output, registriesFuture);
+		PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+		super(output, lookupProvider, Global.MODID);
+	}
+
+	private static void addVariant(SignVariant sv, IntrinsicTagAppender<Block> modTag) {
+		modTag.add(sv.block.get(), sv.wallBlock.get(), sv.hangingBlock.get(), sv.hangingWallBlock.get());
 	}
 
 	@Override
-	protected void addTags(HolderLookup.Provider wrapperLookup) {
-		FabricTagBuilder tagBuilder =
-			getOrCreateTagBuilder(Main.IRON_SIGN_BLOCK_TAG);
-		// Iron sign
-		builderAdd(tagBuilder, Main.ironSign);
-		// Color signs
+	protected void addTags(@NotNull HolderLookup.Provider lookupProvider) {
+		IntrinsicTagAppender<Block> modBlockTag = tag(Main.IRON_SIGN_BLOCK_TAG);
+		// Iron sign.
+		addVariant(Main.ironSign, modBlockTag);
+		// Color signs.
 		for (int i = 0; i < Main.colorSigns.length; i++) {
-			builderAdd(tagBuilder, Main.colorSigns[i]);
+			addVariant(Main.colorSigns[i], modBlockTag);
 		}
-		// Make them mineable with axe and pickaxe
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE)
-			.forceAddTag(Main.IRON_SIGN_BLOCK_TAG);
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
-			.forceAddTag(Main.IRON_SIGN_BLOCK_TAG);
-	}
-
-	@SuppressWarnings("UnusedReturnValue")
-	private FabricTagBuilder builderAdd(
-		FabricTagBuilder tagBuilder, SignVariant sv) {
-		return tagBuilder
-			.add(sv.block)
-			.add(sv.wallBlock)
-			.add(sv.hangingBlock)
-			.add(sv.hangingWallBlock);
+		// Make them mineable with axe and pickaxe.
+		tag(BlockTags.MINEABLE_WITH_AXE)
+			.addTag(Main.IRON_SIGN_BLOCK_TAG);
+		tag(BlockTags.MINEABLE_WITH_PICKAXE)
+			.addTag(Main.IRON_SIGN_BLOCK_TAG);
 	}
 }

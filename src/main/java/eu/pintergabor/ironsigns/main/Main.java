@@ -1,11 +1,18 @@
 package eu.pintergabor.ironsigns.main;
 
+import com.mojang.serialization.MapCodec;
 import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.ModCommon;
+import eu.pintergabor.ironsigns.blocks.IronHangingSignBlock;
+import eu.pintergabor.ironsigns.blocks.IronSignBlock;
+import eu.pintergabor.ironsigns.blocks.IronWallHangingSignBlock;
+import eu.pintergabor.ironsigns.blocks.IronWallSignBlock;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
@@ -13,10 +20,18 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import org.jetbrains.annotations.NotNull;
 
 
 public final class Main {
+	public static final DeferredRegister.Items ITEMS =
+		DeferredRegister.createItems(Global.MODID);
+	public static final DeferredRegister<MapCodec<? extends Block>> BLOCK_TYPES =
+		DeferredRegister.create(BuiltInRegistries.BLOCK_TYPE, Global.MODID);
+	public static final DeferredRegister.Blocks BLOCKS =
+		DeferredRegister.createBlocks(Global.MODID);
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES =
+		DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, Global.MODID);
 
 	/**
 	 * All {@link SignColor} enum values in an array.
@@ -44,14 +59,14 @@ public final class Main {
 	 * <p>
 	 * Read-only outside its class.
 	 */
-	public static BlockEntityType<IronSignBlockEntity> ironSignEntity;
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<IronSignBlockEntity>> ironSignEntity;
 
 	/**
 	 * The HangingBlockEntity of all Hanging Iron Signs.
 	 * <p>
 	 * Read-only outside its class.
 	 */
-	public static BlockEntityType<HangingIronSignBlockEntity> hangingIronSignEntity;
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<HangingIronSignBlockEntity>> hangingIronSignEntity;
 
 	/**
 	 * All sign and hanging sign blocks.
@@ -75,6 +90,28 @@ public final class Main {
 	public static TagKey<Item> HANGING_IRON_SIGN_ITEM_TAG;
 
 	/**
+	 * Initialize block types.
+	 */
+	private static void initBlockTypes() {
+		BLOCK_TYPES.register(
+			"iron_sign",
+			() -> IronSignBlock.CODEC
+		);
+		BLOCK_TYPES.register(
+			"iron_wall_sign",
+			() -> IronWallSignBlock.CODEC
+		);
+		BLOCK_TYPES.register(
+			"iron_hanging_sign",
+			() -> IronHangingSignBlock.CODEC
+		);
+		BLOCK_TYPES.register(
+			"iron_wall_hanging_sign",
+			() -> IronWallHangingSignBlock.CODEC
+		);
+	}
+
+	/**
 	 * Initialize tags.
 	 */
 	private static void initTags() {
@@ -87,9 +124,9 @@ public final class Main {
 	 * Initialize signs.
 	 */
 	private static void initSigns() {
-		// Iron sign
+		// Iron sign.
 		ironSign = new SignVariant("iron_sign");
-		// Colored signs
+		// Colored signs.
 		signColors = SignColor.values();
 		colorSigns = new SignVariant[signColors.length];
 		for (int i = 0; i < signColors.length; i++) {
@@ -97,52 +134,54 @@ public final class Main {
 		}
 	}
 
+	@NotNull
+	private static Block [] getIronSignBlocks() {
+		// Create an array of blocks associated with the entity.
+		Block[] signBlocks = new Block[2 * signColors.length + 2];
+		signBlocks[0] = ironSign.block.get();
+		signBlocks[1] = ironSign.wallBlock.get();
+		for (int i = 0; i < signColors.length; i++) {
+			signBlocks[2 * i + 2] = colorSigns[i].block.get();
+			signBlocks[2 * i + 3] = colorSigns[i].wallBlock.get();
+		}
+		return signBlocks;
+	}
+
 	/**
 	 * Initialize and register {@link #ironSignEntity}.
 	 */
 	private static void initIronSignEntity() {
-		// Create an array of blocks associated with the entity
-		Block[] signBlocks = new Block[2 * signColors.length + 2];
-		signBlocks[0] = ironSign.block;
-		signBlocks[1] = ironSign.wallBlock;
-		for (int i = 0; i < signColors.length; i++) {
-			signBlocks[2 * i + 2] = colorSigns[i].block;
-			signBlocks[2 * i + 3] = colorSigns[i].wallBlock;
-		}
-		// Build entity.
-		FabricBlockEntityTypeBuilder<IronSignBlockEntity> signEntityBuilder =
-			FabricBlockEntityTypeBuilder.create(
+		// Build and register entity.
+		ironSignEntity = BLOCK_ENTITY_TYPES.register(
+			"iron_sign_entity",
+			() -> new BlockEntityType<>(
 				IronSignBlockEntity::new,
-				signBlocks);
-		// Register entity.
-		ironSignEntity = Registry.register(
-			BuiltInRegistries.BLOCK_ENTITY_TYPE,
-			Global.modId("iron_sign_entity"),
-			signEntityBuilder.build());
+				getIronSignBlocks()));
+	}
+
+	@NotNull
+	private static Block [] getHangingSignBlocks() {
+		// Create an array of blocks associated with the entity.
+		var hangingSignBlocks = new Block[2 * signColors.length + 2];
+		hangingSignBlocks[0] = ironSign.hangingBlock.get();
+		hangingSignBlocks[1] = ironSign.hangingWallBlock.get();
+		for (int i = 0; i < signColors.length; i++) {
+			hangingSignBlocks[2 * i + 2] = colorSigns[i].hangingBlock.get();
+			hangingSignBlocks[2 * i + 3] = colorSigns[i].hangingWallBlock.get();
+		}
+		return hangingSignBlocks;
 	}
 
 	/**
 	 * Initialize and register {@link #hangingIronSignEntity}
 	 */
 	private static void initHangingIronSignEntity() {
-		// Create an array of blocks associated with the entity
-		var hangingSignBlocks = new Block[2 * signColors.length + 2];
-		hangingSignBlocks[0] = ironSign.hangingBlock;
-		hangingSignBlocks[1] = ironSign.hangingWallBlock;
-		for (int i = 0; i < signColors.length; i++) {
-			hangingSignBlocks[2 * i + 2] = colorSigns[i].hangingBlock;
-			hangingSignBlocks[2 * i + 3] = colorSigns[i].hangingWallBlock;
-		}
-		// Build entity
-		FabricBlockEntityTypeBuilder<HangingIronSignBlockEntity> hangingSignEntityBuilder =
-			FabricBlockEntityTypeBuilder.create(
+		// Build and register entity.
+		hangingIronSignEntity = BLOCK_ENTITY_TYPES.register(
+			"hanging_iron_sign_entity",
+			() -> new BlockEntityType<>(
 				HangingIronSignBlockEntity::new,
-				hangingSignBlocks);
-		// Register entity
-		hangingIronSignEntity = Registry.register(
-			BuiltInRegistries.BLOCK_ENTITY_TYPE,
-			Global.modId("hanging_iron_sign_entity"),
-			hangingSignEntityBuilder.build());
+				getHangingSignBlocks()));
 	}
 
 	/**
@@ -156,12 +195,18 @@ public final class Main {
 	/**
 	 * Called from {@link ModCommon}.
 	 */
-	public static void init() {
+	public static void init(IEventBus modEventBus) {
+		// Block types.
+		initBlockTypes();
+		BLOCK_TYPES.register(modEventBus);
 		// Tags.
 		initTags();
 		// Signs.
 		initSigns();
+		BLOCKS.register(modEventBus);
+		ITEMS.register(modEventBus);
 		// Entities.
 		initEntities();
+		BLOCK_ENTITY_TYPES.register(modEventBus);
 	}
 }

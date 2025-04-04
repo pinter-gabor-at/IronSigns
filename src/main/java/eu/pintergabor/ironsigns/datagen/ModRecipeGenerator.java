@@ -77,24 +77,24 @@ public class ModRecipeGenerator extends RecipeProvider {
 	public void buildRecipes() {
 		// Iron sign.
 		generateIronSignItemRecipe(
-			Main.ironSign.item,
+			Main.ironSign.item.get(),
 			ItemTags.PLANKS);
 		generateHangingIronSignItemRecipe(
-			Main.ironSign.hangingItem,
+			Main.ironSign.hangingItem.get(),
 			ItemTags.PLANKS);
 		// Color signs.
 		for (int i = 0; i < Main.colorSigns.length; i++) {
 			generateIronSignItemRecipe(
-				Main.colorSigns[i].item,
+				Main.colorSigns[i].item.get(),
 				Main.signColors[i].getDyeTagKey());
 			generateHangingIronSignItemRecipe(
-				Main.colorSigns[i].hangingItem,
+				Main.colorSigns[i].hangingItem.get(),
 				Main.signColors[i].getDyeTagKey());
 			paintIronSignItemRecipe(
-				Main.colorSigns[i].item,
+				Main.colorSigns[i].item.get(),
 				Main.signColors[i].getDyeTagKey());
 			paintIronSignItemRecipe(
-				Main.colorSigns[i].hangingItem,
+				Main.colorSigns[i].hangingItem.get(),
 				Main.signColors[i].getDyeTagKey());
 		}
 	}
