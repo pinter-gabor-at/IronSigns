@@ -2,6 +2,7 @@ package eu.pintergabor.ironsigns;
 
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
+import eu.pintergabor.ironsigns.renderer.IronSignRenderer;
 import eu.pintergabor.ironsigns.util.FormatButtonsHandler;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -28,7 +29,10 @@ public final class ModClient {
 	public static void onClientSetup(FMLClientSetupEvent event) {
 		// Entities.
 		BlockEntityRenderers.register(Main.ironSignEntity.get(),
-			SignRenderer::new);
+			context -> {
+				Global.LOGGER.info(context.toString());
+				return new IronSignRenderer(context);
+			});
 		BlockEntityRenderers.register(Main.hangingIronSignEntity.get(),
 			HangingSignRenderer::new);
 		// Textures.
