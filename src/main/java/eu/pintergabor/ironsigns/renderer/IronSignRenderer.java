@@ -28,9 +28,9 @@ public class IronSignRenderer extends SignRenderer {
 		signModels.put(WoodType.ACACIA, new Models(
 			createSignModel(context.getModelSet(), WoodType.ACACIA, true),
 			createSignModel(context.getModelSet(), WoodType.ACACIA, false)));
-//		signModels.put(Main.ironSign.woodType, new Models(
-//			createSignModel(context.getModelSet(), Main.ironSign.woodType, true),
-//			createSignModel(context.getModelSet(), Main.ironSign.woodType, false)));
+		signModels.put(Main.ironSign.woodType, new Models(
+			createSignModel(context.getModelSet(), Main.ironSign.woodType, true),
+			createSignModel(context.getModelSet(), Main.ironSign.woodType, false)));
 	}
 
 	@Override
