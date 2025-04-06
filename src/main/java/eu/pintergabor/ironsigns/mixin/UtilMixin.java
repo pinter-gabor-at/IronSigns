@@ -1,6 +1,6 @@
 package eu.pintergabor.ironsigns.mixin;
 
-import eu.pintergabor.ironsigns.config.ModConfig;
+import eu.pintergabor.ironsigns.config.ModConfigData;
 import eu.pintergabor.ironsigns.util.StringUtil2;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,7 +20,7 @@ public abstract class UtilMixin {
 	private static void newMoveCursor(
 		String string, int cursor, int delta,
 		CallbackInfoReturnable<Integer> cir) {
-		if (ModConfig.enableSignTextFormatting()) {
+		if (ModConfigData.enableSignTextFormatting()) {
 			cir.setReturnValue(StringUtil2.moveCursor(string, cursor, delta));
 		}
 	}

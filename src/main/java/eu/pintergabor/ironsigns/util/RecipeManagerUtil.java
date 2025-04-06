@@ -1,6 +1,6 @@
 package eu.pintergabor.ironsigns.util;
 
-import eu.pintergabor.ironsigns.config.ModConfig;
+import eu.pintergabor.ironsigns.config.ModConfigData;
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
 
@@ -21,7 +21,7 @@ public class RecipeManagerUtil {
      * @param map Map of all recipes.
      */
     public static void configRecipes(Map<ResourceLocation, ?> map) {
-        if (!ModConfig.getInstance().enableColorSigns) {
+        if (!ModConfigData.enableColorSigns) {
             for (int i = 0; i < Main.colorSigns.length; i++) {
                 SignVariant sv = Main.colorSigns[i];
                 removeItemRecipe(map, sv);

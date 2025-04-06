@@ -3,7 +3,7 @@ package eu.pintergabor.ironsigns.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.pintergabor.ironsigns.config.ModConfig;
+import eu.pintergabor.ironsigns.config.ModConfigData;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
 import eu.pintergabor.ironsigns.mixin.AbstractSignEditScreenAccessor;
@@ -202,9 +202,8 @@ public class FormatButtonsHandler {
 	 */
 	public static void onScreenOpened(AbstractSignEditScreen screen) {
 		// Check configuration and add buttons if enabled.
-		var config = ModConfig.getInstance();
-		if ((config.enableIronSignTextFormatting && isIronSign(screen)) ||
-			(config.enableWoodenSignTextFormatting && isWoodenSign(screen))) {
+		if ((ModConfigData.enableIronSignTextFormatting && isIronSign(screen)) ||
+			(ModConfigData.enableWoodenSignTextFormatting && isWoodenSign(screen))) {
 			addButtonsToScreen(screen);
 		}
 	}

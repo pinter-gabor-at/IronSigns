@@ -1,6 +1,6 @@
 package eu.pintergabor.ironsigns.mixin;
 
-import eu.pintergabor.ironsigns.config.ModConfig;
+import eu.pintergabor.ironsigns.config.ModConfigData;
 
 import net.minecraft.ChatFormatting;
 
@@ -32,7 +32,7 @@ public abstract class StringUtilMixin {
 	 */
 	@Inject(method = "isAllowedChatCharacter", at = @At("HEAD"), cancellable = true)
 	private static void isAllowedChatCharacter(char c, CallbackInfoReturnable<Boolean> cir) {
-		if (ModConfig.enableSignTextFormatting()) {
+		if (ModConfigData.enableSignTextFormatting()) {
 			// Allow sign texts to contain the formatting code prefix
 			if (c == ChatFormatting.PREFIX_CODE) {
 				cir.setReturnValue(true);
