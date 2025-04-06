@@ -13,6 +13,7 @@
   ],
   "client": [
     "AbstractSignEditScreenAccessor",
-    "AbstractSignEditScreenMixin"
+    "AbstractSignEditScreenMixin",
+    "ScreenAccessor"
   ]
 }

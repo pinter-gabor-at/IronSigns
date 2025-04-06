@@ -18,7 +18,7 @@ public final class Global {
 	/**
 	 * Create a mod specific name.
 	 *
-	 * @param path Name, as in lang/*.json files without "*.modid." prefix.
+	 * @param path Name without {@link #MODID}.
 	 */
 	@SuppressWarnings("unused")
 	public static String modName(String path) {
@@ -28,7 +28,7 @@ public final class Global {
 	/**
 	 * Create a mod specific identifier.
 	 *
-	 * @param path Name, as in lang/*.json files without "*.modid." prefix.
+	 * @param path Name without {@link #MODID}.
 	 */
 	@SuppressWarnings("unused")
 	public static ResourceLocation modId(String path) {

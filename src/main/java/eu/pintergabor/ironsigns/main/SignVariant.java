@@ -1,12 +1,8 @@
 package eu.pintergabor.ironsigns.main;
 
-import java.util.function.Supplier;
-
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import eu.pintergabor.ironsigns.Global;
-import eu.pintergabor.ironsigns.blocks.IronHangingSignBlock;
-import eu.pintergabor.ironsigns.blocks.IronSignBlock;
+import eu.pintergabor.ironsigns.blocks.IronCeilingHangingSignBlock;
+import eu.pintergabor.ironsigns.blocks.IronStandingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallHangingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallSignBlock;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -18,7 +14,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SignBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -79,24 +74,6 @@ public class SignVariant {
 	 */
 	public DeferredItem<Item> hangingItem;
 
-
-	public static Supplier<MapCodec<? extends SignBlock>> COMPLEX_CODEC;
-
-	public static MapCodec<IronSignBlock> CODEC = RecordCodecBuilder.mapCodec(instance ->
-		instance.group(
-			WoodType.CODEC.fieldOf("wood_type").forGetter(IronSignBlock::type),
-			BlockBehaviour.propertiesCodec()
-		).apply(instance, IronSignBlock::new)
-	);
-
-	public static void Tmo() {
-		COMPLEX_CODEC = Main.BLOCK_TYPES.register(
-			"ironsign_blocktype",
-			() -> IronSignBlock.CODEC
-		);
-	}
-
-
 	/**
 	 * Create one variant of IronSign.
 	 *
@@ -115,6 +92,7 @@ public class SignVariant {
 			Global.modName(name), BlockSetType.IRON,
 			SoundType.IRON, SoundType.IRON,
 			SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN);
+		WoodType.register(woodType);
 		// Blocks.
 		final BlockBehaviour.Properties blockSettings = BlockBehaviour.Properties.of()
 			.forceSolidOn()
@@ -122,13 +100,13 @@ public class SignVariant {
 			.strength(0.5F, 6.0F)
 			.requiresCorrectToolForDrops();
 		block = Main.BLOCKS.register(name, id ->
-			new IronSignBlock(woodType, blockSettings
+			new IronStandingSignBlock(woodType, blockSettings
 				.setId(ResourceKey.create(Registries.BLOCK, id))));
 		wallBlock = Main.BLOCKS.register("wall_" + name, id ->
 			new IronWallSignBlock(woodType, blockSettings
 				.setId(ResourceKey.create(Registries.BLOCK, id))));
 		hangingBlock = Main.BLOCKS.register("hanging_" + name, id ->
-			new IronHangingSignBlock(woodType, blockSettings
+			new IronCeilingHangingSignBlock(woodType, blockSettings
 				.setId(ResourceKey.create(Registries.BLOCK, id))));
 		hangingWallBlock = Main.BLOCKS.register("hanging_wall_" + name, id ->
 			new IronWallHangingSignBlock(woodType, blockSettings

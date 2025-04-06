@@ -3,8 +3,8 @@ package eu.pintergabor.ironsigns.main;
 import com.mojang.serialization.MapCodec;
 import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.ModCommon;
-import eu.pintergabor.ironsigns.blocks.IronHangingSignBlock;
-import eu.pintergabor.ironsigns.blocks.IronSignBlock;
+import eu.pintergabor.ironsigns.blocks.IronCeilingHangingSignBlock;
+import eu.pintergabor.ironsigns.blocks.IronStandingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallHangingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallSignBlock;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
@@ -12,6 +12,7 @@ import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -20,9 +21,21 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
-import org.jetbrains.annotations.NotNull;
 
-
+/**
+ * Create, register and hold all blocks and items.
+ * <p>
+ * Entity types must be registered with a list of blocks they are associated with.
+ * Therefore, existing vanilla entity types cannot be used, because they are already
+ * registered with their list of blocks.
+ * <p>
+ * Blocks must create their associated entities.
+ * Therefore, existing vanilla blocks cannot be used, because they are associated with
+ * different entity types.
+ * <p>
+ * And, finally, new block types must be created, because the codecs are static
+ * in the block classes, and therefore they cannot be inherited.
+ */
 public final class Main {
 	public static final DeferredRegister.Items ITEMS =
 		DeferredRegister.createItems(Global.MODID);
@@ -95,7 +108,7 @@ public final class Main {
 	private static void initBlockTypes() {
 		BLOCK_TYPES.register(
 			"iron_sign",
-			() -> IronSignBlock.CODEC
+			() -> IronStandingSignBlock.CODEC
 		);
 		BLOCK_TYPES.register(
 			"iron_wall_sign",
@@ -103,7 +116,7 @@ public final class Main {
 		);
 		BLOCK_TYPES.register(
 			"iron_hanging_sign",
-			() -> IronHangingSignBlock.CODEC
+			() -> IronCeilingHangingSignBlock.CODEC
 		);
 		BLOCK_TYPES.register(
 			"iron_wall_hanging_sign",
@@ -135,7 +148,7 @@ public final class Main {
 	}
 
 	@NotNull
-	private static Block [] getIronSignBlocks() {
+	private static Block[] getIronSignBlocks() {
 		// Create an array of blocks associated with the entity.
 		Block[] signBlocks = new Block[2 * signColors.length + 2];
 		signBlocks[0] = ironSign.block.get();
@@ -160,7 +173,7 @@ public final class Main {
 	}
 
 	@NotNull
-	private static Block [] getHangingSignBlocks() {
+	private static Block[] getHangingSignBlocks() {
 		// Create an array of blocks associated with the entity.
 		var hangingSignBlocks = new Block[2 * signColors.length + 2];
 		hangingSignBlocks[0] = ironSign.hangingBlock.get();

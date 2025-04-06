@@ -10,6 +10,7 @@ import net.neoforged.fml.common.Mod;
 @Mod(Global.MODID)
 public final class ModCommon {
 
+	@SuppressWarnings("unused")
 	public ModCommon(IEventBus modEventBus, ModContainer modContainer) {
 		ModConfig.init();
 		Main.init(modEventBus);

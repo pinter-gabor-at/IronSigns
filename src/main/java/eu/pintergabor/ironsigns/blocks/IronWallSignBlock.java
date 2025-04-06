@@ -13,6 +13,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 
+/**
+ * Identical to its parent, but associated with a different entity.
+ */
 public class IronWallSignBlock extends WallSignBlock {
 	public static final MapCodec<WallSignBlock> CODEC =
 		RecordCodecBuilder.mapCodec((instance) ->
