@@ -26,8 +26,8 @@ public class IronWallSignBlock extends WallSignBlock {
 				.apply(instance, IronWallSignBlock::new));
 
 
-	public IronWallSignBlock(WoodType woodType, Properties settings) {
-		super(woodType, settings);
+	public IronWallSignBlock(WoodType woodType, Properties props) {
+		super(woodType, props);
 	}
 
 	@Override

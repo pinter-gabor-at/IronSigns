@@ -25,8 +25,8 @@ public class IronWallHangingSignBlock extends WallHangingSignBlock {
 					propertiesCodec())
 				.apply(instance, IronWallHangingSignBlock::new));
 
-	public IronWallHangingSignBlock(WoodType woodType, Properties settings) {
-		super(woodType, settings);
+	public IronWallHangingSignBlock(WoodType woodType, Properties props) {
+		super(woodType, props);
 	}
 
 	@Override

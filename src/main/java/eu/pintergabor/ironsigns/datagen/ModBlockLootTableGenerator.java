@@ -4,14 +4,12 @@ import java.util.Set;
 
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
-
-import org.checkerframework.checker.units.qual.N;
-import org.jetbrains.annotations.NotNull;
 
 
 public class ModBlockLootTableGenerator extends BlockLootSubProvider {
@@ -22,7 +20,7 @@ public class ModBlockLootTableGenerator extends BlockLootSubProvider {
 
 	/**
 	 * A SignBlock and a WallSignBlock drop a SignItem and a HangingSign and a
-	 * HangingwallSign drop a HangingSignItem.
+	 * HangingWallSign drop a HangingSignItem.
 	 *
 	 * @param sv {@link SignVariant}.
 	 */

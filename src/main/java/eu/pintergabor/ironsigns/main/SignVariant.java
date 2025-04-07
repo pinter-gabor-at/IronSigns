@@ -26,7 +26,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 public class SignVariant {
 
 	/**
-	 * Needed for loading textures.
+	 * Needed for loading textures and models.
 	 * <p>
 	 * Read only outside class.
 	 */
@@ -91,33 +91,36 @@ public class SignVariant {
 		woodType = new WoodType(
 			Global.modName(name), BlockSetType.IRON,
 			SoundType.IRON, SoundType.IRON,
+			// Not used, but must be defined.
 			SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN);
+		// Add woodType to the known WoodTypes, and then they will be used just like the vanilla
+		// WoodTypes to do everything with the new signs the same ways as with the vanilla signs.
 		WoodType.register(woodType);
 		// Blocks.
-		final BlockBehaviour.Properties blockSettings = BlockBehaviour.Properties.of()
+		final BlockBehaviour.Properties blockProps = BlockBehaviour.Properties.of()
 			.forceSolidOn()
 			.noCollission()
 			.strength(0.5F, 6.0F)
 			.requiresCorrectToolForDrops();
 		block = Main.BLOCKS.register(name, id ->
-			new IronStandingSignBlock(woodType, blockSettings
+			new IronStandingSignBlock(woodType, blockProps
 				.setId(ResourceKey.create(Registries.BLOCK, id))));
 		wallBlock = Main.BLOCKS.register("wall_" + name, id ->
-			new IronWallSignBlock(woodType, blockSettings
+			new IronWallSignBlock(woodType, blockProps
 				.setId(ResourceKey.create(Registries.BLOCK, id))));
 		hangingBlock = Main.BLOCKS.register("hanging_" + name, id ->
-			new IronCeilingHangingSignBlock(woodType, blockSettings
+			new IronCeilingHangingSignBlock(woodType, blockProps
 				.setId(ResourceKey.create(Registries.BLOCK, id))));
 		hangingWallBlock = Main.BLOCKS.register("hanging_wall_" + name, id ->
-			new IronWallHangingSignBlock(woodType, blockSettings
+			new IronWallHangingSignBlock(woodType, blockProps
 				.setId(ResourceKey.create(Registries.BLOCK, id))));
 		// Items.
-		final Item.Properties itemSettings = new Item.Properties().stacksTo(64);
+		final Item.Properties itemProps = new Item.Properties().stacksTo(64);
 		item = Main.ITEMS.registerItem(name,
-			settings -> new SignItem(block.get(), wallBlock.get(), settings),
-			itemSettings);
+			props -> new SignItem(block.get(), wallBlock.get(), props),
+			itemProps);
 		hangingItem = Main.ITEMS.registerItem("hanging_" + name,
-			settings -> new SignItem(hangingBlock.get(), hangingWallBlock.get(), settings),
-			itemSettings);
+			props -> new SignItem(hangingBlock.get(), hangingWallBlock.get(), props),
+			itemProps);
 	}
 }

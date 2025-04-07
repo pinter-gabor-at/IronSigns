@@ -91,7 +91,8 @@ public class FormatButtonsHandler {
 				.tooltip(Tooltip.create(Component.literal(label)))
 				.build();
 		}
-		// Text is a square, prefixed with the formatting code.
+		// Text is a Black Large Square, (https://www.compart.com/en/unicode/U+2B1B),
+		// prefixed with the formatting code.
 		final String label = formatting.toString().concat("⬛");
 		final String tooltip = formatting.toString().concat(formatting.getName());
 		// Build a normal button.

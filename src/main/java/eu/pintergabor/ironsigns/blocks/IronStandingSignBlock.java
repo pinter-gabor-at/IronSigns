@@ -25,8 +25,8 @@ public class IronStandingSignBlock extends StandingSignBlock {
 					propertiesCodec())
 				.apply(instance, IronStandingSignBlock::new));
 
-	public IronStandingSignBlock(WoodType woodType, Properties settings) {
-		super(woodType, settings);
+	public IronStandingSignBlock(WoodType woodType, Properties props) {
+		super(woodType, props);
 	}
 
 	@Override

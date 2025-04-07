@@ -16,15 +16,9 @@ repositories {
 		name = 'Parchment'
 		url = 'https://maven.parchmentmc.org/'
 	}
-	maven {
-		name = "Cloth Config"
-		url = "https://maven.shedaniel.me/"
-	}
 }
 
 dependencies {
-	// ClothConfig.
-	implementation "me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}"
 }
 
 neoForge {
@@ -82,8 +76,7 @@ var generateModMetadata =
 			neo_version         : neo_version,
 			mod_group           : mod_group,
 			mod_id              : mod_id,
-			mod_version         : mod_version,
-			cloth_config_version: cloth_config_version
+			mod_version         : mod_version
 		]
 		inputs.properties replaceProperties
 		expand replaceProperties

@@ -8,6 +8,10 @@ import net.minecraft.ChatFormatting;
  */
 public class StringUtil2 {
 
+	public StringUtil2() {
+		// Static class.
+	}
+
 	/**
 	 * Returns the {@code char} value at the specified index.
 	 * <p>

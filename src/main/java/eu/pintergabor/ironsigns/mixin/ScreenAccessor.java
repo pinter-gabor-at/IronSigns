@@ -12,6 +12,9 @@ import net.minecraft.client.gui.screens.Screen;
 @Mixin(Screen.class)
 public interface ScreenAccessor {
 
+	/**
+	 * It should have been public ...
+	 */
 	@Invoker()
 	@SuppressWarnings("UnusedReturnValue")
 	<T extends GuiEventListener & Renderable & NarratableEntry>

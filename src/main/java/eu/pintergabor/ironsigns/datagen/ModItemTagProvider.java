@@ -36,7 +36,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
 		IntrinsicTagAppender<Item> modHangingTag = tag(Main.IRON_SIGN_ITEM_TAG);
 		// Iron sign.
 		addVariant(Main.ironSign, modTag, modHangingTag);
-		// Color signs
+		// Color signs.
 		for (int i = 0; i < Main.colorSigns.length; i++) {
 			addVariant(Main.colorSigns[i], modTag, modHangingTag);
 		}

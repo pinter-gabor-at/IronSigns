@@ -15,7 +15,8 @@ import net.minecraft.world.item.Items;
 
 public class ModRecipeGenerator extends RecipeProvider {
 
-	public ModRecipeGenerator(HolderLookup.Provider registryLookup, RecipeOutput output) {
+	public ModRecipeGenerator(
+		HolderLookup.Provider registryLookup, RecipeOutput output) {
 		super(registryLookup, output);
 	}
 

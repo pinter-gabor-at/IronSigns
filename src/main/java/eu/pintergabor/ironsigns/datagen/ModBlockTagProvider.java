@@ -21,8 +21,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 		super(output, lookupProvider, Global.MODID);
 	}
 
-	private static void addVariant(SignVariant sv, IntrinsicTagAppender<Block> modTag) {
-		modTag.add(sv.block.get(), sv.wallBlock.get(), sv.hangingBlock.get(), sv.hangingWallBlock.get());
+	private static void addVariant(
+		SignVariant sv, IntrinsicTagAppender<Block> modTag) {
+		modTag.add(
+			sv.block.get(), sv.wallBlock.get(),
+			sv.hangingBlock.get(), sv.hangingWallBlock.get());
 	}
 
 	@Override

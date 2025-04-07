@@ -20,6 +20,10 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Global.MODID, value = Dist.CLIENT)
 public class DataGen {
 
+	public DataGen() {
+		// Static class.
+	}
+
 	@SubscribeEvent
 	public static void init(GatherDataEvent.Client event) {
 		// Create recipes.

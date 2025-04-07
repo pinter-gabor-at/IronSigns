@@ -27,6 +27,9 @@ public abstract class AbstractSignEditScreenMixin {
 	@Nullable
 	private TextFieldHelper signField;
 
+	/**
+	 * Create a hook at the end of init to add more screen widgets to the screen.
+	 */
 	@Inject(method = "init", at = @At("TAIL"))
 	private void init(CallbackInfo ci) {
 		FormatButtonsHandler.onScreenOpened((AbstractSignEditScreen) (Object) this);
@@ -39,10 +42,10 @@ public abstract class AbstractSignEditScreenMixin {
 	 */
 	@Inject(method = "keyPressed", at = @At("HEAD"), cancellable = true)
 	private void keyPessed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> cir) {
-		Global.LOGGER.info("Keycode: {}, Modifiers: {}", keyCode, modifiers);
+		// Global.LOGGER.info("Keycode: {}, Modifiers: {}", keyCode, modifiers);
 		if (ModConfigData.enableSignTextFormatting() &&
 			keyCode == GLFW.GLFW_KEY_LEFT_BRACKET && ((modifiers & GLFW.GLFW_MOD_CONTROL) != 0)) {
-			Global.LOGGER.info("Ctrl+[");
+			// Global.LOGGER.info("Ctrl+[");
 			if (signField != null) {
 				signField.charTyped(ChatFormatting.PREFIX_CODE);
 				cir.setReturnValue(true);

@@ -38,7 +38,7 @@ public enum SignColor {
 	}
 
 	/**
-	 * Name of the color
+	 * Name of the color.
 	 */
 	public String getName() {
 		return this.name;

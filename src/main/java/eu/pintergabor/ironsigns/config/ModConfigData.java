@@ -1,7 +1,6 @@
 package eu.pintergabor.ironsigns.config;
 
 import eu.pintergabor.ironsigns.Global;
-import me.shedaniel.autoconfig.ConfigData;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
@@ -9,7 +8,7 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Global.MODID)
-public class ModConfigData implements ConfigData {
+public class ModConfigData {
 	// Builder.
 	private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 	// Enable Color Sign Recipes.
@@ -21,12 +20,12 @@ public class ModConfigData implements ConfigData {
 	private static final ModConfigSpec.BooleanValue ENABLE_IRON_SIGN_TEXT_FORMATTING = BUILDER
 		.translation(Global.modName("config.enableIronSignTextFormatting"))
 		.define("enableIronSignTextFormatting", true);
-	public static boolean enableIronSignTextFormatting = true;
+	public static boolean enableIronSignTextFormatting;
 	// Enable Wooden Sign Text Formatting.
 	private static final ModConfigSpec.BooleanValue ENABLE_WOODEN_SIGN_TEXT_FORMATTING = BUILDER
 		.translation(Global.modName("config.enableWoodenSignTextFormatting"))
 		.define("enableWoodenSignTextFormatting", true);
-	public static boolean enableWoodenSignTextFormatting = true;
+	public static boolean enableWoodenSignTextFormatting;
 	// Build and prepare for registration.
 	public static final ModConfigSpec SPEC = BUILDER.build();
 
