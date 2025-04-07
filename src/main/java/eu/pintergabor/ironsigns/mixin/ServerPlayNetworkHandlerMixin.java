@@ -3,7 +3,7 @@ package eu.pintergabor.ironsigns.mixin;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import eu.pintergabor.ironsigns.config.ModConfig;
+import eu.pintergabor.ironsigns.config.ModConfigData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -21,7 +21,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
 		Stream<String> instance, Function<String, String> function) {
 		// function === ChatFormatting::stripFormatting.
 		// Strip formatting only if text formatting is disabled in config.
-		return ModConfig.enableSignTextFormatting() ?
+		return ModConfigData.enableSignTextFormatting() ?
 			instance :
 			instance.map(function);
 	}

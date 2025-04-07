@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(AbstractSignEditScreen.class)
 public interface AbstractSignEditScreenAccessor {
 
+	/**
+	 * It should have been accessible outside its class ...
+	 */
 	@Accessor()
 	SignBlockEntity getSign();
 }

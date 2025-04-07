@@ -3,10 +3,13 @@ package eu.pintergabor.ironsigns.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.pintergabor.ironsigns.config.ModConfig;
+import eu.pintergabor.ironsigns.config.ModConfigData;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
 import eu.pintergabor.ironsigns.mixin.AbstractSignEditScreenAccessor;
+
+import net.minecraft.client.gui.components.AbstractWidget;
+
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.ChatFormatting;
@@ -61,114 +64,6 @@ public class FormatButtonsHandler {
 	};
 
 	/**
-	 * Register {@link #onScreenOpened(Screen)} callback after opening the screen.
-	 */
-	public static void init() {
-		// But only if Text ChatFormatting is enabled
-		if (ModConfig.enableSignTextFormatting()) {
-			ScreenEvents.AFTER_INIT.register((client, screen, width, height) ->
-				onScreenOpened(screen)
-			);
-		}
-	}
-
-	/**
-	 * Called after opening the screen.
-	 * <p>
-	 * Add color and formatting buttons to the screen.
-	 *
-	 * @param screen Edit screen.
-	 */
-	private static void onScreenOpened(Screen screen) {
-		// A quick check to see if it is a sign edit screen.
-		if (screen instanceof AbstractSignEditScreen es) {
-			// Check configuration and add buttons if enabled.
-			var config = ModConfig.getInstance();
-			if ((config.enableIronSignTextFormatting && isIronSign(es)) ||
-				(config.enableWoodenSignTextFormatting && isWoodenSign(es))) {
-				addButtonsToScreen(es);
-			}
-		}
-	}
-
-	/**
-	 * @param screen edit screen
-	 * @return true if the edit screen is associated with an Iron Sign or with a Hanging Iron Sign
-	 */
-	private static boolean isIronSign(AbstractSignEditScreen screen) {
-		final var sbeclass =
-			((AbstractSignEditScreenAccessor) screen)
-				.getSign()
-				.getClass();
-		return (sbeclass == IronSignBlockEntity.class) ||
-			(sbeclass == HangingIronSignBlockEntity.class);
-	}
-
-	/**
-	 * @param screen edit screen.
-	 * @return true if the edit screen is associated with a Wooden Sign or with a Hanging Wooden Sign.
-	 */
-	private static boolean isWoodenSign(AbstractSignEditScreen screen) {
-		final var sbeclass =
-			((AbstractSignEditScreenAccessor) screen)
-				.getSign()
-				.getClass();
-		return (sbeclass == SignBlockEntity.class) ||
-			(sbeclass == HangingSignBlockEntity.class);
-	}
-
-	/**
-	 * Add color and style formatting button to screen.
-	 *
-	 * @param es edit screen.
-	 */
-	private static void addButtonsToScreen(AbstractSignEditScreen es) {
-		// Color buttons, 4x4
-		final var colorButtons = getFormatButtons(
-			es, colorFormattings,
-			(es.width / 2) - 170, 70, 4);
-		// Style formatting buttons, 1x5
-		final var modifierButtons = getFormatButtons(
-			es, modifierFormattings,
-			(es.width / 2) + 50, 70, modifierFormattings.length);
-		// Add them to the screen
-		var screenButtons = Screens.getButtons(es);
-		screenButtons.addAll(colorButtons);
-		screenButtons.addAll(modifierButtons);
-	}
-
-	/**
-	 * Create a list of color buttons.
-	 *
-	 * @param screen  Edit screen.
-	 * @param formats List of formatting codes.
-	 * @param xOffset Left X of the button field.
-	 * @param yOffset Top Y of the button field.
-	 * @param rows    Number of rows.
-	 * @return The list.
-	 */
-	@SuppressWarnings("SameParameterValue")
-	private static @NotNull List<Button> getFormatButtons(
-		Screen screen, ChatFormatting[] formats,
-		int xOffset, int yOffset,
-		int rows) {
-		List<Button> list = new ArrayList<>();
-		final int gap = 0;
-		final int buttonSize = 20;
-		for (int i = 0; i < formats.length; i++) {
-			int buttonX = xOffset + (i / rows + 1) * (buttonSize + gap);
-			int buttonY = i % rows * (buttonSize + gap) + yOffset;
-			list.add(
-				getFormatButton(
-					screen,
-					buttonX, buttonY,
-					buttonSize, buttonSize,
-					formats[i]));
-		}
-		return list;
-	}
-
-	/**
 	 * Create one button.
 	 *
 	 * @param screen       Edit screen.
@@ -205,7 +100,8 @@ public class FormatButtonsHandler {
 				.tooltip(Tooltip.create(Component.literal(label)))
 				.build();
 		}
-		// Text is a square, prefixed with the formatting code.
+		// Text is a Black Large Square, (https://www.compart.com/en/unicode/U+2B1B),
+		// prefixed with the formatting code.
 		final String label = formatting.toString().concat("⬛");
 		final String tooltip = formatting.toString().concat(formatting.getName());
 		// Build a normal button.
@@ -221,5 +117,109 @@ public class FormatButtonsHandler {
 			.size(buttonWidth, buttonHeight)
 			.tooltip(Tooltip.create(Component.literal(tooltip)))
 			.build();
+	}
+
+	/**
+	 * Create a list of color buttons.
+	 *
+	 * @param screen  Edit screen.
+	 * @param formats List of formatting codes.
+	 * @param xOffset Left X of the button field.
+	 * @param yOffset Top Y of the button field.
+	 * @param rows    Number of rows.
+	 * @return The list.
+	 */
+	@SuppressWarnings("SameParameterValue")
+	private static @NotNull List<Button> getFormatButtons(
+		Screen screen, ChatFormatting[] formats,
+		int xOffset, int yOffset,
+		int rows) {
+		List<Button> list = new ArrayList<>();
+		final int gap = 0;
+		final int buttonSize = 20;
+		for (int i = 0; i < formats.length; i++) {
+			int buttonX = xOffset + (i / rows + 1) * (buttonSize + gap);
+			int buttonY = i % rows * (buttonSize + gap) + yOffset;
+			list.add(
+				getFormatButton(
+					screen,
+					buttonX, buttonY,
+					buttonSize, buttonSize,
+					formats[i]));
+		}
+		return list;
+	}
+
+	/**
+	 * Add color and style formatting button to screen.
+	 *
+	 * @param es edit screen.
+	 */
+	private static void addButtonsToScreen(AbstractSignEditScreen es) {
+		// Color buttons, 4x4.
+		final var colorButtons = getFormatButtons(
+			es, colorFormattings,
+			(es.width / 2) - 170, 70, 4);
+		// Style formatting buttons, 1x5.
+		final var modifierButtons = getFormatButtons(
+			es, modifierFormattings,
+			(es.width / 2) + 50, 70, modifierFormattings.length);
+		// Add them to the screen.
+		List<AbstractWidget> screenButtons = Screens.getButtons(es);
+		screenButtons.addAll(colorButtons);
+		screenButtons.addAll(modifierButtons);
+	}
+
+	/**
+	 * @param screen edit screen.
+	 * @return true if the edit screen is associated with a Wooden Sign or with a Hanging Wooden Sign.
+	 */
+	private static boolean isWoodenSign(AbstractSignEditScreen es) {
+		final AbstractSignEditScreenAccessor aes = (AbstractSignEditScreenAccessor) es;
+		final Class<? extends SignBlockEntity> sbeclass = aes.getSign().getClass();
+		return (sbeclass == SignBlockEntity.class) ||
+			(sbeclass == HangingSignBlockEntity.class);
+	}
+
+	/**
+	 * @param es edit screen.
+	 * @return true if the edit screen is associated with an Iron Sign or with a Hanging Iron Sign.
+	 */
+	private static boolean isIronSign(AbstractSignEditScreen es) {
+		final AbstractSignEditScreenAccessor aes = (AbstractSignEditScreenAccessor) es;
+		final Class<? extends SignBlockEntity> sbeclass = aes.getSign().getClass();
+		return (sbeclass == IronSignBlockEntity.class) ||
+			(sbeclass == HangingIronSignBlockEntity.class);
+	}
+
+	/**
+	 * Called after opening the screen.
+	 * <p>
+	 * Add color and formatting buttons to the screen.
+	 *
+	 * @param screen Edit screen.
+	 */
+	private static void onScreenOpened(Screen screen) {
+		// A quick check to see if it is a sign edit screen.
+		if (screen instanceof AbstractSignEditScreen es) {
+			// Check configuration and add buttons if enabled.
+			var config = ModConfigData.getInstance();
+			if ((config.enableIronSignTextFormatting && isIronSign(es)) ||
+				(config.enableWoodenSignTextFormatting && isWoodenSign(es))) {
+				addButtonsToScreen(es);
+			}
+		}
+	}
+
+	/**
+	 * Register {@link #onScreenOpened(Screen)} callback after opening the screen.
+	 */
+	public static void init() {
+		// But only if Text ChatFormatting is enabled.
+		if (ModConfigData.enableSignTextFormatting()) {
+			ScreenEvents.AFTER_INIT.register((client, screen, width, height) ->
+				onScreenOpened(screen)
+			);
+		}
 	}
 }

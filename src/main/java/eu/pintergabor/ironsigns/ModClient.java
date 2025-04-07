@@ -18,25 +18,27 @@ import net.fabricmc.api.Environment;
 @Environment(EnvType.CLIENT)
 public class ModClient implements ClientModInitializer {
 
-	private void texture(SignVariant sv) {
-		WoodType wt = sv.woodType;
-		Sheets.SIGN_MATERIALS.put(wt,
-			Sheets.getSignMaterial(wt));
+	private static void texture(SignVariant sv) {
+		final WoodType woodType = sv.woodType;
+		Sheets.SIGN_MATERIALS.put(woodType,
+			Sheets.getSignMaterial(woodType));
+		Sheets.HANGING_SIGN_MATERIALS.put(woodType,
+			Sheets.getHangingSignMaterial(woodType));
 	}
 
 	@Override
 	public void onInitializeClient() {
-		// Entities
+		// Entity renderers.
 		BlockEntityRenderers.register(Main.ironSignEntity,
 			SignRenderer::new);
 		BlockEntityRenderers.register(Main.hangingIronSignEntity,
 			HangingSignRenderer::new);
-		// Textures
+		// Textures.
 		texture(Main.ironSign);
 		for (int i = 0; i < Main.colorSigns.length; i++) {
 			texture(Main.colorSigns[i]);
 		}
-		// Screen handler
+		// Screen handler.
 		FormatButtonsHandler.init();
 	}
 }

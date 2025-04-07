@@ -2,12 +2,12 @@ package eu.pintergabor.ironsigns.blocks;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
+import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.SignBlock;
-import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -16,23 +16,22 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 /**
  * Identical to its parent, but associated with a different entity.
  */
-public class IronWallSignBlock extends WallSignBlock {
-	public static final MapCodec<WallSignBlock> CODEC =
+public class IronCeilingHangingSignBlock extends CeilingHangingSignBlock {
+	public static final MapCodec<CeilingHangingSignBlock> CODEC =
 		RecordCodecBuilder.mapCodec((instance) ->
 			instance.group(
 					WoodType.CODEC.fieldOf("wood_type")
 						.forGetter(SignBlock::type),
 					propertiesCodec())
-				.apply(instance, IronWallSignBlock::new));
+				.apply(instance, IronCeilingHangingSignBlock::new));
 
-
-	public IronWallSignBlock(WoodType woodType, Properties props) {
+	public IronCeilingHangingSignBlock(WoodType woodType, Properties props) {
 		super(woodType, props);
 	}
 
 	@Override
 	@NotNull
-	public MapCodec<WallSignBlock> codec() {
+	public MapCodec<CeilingHangingSignBlock> codec() {
 		return CODEC;
 	}
 
@@ -40,6 +39,6 @@ public class IronWallSignBlock extends WallSignBlock {
 	@NotNull
 	public BlockEntity newBlockEntity(
 		@NotNull BlockPos pos, @NotNull BlockState state) {
-		return new IronSignBlockEntity(pos, state);
+		return new HangingIronSignBlockEntity(pos, state);
 	}
 }
