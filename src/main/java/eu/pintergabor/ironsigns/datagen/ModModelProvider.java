@@ -41,10 +41,10 @@ public class ModModelProvider extends FabricModelProvider {
 		// There is no WoodBlock associated with Sign, so it behaves like a HangingSign,
 		// and it is registered the same way as a HangingSign.
 		blockStateModelGenerator.createHangingSign(Blocks.IRON_BLOCK,
-			sv.block, sv.wallBlock);
+			sv.standingSign, sv.wallSign);
 		// Generate blockstates, block and item models for HangingSign and HangingWallSign.
 		blockStateModelGenerator.createHangingSign(Blocks.IRON_BLOCK,
-			sv.hangingBlock, sv.hangingWallBlock);
+			sv.ceilingHangingSign, sv.wallHangingSign);
 	}
 
 	@Override

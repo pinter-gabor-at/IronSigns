@@ -24,13 +24,13 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 	protected void addTags(HolderLookup.Provider wrapperLookup) {
 		FabricTagBuilder tagBuilder =
 			getOrCreateTagBuilder(Main.IRON_SIGN_BLOCK_TAG);
-		// Iron sign
+		// Iron sign.
 		builderAdd(tagBuilder, Main.ironSign);
-		// Color signs
+		// Color signs.
 		for (int i = 0; i < Main.colorSigns.length; i++) {
 			builderAdd(tagBuilder, Main.colorSigns[i]);
 		}
-		// Make them mineable with axe and pickaxe
+		// Make them mineable with axe and pickaxe.
 		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE)
 			.forceAddTag(Main.IRON_SIGN_BLOCK_TAG);
 		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
@@ -41,9 +41,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 	private FabricTagBuilder builderAdd(
 		FabricTagBuilder tagBuilder, SignVariant sv) {
 		return tagBuilder
-			.add(sv.block)
-			.add(sv.wallBlock)
-			.add(sv.hangingBlock)
-			.add(sv.hangingWallBlock);
+			.add(sv.standingSign)
+			.add(sv.wallSign)
+			.add(sv.ceilingHangingSign)
+			.add(sv.wallHangingSign);
 	}
 }

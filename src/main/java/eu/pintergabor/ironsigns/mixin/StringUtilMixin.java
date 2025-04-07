@@ -1,6 +1,6 @@
 package eu.pintergabor.ironsigns.mixin;
 
-import eu.pintergabor.ironsigns.config.ModConfig;
+import eu.pintergabor.ironsigns.config.ModConfigData;
 
 import net.minecraft.ChatFormatting;
 
@@ -12,16 +12,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
-/**
- * Imported from mc-text-utilities, written by chsaw.
- * <p>
- * <a href="https://github.com/ChristopherHaws/mc-text-utilities">
- * mc-text-utilities</a>
- * <p>
- * LGPL-3 license.
- * <p>
- * Rewritten by Koi-MC <koipond.minecraft@gmail.com> when the SharedConstants class lost its isValidChar method.
- */
 @Mixin(StringUtil.class)
 public abstract class StringUtilMixin {
 
@@ -32,8 +22,8 @@ public abstract class StringUtilMixin {
 	 */
 	@Inject(method = "isAllowedChatCharacter", at = @At("HEAD"), cancellable = true)
 	private static void isAllowedChatCharacter(char c, CallbackInfoReturnable<Boolean> cir) {
-		if (ModConfig.enableSignTextFormatting()) {
-			// Allow sign texts to contain the formatting code prefix
+		if (ModConfigData.enableSignTextFormatting()) {
+			// Allow sign texts to contain the formatting code prefix.
 			if (c == ChatFormatting.PREFIX_CODE) {
 				cir.setReturnValue(true);
 			}

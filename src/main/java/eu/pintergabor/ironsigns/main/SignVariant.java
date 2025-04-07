@@ -1,8 +1,8 @@
 package eu.pintergabor.ironsigns.main;
 
 import eu.pintergabor.ironsigns.Global;
-import eu.pintergabor.ironsigns.blocks.IronHangingSignBlock;
-import eu.pintergabor.ironsigns.blocks.IronSignBlock;
+import eu.pintergabor.ironsigns.blocks.IronCeilingHangingSignBlock;
+import eu.pintergabor.ironsigns.blocks.IronStandingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallHangingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallSignBlock;
 
@@ -39,28 +39,28 @@ public class SignVariant {
 	 * <p>
 	 * Read only outside class.
 	 */
-	public Block block;
+	public Block standingSign;
 
 	/**
 	 * Sign block attached to a wall.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public Block wallBlock;
+	public Block wallSign;
 
 	/**
 	 * Hanging sign block.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public Block hangingBlock;
+	public Block ceilingHangingSign;
 
 	/**
 	 * Hanging sign block attaced to a wall.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public Block hangingWallBlock;
+	public Block wallHangingSign;
 
 	/**
 	 * Sign item.
@@ -90,48 +90,50 @@ public class SignVariant {
 		// HangingSign entity is the hard-coded part of the HangingWallSign entity.
 		// HangingWallSign entity: resources/assets/<MODID>/textures/entity/signs/hanging/<name>.png
 		// HangingSign GUI: resources/assets/<MODID>/textures/gui/hanging_signs/<name>.png
+		// Add woodType to the known WoodTypes, and then they will be used just like the vanilla
+		// WoodTypes to do everything with the new signs the same ways as with the vanilla signs.
 		woodType = new WoodTypeBuilder()
 			.soundGroup(SoundType.IRON)
 			.hangingSignSoundGroup(SoundType.IRON)
 			.register(
-				Global.ModIdentifier(name), BlockSetType.IRON);
+				Global.modId(name), BlockSetType.IRON);
 		// Blocks.
 		final BlockBehaviour.Properties blockSettings = BlockBehaviour.Properties.of()
 			.forceSolidOn()
 			.noCollission()
 			.strength(0.5F, 6.0F)
 			.requiresCorrectToolForDrops();
-		block = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.ModIdentifier(name)),
-			settings -> new IronSignBlock(woodType, settings),
+		standingSign = Blocks.register(
+			ResourceKey.create(Registries.BLOCK, Global.modId(name)),
+			props -> new IronStandingSignBlock(woodType, props),
 			blockSettings);
-		wallBlock = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.ModIdentifier("wall_" + name)),
-			settings -> new IronWallSignBlock(woodType, settings),
+		wallSign = Blocks.register(
+			ResourceKey.create(Registries.BLOCK, Global.modId("wall_" + name)),
+			props -> new IronWallSignBlock(woodType, props),
 			blockSettings);
-		hangingBlock = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.ModIdentifier("hanging_" + name)),
-			settings -> new IronHangingSignBlock(woodType, settings),
+		ceilingHangingSign = Blocks.register(
+			ResourceKey.create(Registries.BLOCK, Global.modId("ceiling_hanging_" + name)),
+			props -> new IronCeilingHangingSignBlock(woodType, props),
 			blockSettings);
-		hangingWallBlock = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.ModIdentifier("hanging_wall_" + name)),
-			settings -> new IronWallHangingSignBlock(woodType, settings),
+		wallHangingSign = Blocks.register(
+			ResourceKey.create(Registries.BLOCK, Global.modId("wall_hanging_" + name)),
+			props -> new IronWallHangingSignBlock(woodType, props),
 			blockSettings);
 		// Items.
 		final Item.Properties itemSettings = new Item.Properties().stacksTo(64);
 		item = Items.registerItem(
-			ResourceKey.create(Registries.ITEM, Global.ModIdentifier(name)),
-			settings -> new SignItem(block, wallBlock, settings),
+			ResourceKey.create(Registries.ITEM, Global.modId(name)),
+			props -> new SignItem(standingSign, wallSign, props),
 			itemSettings);
 		hangingItem = Items.registerItem(
-			ResourceKey.create(Registries.ITEM, Global.ModIdentifier("hanging_" + name)),
-			settings -> new SignItem(hangingBlock, hangingWallBlock, settings),
+			ResourceKey.create(Registries.ITEM, Global.modId("hanging_" + name)),
+			props -> new SignItem(ceilingHangingSign, wallHangingSign, props),
 			itemSettings);
 		// Item groups.
-		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(
+		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(
 			entries -> {
-				entries.prepend(item);
-				entries.prepend(hangingItem);
+				entries.addBefore(Items.CHEST, item);
+				entries.addBefore(Items.CHEST, hangingItem);
 			});
 	}
 }

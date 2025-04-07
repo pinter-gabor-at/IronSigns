@@ -22,7 +22,7 @@
 			"eu.pintergabor.ironsigns.ModClient"
 		],
 		"fabric-datagen": [
-			"eu.pintergabor.ironsigns.Datagen"
+      "eu.pintergabor.ironsigns.DataGen"
 		],
 		"modmenu": [
 			"eu.pintergabor.ironsigns.config.ModMenu"

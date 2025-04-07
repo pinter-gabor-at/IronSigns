@@ -1,6 +1,6 @@
 package eu.pintergabor.ironsigns.mixin;
 
-import eu.pintergabor.ironsigns.config.ModConfig;
+import eu.pintergabor.ironsigns.config.ModConfigData;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,7 +32,7 @@ public abstract class AbstractSignEditScreenMixin {
 	@Inject(method = "keyPressed", at = @At("HEAD"), cancellable = true)
 	private void keyPessed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> cir) {
 		// Global.LOGGER.info("Keycode: {}, Modifiers: {}", keyCode, modifiers);
-		if (ModConfig.enableSignTextFormatting() &&
+		if (ModConfigData.enableSignTextFormatting() &&
 			keyCode == GLFW.GLFW_KEY_LEFT_BRACKET && ((modifiers & GLFW.GLFW_MOD_CONTROL) != 0)) {
 			// Global.LOGGER.info("Ctrl+[");
 			if (signField != null) {
