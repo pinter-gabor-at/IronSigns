@@ -1,13 +1,10 @@
 package eu.pintergabor.ironsigns.config;
 
 import eu.pintergabor.ironsigns.Global;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Global.MODID)
 public class ModConfigData {
 	// Builder.
 	private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
@@ -39,7 +36,7 @@ public class ModConfigData {
 	/**
 	 * Load parameters from TOML.
 	 */
-	@SubscribeEvent
+	@SuppressWarnings("unused")
 	public static void onLoad(final ModConfigEvent event) {
 		enableColorSigns = ENABLE_COLOR_SIGNS.get();
 		enableIronSignTextFormatting = ENABLE_IRON_SIGN_TEXT_FORMATTING.get();

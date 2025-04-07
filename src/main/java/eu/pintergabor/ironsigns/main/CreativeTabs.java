@@ -1,32 +1,47 @@
 package eu.pintergabor.ironsigns.main;
 
 import static eu.pintergabor.ironsigns.main.Main.signColors;
+import static net.minecraft.world.item.CreativeModeTab.TabVisibility;
 
-import eu.pintergabor.ironsigns.Global;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Global.MODID, value = Dist.CLIENT)
 public final class CreativeTabs {
+
+	/**
+	 * Add one item to creative tabs.
+	 */
+	private static void add(
+		BuildCreativeModeTabContentsEvent event, ItemLike item) {
+		event.insertBefore(
+			new ItemStack(Items.CHEST), new ItemStack(item),
+			TabVisibility.PARENT_AND_SEARCH_TABS);
+	}
+
+	/**
+	 * Add one sign variant to creative tabs.
+	 */
+	private static void add(
+		BuildCreativeModeTabContentsEvent event, SignVariant ironSign) {
+		add(event, ironSign.item);
+		add(event, ironSign.hangingItem);
+	}
 
 	/**
 	 * Add items to creative tabs.
 	 */
-	@SubscribeEvent
-	public static void creativeTabs(BuildCreativeModeTabContentsEvent event) {
-		if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+	public static void init(BuildCreativeModeTabContentsEvent event) {
+		if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
 			// Iron sign.
-			event.accept(Main.ironSign.item);
-			event.accept(Main.ironSign.hangingItem);
+			add(event, Main.ironSign);
 			// Color signs.
 			for (int i = 0; i < signColors.length; i++) {
-				event.accept(Main.colorSigns[i].item);
-				event.accept(Main.colorSigns[i].hangingItem);
+				add(event, Main.colorSigns[i]);
 			}
 		}
 	}

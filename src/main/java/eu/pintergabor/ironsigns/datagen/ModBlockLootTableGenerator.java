@@ -25,19 +25,17 @@ public class ModBlockLootTableGenerator extends BlockLootSubProvider {
 	 * @param sv {@link SignVariant}.
 	 */
 	private void generateSignBlockLoot(SignVariant sv) {
-		dropOther(sv.block.get(), sv.item.get());
-		dropOther(sv.wallBlock.get(), sv.item.get());
-		dropOther(sv.hangingBlock.get(), sv.hangingItem.get());
-		dropOther(sv.hangingWallBlock.get(), sv.hangingItem.get());
+		dropOther(sv.standingSign.get(), sv.item.get());
+		dropOther(sv.wallSign.get(), sv.item.get());
+		dropOther(sv.ceilingHangingSign.get(), sv.hangingItem.get());
+		dropOther(sv.wallHangingSign.get(), sv.hangingItem.get());
 	}
 
 	@Override
 	@NotNull
 	protected Iterable<Block> getKnownBlocks() {
-		// The contents of our DeferredRegister.
 		return Main.BLOCKS.getEntries()
 			.stream()
-			// Cast to Block here, otherwise it will be a ? extends Block and Java will complain.
 			.map(e -> (Block) e.get())
 			.toList();
 	}

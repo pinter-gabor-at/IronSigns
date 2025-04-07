@@ -25,14 +25,14 @@ public class ModModelProvider extends ModelProvider {
 	 */
 	private void generateSignBlockStates(
 		BlockModelGenerators blockStateModelGenerator, SignVariant sv) {
-		// Generate blockstates, block and item models for Sign and WallSign.
+		// Generate blockstates, block and item models for StandingSign and WallSign.
 		// There is no WoodBlock associated with Sign, so it behaves like a HangingSign,
 		// and it is registered the same way as a HangingSign.
 		blockStateModelGenerator.createHangingSign(Blocks.IRON_BLOCK,
-			sv.block.get(), sv.wallBlock.get());
-		// Generate blockstates, block and item models for HangingSign and HangingWallSign.
+			sv.standingSign.get(), sv.wallSign.get());
+		// Generate blockstates, block and item models for CeilingHangingSign and WallHangingSign.
 		blockStateModelGenerator.createHangingSign(Blocks.IRON_BLOCK,
-			sv.hangingBlock.get(), sv.hangingWallBlock.get());
+			sv.ceilingHangingSign.get(), sv.wallHangingSign.get());
 	}
 
 	/**

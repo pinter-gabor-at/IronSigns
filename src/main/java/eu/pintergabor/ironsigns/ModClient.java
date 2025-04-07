@@ -1,5 +1,6 @@
 package eu.pintergabor.ironsigns;
 
+import eu.pintergabor.ironsigns.main.CreativeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -18,5 +19,11 @@ public final class ModClient {
 	public ModClient(IEventBus modEventBus, ModContainer modContainer) {
 		// Config screen.
 		modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+		// Entity renderers and textures.
+		modEventBus.addListener(ModClientSetup::init);
+		// Creative tabs.
+		modEventBus.addListener(CreativeTabs::init);
+		// Data generator.
+		modEventBus.addListener(DataGen::init);
 	}
 }

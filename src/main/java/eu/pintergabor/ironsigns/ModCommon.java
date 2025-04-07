@@ -17,8 +17,9 @@ public final class ModCommon {
 
 	@SuppressWarnings("unused")
 	public ModCommon(IEventBus modEventBus, ModContainer modContainer, Dist dist) {
-		// Use configuration parameters on both sides.
+		// Use configuration parameters on both sides and load them on startup.
 		modContainer.registerConfig(ModConfig.Type.COMMON, ModConfigData.SPEC);
+		modEventBus.addListener(ModConfigData::onLoad);
 		// Create and register everything.
 		Main.init(modEventBus);
 	}

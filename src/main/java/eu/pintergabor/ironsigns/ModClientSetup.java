@@ -2,9 +2,6 @@ package eu.pintergabor.ironsigns;
 
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
 import net.minecraft.client.renderer.Sheets;
@@ -14,17 +11,21 @@ import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Global.MODID, value = Dist.CLIENT)
 public final class ModClientSetup {
 
 	private static void texture(SignVariant sv) {
-		WoodType wt = sv.woodType;
-		Sheets.SIGN_MATERIALS.put(wt,
-			Sheets.getSignMaterial(wt));
+		final WoodType woodType = sv.woodType;
+		Sheets.SIGN_MATERIALS.put(woodType,
+			Sheets.getSignMaterial(woodType));
+		Sheets.HANGING_SIGN_MATERIALS.put(woodType,
+			Sheets.getHangingSignMaterial(woodType));
 	}
 
-	@SubscribeEvent
-	public static void onClientSetup(FMLClientSetupEvent event) {
+	/**
+	 * Entity renderers and textures are used only on the client side.
+	 */
+	@SuppressWarnings("unused")
+	public static void init(FMLClientSetupEvent event) {
 		// Entities.
 		BlockEntityRenderers.register(Main.ironSignEntity.get(),
 			SignRenderer::new);

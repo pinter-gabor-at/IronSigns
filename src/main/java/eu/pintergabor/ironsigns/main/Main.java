@@ -34,7 +34,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
  * different entity types.
  * <p>
  * And, finally, new block types must be created, because the codecs are static
- * in the block classes, and therefore they cannot be inherited.
+ * in the block classes, and therefore new blocks cannot inherit them.
  */
 public final class Main {
 	public static final DeferredRegister.Items ITEMS =
@@ -147,15 +147,18 @@ public final class Main {
 		}
 	}
 
+	/**
+	 * @return an array of all standing and wall sign blocks.
+	 */
 	@NotNull
 	private static Block[] getIronSignBlocks() {
 		// Create an array of blocks associated with the entity.
 		Block[] signBlocks = new Block[2 * signColors.length + 2];
-		signBlocks[0] = ironSign.block.get();
-		signBlocks[1] = ironSign.wallBlock.get();
+		signBlocks[0] = ironSign.standingSign.get();
+		signBlocks[1] = ironSign.wallSign.get();
 		for (int i = 0; i < signColors.length; i++) {
-			signBlocks[2 * i + 2] = colorSigns[i].block.get();
-			signBlocks[2 * i + 3] = colorSigns[i].wallBlock.get();
+			signBlocks[2 * i + 2] = colorSigns[i].standingSign.get();
+			signBlocks[2 * i + 3] = colorSigns[i].wallSign.get();
 		}
 		return signBlocks;
 	}
@@ -172,15 +175,18 @@ public final class Main {
 				getIronSignBlocks()));
 	}
 
+	/**
+	 * @return an array of all ceiling and wall hanging sign blocks.
+	 */
 	@NotNull
 	private static Block[] getHangingSignBlocks() {
 		// Create an array of blocks associated with the entity.
 		var hangingSignBlocks = new Block[2 * signColors.length + 2];
-		hangingSignBlocks[0] = ironSign.hangingBlock.get();
-		hangingSignBlocks[1] = ironSign.hangingWallBlock.get();
+		hangingSignBlocks[0] = ironSign.ceilingHangingSign.get();
+		hangingSignBlocks[1] = ironSign.wallHangingSign.get();
 		for (int i = 0; i < signColors.length; i++) {
-			hangingSignBlocks[2 * i + 2] = colorSigns[i].hangingBlock.get();
-			hangingSignBlocks[2 * i + 3] = colorSigns[i].hangingWallBlock.get();
+			hangingSignBlocks[2 * i + 2] = colorSigns[i].ceilingHangingSign.get();
+			hangingSignBlocks[2 * i + 3] = colorSigns[i].wallHangingSign.get();
 		}
 		return hangingSignBlocks;
 	}

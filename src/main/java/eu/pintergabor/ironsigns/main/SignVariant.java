@@ -33,32 +33,32 @@ public class SignVariant {
 	public WoodType woodType;
 
 	/**
-	 * Standing sign block.
+	 * Standing sign.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public DeferredBlock<Block> block;
+	public DeferredBlock<Block> standingSign;
 
 	/**
-	 * Sign block attached to a wall.
+	 * Sign attached to a wall.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public DeferredBlock<Block> wallBlock;
+	public DeferredBlock<Block> wallSign;
 
 	/**
-	 * Hanging sign block.
+	 * Sign hanging from the ceiling.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public DeferredBlock<Block> hangingBlock;
+	public DeferredBlock<Block> ceilingHangingSign;
 
 	/**
-	 * Hanging sign block attaced to a wall.
+	 * Hanging sign attached to a wall.
 	 * <p>
 	 * Read only outside class.
 	 */
-	public DeferredBlock<Block> hangingWallBlock;
+	public DeferredBlock<Block> wallHangingSign;
 
 	/**
 	 * Sign item.
@@ -102,25 +102,25 @@ public class SignVariant {
 			.noCollission()
 			.strength(0.5F, 6.0F)
 			.requiresCorrectToolForDrops();
-		block = Main.BLOCKS.register(name, id ->
+		standingSign = Main.BLOCKS.register(name, id ->
 			new IronStandingSignBlock(woodType, blockProps
 				.setId(ResourceKey.create(Registries.BLOCK, id))));
-		wallBlock = Main.BLOCKS.register("wall_" + name, id ->
+		wallSign = Main.BLOCKS.register("wall_" + name, id ->
 			new IronWallSignBlock(woodType, blockProps
 				.setId(ResourceKey.create(Registries.BLOCK, id))));
-		hangingBlock = Main.BLOCKS.register("hanging_" + name, id ->
+		ceilingHangingSign = Main.BLOCKS.register("ceiling_hanging_" + name, id ->
 			new IronCeilingHangingSignBlock(woodType, blockProps
 				.setId(ResourceKey.create(Registries.BLOCK, id))));
-		hangingWallBlock = Main.BLOCKS.register("hanging_wall_" + name, id ->
+		wallHangingSign = Main.BLOCKS.register("wall_hanging_" + name, id ->
 			new IronWallHangingSignBlock(woodType, blockProps
 				.setId(ResourceKey.create(Registries.BLOCK, id))));
 		// Items.
 		final Item.Properties itemProps = new Item.Properties().stacksTo(64);
 		item = Main.ITEMS.registerItem(name,
-			props -> new SignItem(block.get(), wallBlock.get(), props),
+			props -> new SignItem(standingSign.get(), wallSign.get(), props),
 			itemProps);
 		hangingItem = Main.ITEMS.registerItem("hanging_" + name,
-			props -> new SignItem(hangingBlock.get(), hangingWallBlock.get(), props),
+			props -> new SignItem(ceilingHangingSign.get(), wallHangingSign.get(), props),
 			itemProps);
 	}
 }
