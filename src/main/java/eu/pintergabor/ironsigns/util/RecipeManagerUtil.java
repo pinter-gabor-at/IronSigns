@@ -21,7 +21,7 @@ public class RecipeManagerUtil {
      * @param map Map of all recipes.
      */
     public static void configRecipes(Map<ResourceLocation, ?> map) {
-        if (!ModConfigData.enableColorSigns) {
+        if (!ModConfigData.ENABLE_COLOR_SIGNS.get()) {
             for (int i = 0; i < Main.colorSigns.length; i++) {
                 SignVariant sv = Main.colorSigns[i];
                 removeItemRecipe(map, sv);

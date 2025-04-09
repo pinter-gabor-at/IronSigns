@@ -203,8 +203,8 @@ public class FormatButtonsHandler {
 	 */
 	public static void onScreenOpened(AbstractSignEditScreen screen) {
 		// Check configuration and add buttons if enabled.
-		if ((ModConfigData.enableIronSignTextFormatting && isIronSign(screen)) ||
-			(ModConfigData.enableWoodenSignTextFormatting && isWoodenSign(screen))) {
+		if ((ModConfigData.ENABLE_IRON_SIGN_TEXT_FORMATTING.get() && isIronSign(screen)) ||
+			(ModConfigData.ENABLE_WOODEN_SIGN_TEXT_FORMATTING.get() && isWoodenSign(screen))) {
 			addButtonsToScreen(screen);
 		}
 	}
