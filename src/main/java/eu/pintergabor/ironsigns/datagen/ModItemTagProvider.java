@@ -19,7 +19,9 @@ import org.jetbrains.annotations.NotNull;
 public class ModItemTagProvider extends ItemTagsProvider {
 
 	public ModItemTagProvider(
-		PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> blockTagProvider) {
+		PackOutput output,
+		CompletableFuture<HolderLookup.Provider> lookupProvider,
+		CompletableFuture<TagsProvider.TagLookup<Block>> blockTagProvider) {
 		super(output, lookupProvider, blockTagProvider, Global.MODID);
 	}
 
