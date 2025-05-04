@@ -1,5 +1,6 @@
 package eu.pintergabor.ironsigns.datagen;
 
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 
 import eu.pintergabor.ironsigns.main.Main;
@@ -27,9 +28,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 		tagBuilder.add(Main.ironSign.item);
 		hangingTagBuilder.add(Main.ironSign.hangingItem);
 		// Color signs
-		for (int i = 0; i < Main.colorSigns.length; i++) {
-			tagBuilder.add(Main.colorSigns[i].item);
-			hangingTagBuilder.add(Main.colorSigns[i].hangingItem);
-		}
+		Arrays.stream(Main.colorSigns)
+			.forEach(sv -> {
+				tagBuilder.add(sv.item);
+				hangingTagBuilder.add(sv.hangingItem);
+			});
 	}
 }

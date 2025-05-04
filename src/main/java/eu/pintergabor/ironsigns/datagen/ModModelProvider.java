@@ -1,5 +1,7 @@
 package eu.pintergabor.ironsigns.datagen;
 
+import java.util.Arrays;
+
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
 
@@ -17,20 +19,6 @@ public class ModModelProvider extends FabricModelProvider {
 	}
 
 	/**
-	 * Generate blockstates, block and item models.
-	 */
-	@Override
-	public void generateBlockStateModels(
-		BlockModelGenerators blockStateModelGenerator) {
-		// Iron sign
-		generateSignBlockStates(blockStateModelGenerator, Main.ironSign);
-		// Color signs
-		for (int i = 0; i < Main.colorSigns.length; i++) {
-			generateSignBlockStates(blockStateModelGenerator, Main.colorSigns[i]);
-		}
-	}
-
-	/**
 	 * Generate blockstates, block and item models for one {@link SignVariant}.
 	 *
 	 * @param sv {@link SignVariant}.
@@ -45,6 +33,19 @@ public class ModModelProvider extends FabricModelProvider {
 		// Generate blockstates, block and item models for HangingSign and HangingWallSign.
 		blockStateModelGenerator.createHangingSign(Blocks.IRON_BLOCK,
 			sv.ceilingHangingSign, sv.wallHangingSign);
+	}
+
+	/**
+	 * Generate blockstates, block and item models.
+	 */
+	@Override
+	public void generateBlockStateModels(
+		BlockModelGenerators blockStateModelGenerator) {
+		// Iron sign
+		generateSignBlockStates(blockStateModelGenerator, Main.ironSign);
+		// Color signs
+		Arrays.stream(Main.colorSigns).forEach(sv ->
+			generateSignBlockStates(blockStateModelGenerator, sv));
 	}
 
 	@Override

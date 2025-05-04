@@ -39,7 +39,8 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removeItemRecipe(
-		Map<ResourceLocation, ?> map, SignVariant sv) {
+		Map<ResourceLocation, ?> map, SignVariant sv
+	) {
 		map.remove(ResourceLocation.parse(sv.item.toString()));
 	}
 
@@ -50,7 +51,8 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removeHangingItemRecipe(
-		Map<ResourceLocation, ?> map, SignVariant sv) {
+		Map<ResourceLocation, ?> map, SignVariant sv
+	) {
 		map.remove(ResourceLocation.parse(sv.hangingItem.toString()));
 	}
 
@@ -61,7 +63,8 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removePaintItemRecipe(
-		Map<ResourceLocation, ?> map, SignVariant sv) {
+		Map<ResourceLocation, ?> map, SignVariant sv
+	) {
 		map.remove(ResourceLocation.parse(sv.item.toString() + "_dye"));
 	}
 
@@ -72,7 +75,8 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant
 	 */
 	private static void removePaintHangingItemRecipe(
-		Map<ResourceLocation, ?> map, SignVariant sv) {
+		Map<ResourceLocation, ?> map, SignVariant sv
+	) {
 		map.remove(ResourceLocation.parse(sv.hangingItem.toString() + "_dye"));
 	}
 }

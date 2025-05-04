@@ -32,7 +32,8 @@ public abstract class RecipeManagerMixin {
 		ResourceManager resourceManager,
 		ProfilerFiller profiler,
 		CallbackInfoReturnable<RecipeMap> cir,
-		@Local SortedMap<ResourceLocation, Recipe<?>> sortedMap) {
+		@Local SortedMap<ResourceLocation, Recipe<?>> sortedMap
+	) {
 		RecipeManagerUtil.configRecipes(sortedMap);
 	}
 }

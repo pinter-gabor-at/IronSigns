@@ -16,7 +16,7 @@ import net.fabricmc.api.Environment;
 
 
 @Environment(EnvType.CLIENT)
-public class ModClient implements ClientModInitializer {
+public final class ModClient implements ClientModInitializer {
 
 	private static void texture(SignVariant sv) {
 		final WoodType woodType = sv.woodType;

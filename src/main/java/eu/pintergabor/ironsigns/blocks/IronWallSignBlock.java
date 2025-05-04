@@ -39,7 +39,8 @@ public class IronWallSignBlock extends WallSignBlock {
 	@Override
 	@NotNull
 	public BlockEntity newBlockEntity(
-		@NotNull BlockPos pos, @NotNull BlockState state) {
+		@NotNull BlockPos pos, @NotNull BlockState state
+	) {
 		return new IronSignBlockEntity(pos, state);
 	}
 }
