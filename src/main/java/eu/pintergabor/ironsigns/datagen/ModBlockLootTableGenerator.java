@@ -1,5 +1,6 @@
 package eu.pintergabor.ironsigns.datagen;
 
+import java.util.Arrays;
 import java.util.Set;
 
 import eu.pintergabor.ironsigns.main.Main;
@@ -48,8 +49,6 @@ public class ModBlockLootTableGenerator extends BlockLootSubProvider {
 		// Iron sign.
 		generateSignBlockLoot(Main.ironSign);
 		// Color signs.
-		for (int i = 0; i < Main.colorSigns.length; i++) {
-			generateSignBlockLoot(Main.colorSigns[i]);
-		}
+		Arrays.stream(Main.colorSigns).forEach(this::generateSignBlockLoot);
 	}
 }

@@ -11,6 +11,8 @@ import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Blocks;
 
+import java.util.Arrays;
+
 
 public class ModModelProvider extends ModelProvider {
 
@@ -24,7 +26,8 @@ public class ModModelProvider extends ModelProvider {
 	 * @param sv {@link SignVariant}.
 	 */
 	private void generateSignBlockStates(
-		BlockModelGenerators blockStateModelGenerator, SignVariant sv) {
+		BlockModelGenerators blockStateModelGenerator, SignVariant sv
+	) {
 		// Generate blockstates, block and item models for StandingSign and WallSign.
 		// There is no WoodBlock associated with Sign, so it behaves like a HangingSign,
 		// and it is registered the same way as a HangingSign.
@@ -41,12 +44,12 @@ public class ModModelProvider extends ModelProvider {
 	@Override
 	protected void registerModels(
 		@NotNull BlockModelGenerators blockModels,
-		@NotNull ItemModelGenerators itemModels) {
+		@NotNull ItemModelGenerators itemModels
+	) {
 		// Iron sign.
 		generateSignBlockStates(blockModels, Main.ironSign);
 		// Color signs.
-		for (int i = 0; i < Main.colorSigns.length; i++) {
-			generateSignBlockStates(blockModels, Main.colorSigns[i]);
-		}
+		Arrays.stream(Main.colorSigns)
+			.forEach(sv -> generateSignBlockStates(blockModels, sv));
 	}
 }

@@ -1,7 +1,8 @@
 package eu.pintergabor.ironsigns.main;
 
-import static eu.pintergabor.ironsigns.main.Main.signColors;
 import static net.minecraft.world.item.CreativeModeTab.TabVisibility;
+
+import java.util.Arrays;
 
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
@@ -17,7 +18,8 @@ public final class CreativeTabs {
 	 * Add one item to creative tabs.
 	 */
 	private static void add(
-		BuildCreativeModeTabContentsEvent event, ItemLike item) {
+		BuildCreativeModeTabContentsEvent event, ItemLike item
+	) {
 		event.insertBefore(
 			new ItemStack(Items.CHEST), new ItemStack(item),
 			TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -27,7 +29,8 @@ public final class CreativeTabs {
 	 * Add one sign variant to creative tabs.
 	 */
 	private static void add(
-		BuildCreativeModeTabContentsEvent event, SignVariant ironSign) {
+		BuildCreativeModeTabContentsEvent event, SignVariant ironSign
+	) {
 		add(event, ironSign.item);
 		add(event, ironSign.hangingItem);
 	}
@@ -40,9 +43,8 @@ public final class CreativeTabs {
 			// Iron sign.
 			add(event, Main.ironSign);
 			// Color signs.
-			for (int i = 0; i < signColors.length; i++) {
-				add(event, Main.colorSigns[i]);
-			}
+			Arrays.stream(Main.colorSigns)
+				.forEach(sv -> add(event, sv));
 		}
 	}
 }

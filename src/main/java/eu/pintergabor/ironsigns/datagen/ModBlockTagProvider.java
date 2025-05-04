@@ -1,5 +1,6 @@
 package eu.pintergabor.ironsigns.datagen;
 
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 
 import eu.pintergabor.ironsigns.Global;
@@ -22,7 +23,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 	}
 
 	private static void addVariant(
-		SignVariant sv, IntrinsicTagAppender<Block> modTag) {
+		SignVariant sv, IntrinsicTagAppender<Block> modTag
+	) {
 		modTag.add(
 			sv.standingSign.get(), sv.wallSign.get(),
 			sv.ceilingHangingSign.get(), sv.wallHangingSign.get());
@@ -34,9 +36,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 		// Iron sign.
 		addVariant(Main.ironSign, modBlockTag);
 		// Color signs.
-		for (int i = 0; i < Main.colorSigns.length; i++) {
-			addVariant(Main.colorSigns[i], modBlockTag);
-		}
+		Arrays.stream(Main.colorSigns)
+			.forEach(sv -> addVariant(sv, modBlockTag));
 		// Make them mineable with axe and pickaxe.
 		tag(BlockTags.MINEABLE_WITH_AXE)
 			.addTag(Main.IRON_SIGN_BLOCK_TAG);

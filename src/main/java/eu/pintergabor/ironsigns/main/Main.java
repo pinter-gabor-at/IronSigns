@@ -113,7 +113,7 @@ public final class Main {
 			"iron_wall_sign",
 			() -> IronWallSignBlock.CODEC);
 		BLOCK_TYPES.register(
-			"iron_hanging_sign",
+			"iron_ceiling_hanging_sign",
 			() -> IronCeilingHangingSignBlock.CODEC);
 		BLOCK_TYPES.register(
 			"iron_wall_hanging_sign",

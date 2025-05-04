@@ -15,7 +15,8 @@ public class ModRecipeRunner extends RecipeProvider.Runner {
 
 	public ModRecipeRunner(
 		PackOutput output,
-		CompletableFuture<HolderLookup.Provider> completableFuture) {
+		CompletableFuture<HolderLookup.Provider> completableFuture
+	) {
 		super(output, completableFuture);
 	}
 
@@ -23,7 +24,8 @@ public class ModRecipeRunner extends RecipeProvider.Runner {
 	@NotNull
 	protected RecipeProvider createRecipeProvider(
 		@NotNull HolderLookup.Provider registryLookup,
-		@NotNull RecipeOutput output) {
+		@NotNull RecipeOutput output
+	) {
 		return new ModRecipeGenerator(registryLookup, output);
 	}
 

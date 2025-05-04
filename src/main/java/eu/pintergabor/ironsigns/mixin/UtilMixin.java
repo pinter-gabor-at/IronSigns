@@ -14,12 +14,13 @@ import net.minecraft.Util;
 public abstract class UtilMixin {
 
 	/**
-	 * Rewrite {@code moveCursor} to work the same way as the original one, but skip formatting codes too.
+	 * Rewrite {@link Util#offsetByCodepoints} to work the same way as the original one, but skip formatting codes too.
 	 */
 	@Inject(method = "offsetByCodepoints", at = @At("HEAD"), cancellable = true)
 	private static void newMoveCursor(
 		String string, int cursor, int delta,
-		CallbackInfoReturnable<Integer> cir) {
+		CallbackInfoReturnable<Integer> cir
+	) {
 		if (ModConfigData.enableSignTextFormatting()) {
 			cir.setReturnValue(StringUtil2.moveCursor(string, cursor, delta));
 		}

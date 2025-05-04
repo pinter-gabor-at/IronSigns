@@ -1,6 +1,7 @@
 package eu.pintergabor.ironsigns.entities;
 
 import eu.pintergabor.ironsigns.main.Main;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
  */
 public class IronSignBlockEntity extends SignBlockEntity {
 
-    public IronSignBlockEntity(BlockPos pos, BlockState state) {
-        super(Main.ironSignEntity.get(), pos, state);
-    }
+	public IronSignBlockEntity(BlockPos pos, BlockState state) {
+		super(Main.ironSignEntity.get(), pos, state);
+	}
 }

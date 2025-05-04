@@ -70,7 +70,8 @@ public class FormatButtonsHandler {
 		Screen screen,
 		int buttonX, int buttonY,
 		int buttonWidth, int buttonHeight,
-		ChatFormatting formatting) {
+		ChatFormatting formatting
+	) {
 		// Build a button that emulates the typing of two characters:
 		// The first is the formatting prefix '§',
 		// the second is the formatting code.
@@ -124,13 +125,14 @@ public class FormatButtonsHandler {
 	private static @NotNull List<Button> getFormatButtons(
 		Screen screen, ChatFormatting[] formats,
 		int xOffset, int yOffset,
-		int rows) {
+		int rows
+	) {
 		List<Button> list = new ArrayList<>();
 		final int gap = 0;
 		final int buttonSize = 20;
 		for (int i = 0; i < formats.length; i++) {
-			int buttonX = xOffset + (i / rows + 1) * (buttonSize + gap);
-			int buttonY = i % rows * (buttonSize + gap) + yOffset;
+			final int buttonX = xOffset + (i / rows + 1) * (buttonSize + gap);
+			final int buttonY = i % rows * (buttonSize + gap) + yOffset;
 			list.add(
 				getFormatButton(
 					screen,
@@ -148,9 +150,7 @@ public class FormatButtonsHandler {
 	 */
 	public static void addButtonsToScreen(AbstractSignEditScreen es, List<Button> buttons) {
 		final AbstractSignEditScreenAccessor aes = (AbstractSignEditScreenAccessor) es;
-		for (Button button : buttons) {
-			aes.invokeAddRenderableWidget(button);
-		}
+		buttons.forEach(aes::invokeAddRenderableWidget);
 	}
 
 	/**
