@@ -1,9 +1,7 @@
 package eu.pintergabor.ironsigns.mixin;
 
-import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.config.ModConfigData;
 import eu.pintergabor.ironsigns.util.FormatButtonsHandler;
-
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;

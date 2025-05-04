@@ -97,7 +97,7 @@ public class SignVariant {
 		// WoodTypes to do everything with the new signs the same ways as with the vanilla signs.
 		WoodType.register(woodType);
 		// Blocks.
-		final BlockBehaviour.Properties blockProps = BlockBehaviour.Properties.of()
+		final Block.Properties blockProps = BlockBehaviour.Properties.of()
 			.forceSolidOn()
 			.noCollission()
 			.strength(0.5F, 6.0F)

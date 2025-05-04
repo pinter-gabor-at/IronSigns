@@ -108,20 +108,16 @@ public final class Main {
 	private static void initBlockTypes() {
 		BLOCK_TYPES.register(
 			"iron_sign",
-			() -> IronStandingSignBlock.CODEC
-		);
+			() -> IronStandingSignBlock.CODEC);
 		BLOCK_TYPES.register(
 			"iron_wall_sign",
-			() -> IronWallSignBlock.CODEC
-		);
+			() -> IronWallSignBlock.CODEC);
 		BLOCK_TYPES.register(
 			"iron_hanging_sign",
-			() -> IronCeilingHangingSignBlock.CODEC
-		);
+			() -> IronCeilingHangingSignBlock.CODEC);
 		BLOCK_TYPES.register(
 			"iron_wall_hanging_sign",
-			() -> IronWallHangingSignBlock.CODEC
-		);
+			() -> IronWallHangingSignBlock.CODEC);
 	}
 
 	/**
