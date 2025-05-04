@@ -15,7 +15,9 @@ import net.minecraft.world.item.Items;
 
 public class ModRecipeGenerator extends RecipeProvider {
 
-	public ModRecipeGenerator(HolderLookup.Provider registryLookup, RecipeOutput output) {
+	public ModRecipeGenerator(
+		HolderLookup.Provider registryLookup, RecipeOutput output
+	) {
 		super(registryLookup, output);
 	}
 
@@ -26,7 +28,8 @@ public class ModRecipeGenerator extends RecipeProvider {
 	 * @param tag      ItemTag.PLANKS for IronSign, DyeTag for color signs.
 	 */
 	private void generateIronSignItemRecipe(
-		Item signitem, TagKey<Item> tag) {
+		Item signitem, TagKey<Item> tag
+	) {
 		shaped(RecipeCategory.MISC, signitem, 20)
 			.pattern("SSS")
 			.pattern("SPS")
@@ -46,7 +49,8 @@ public class ModRecipeGenerator extends RecipeProvider {
 	 *                 signs.
 	 */
 	private void generateHangingIronSignItemRecipe(
-		Item signitem, TagKey<Item> tag) {
+		Item signitem, TagKey<Item> tag
+	) {
 		shaped(RecipeCategory.MISC, signitem, 20)
 			.pattern("C C")
 			.pattern("SPS")
@@ -65,7 +69,8 @@ public class ModRecipeGenerator extends RecipeProvider {
 	 * @param dye      DyeTag for color signs.
 	 */
 	private void paintIronSignItemRecipe(
-		Item signitem, TagKey<Item> dye) {
+		Item signitem, TagKey<Item> dye
+	) {
 		shapeless(RecipeCategory.MISC, signitem)
 			.requires(Main.IRON_SIGN_ITEM_TAG)
 			.requires(dye)

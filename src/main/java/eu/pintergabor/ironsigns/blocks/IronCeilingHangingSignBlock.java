@@ -38,7 +38,8 @@ public class IronCeilingHangingSignBlock extends CeilingHangingSignBlock {
 	@Override
 	@NotNull
 	public BlockEntity newBlockEntity(
-		@NotNull BlockPos pos, @NotNull BlockState state) {
+		@NotNull BlockPos pos, @NotNull BlockState state
+	) {
 		return new HangingIronSignBlockEntity(pos, state);
 	}
 }

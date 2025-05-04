@@ -33,7 +33,7 @@ Since 1.0.2 with sign text coloring and formatting:
 ![Sign editing](./images/sign_editing.png "Screenshot")
 
 
-## Requires
+## Requires (Fabric)
 
 - [Fabric API](https://modrinth.com/mod/fabric-api)  
 - [Cloth Config API](https://modrinth.com/mod/cloth-config)

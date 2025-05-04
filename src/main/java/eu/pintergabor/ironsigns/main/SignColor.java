@@ -48,6 +48,7 @@ public enum SignColor {
 	/**
 	 * Primary color of the corresponding items and entities.
 	 */
+	@SuppressWarnings("unused")
 	public int getColor() {
 		return this.color;
 	}

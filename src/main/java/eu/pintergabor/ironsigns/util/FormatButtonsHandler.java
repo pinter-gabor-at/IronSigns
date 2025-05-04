@@ -7,12 +7,10 @@ import eu.pintergabor.ironsigns.config.ModConfigData;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
 import eu.pintergabor.ironsigns.mixin.AbstractSignEditScreenAccessor;
-
-import net.minecraft.client.gui.components.AbstractWidget;
-
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
@@ -79,7 +77,8 @@ public class FormatButtonsHandler {
 		Screen screen,
 		int buttonX, int buttonY,
 		int buttonWidth, int buttonHeight,
-		ChatFormatting formatting) {
+		ChatFormatting formatting
+	) {
 		// Build a button that emulates the typing of two characters:
 		// The first is the formatting prefix '§',
 		// the second is the formatting code.
@@ -133,13 +132,14 @@ public class FormatButtonsHandler {
 	private static @NotNull List<Button> getFormatButtons(
 		Screen screen, ChatFormatting[] formats,
 		int xOffset, int yOffset,
-		int rows) {
-		List<Button> list = new ArrayList<>();
+		int rows
+	) {
+		final List<Button> list = new ArrayList<>();
 		final int gap = 0;
 		final int buttonSize = 20;
 		for (int i = 0; i < formats.length; i++) {
-			int buttonX = xOffset + (i / rows + 1) * (buttonSize + gap);
-			int buttonY = i % rows * (buttonSize + gap) + yOffset;
+			final int buttonX = xOffset + (i / rows + 1) * (buttonSize + gap);
+			final int buttonY = i % rows * (buttonSize + gap) + yOffset;
 			list.add(
 				getFormatButton(
 					screen,
@@ -157,11 +157,11 @@ public class FormatButtonsHandler {
 	 */
 	private static void addButtonsToScreen(AbstractSignEditScreen es) {
 		// Color buttons, 4x4.
-		final var colorButtons = getFormatButtons(
+		final List<Button> colorButtons = getFormatButtons(
 			es, colorFormattings,
 			(es.width / 2) - 170, 70, 4);
 		// Style formatting buttons, 1x5.
-		final var modifierButtons = getFormatButtons(
+		final List<Button> modifierButtons = getFormatButtons(
 			es, modifierFormattings,
 			(es.width / 2) + 50, 70, modifierFormattings.length);
 		// Add them to the screen.
@@ -203,7 +203,7 @@ public class FormatButtonsHandler {
 		// A quick check to see if it is a sign edit screen.
 		if (screen instanceof AbstractSignEditScreen es) {
 			// Check configuration and add buttons if enabled.
-			var config = ModConfigData.getInstance();
+			ModConfigData config = ModConfigData.getInstance();
 			if ((config.enableIronSignTextFormatting && isIronSign(es)) ||
 				(config.enableWoodenSignTextFormatting && isWoodenSign(es))) {
 				addButtonsToScreen(es);
@@ -217,8 +217,9 @@ public class FormatButtonsHandler {
 	public static void init() {
 		// But only if Text ChatFormatting is enabled.
 		if (ModConfigData.enableSignTextFormatting()) {
-			ScreenEvents.AFTER_INIT.register((client, screen, width, height) ->
-				onScreenOpened(screen)
+			ScreenEvents.AFTER_INIT.register(
+				(client, screen, width, height) ->
+					onScreenOpened(screen)
 			);
 		}
 	}
