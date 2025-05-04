@@ -24,7 +24,8 @@ public class ModModelProvider extends FabricModelProvider {
 	 * @param sv {@link SignVariant}.
 	 */
 	private void generateSignBlockStates(
-		BlockModelGenerators blockStateModelGenerator, SignVariant sv) {
+		BlockModelGenerators blockStateModelGenerator, SignVariant sv
+	) {
 		// Generate blockstates, block and item models for Sign and WallSign.
 		// There is no WoodBlock associated with Sign, so it behaves like a HangingSign,
 		// and it is registered the same way as a HangingSign.
@@ -40,7 +41,8 @@ public class ModModelProvider extends FabricModelProvider {
 	 */
 	@Override
 	public void generateBlockStateModels(
-		BlockModelGenerators blockStateModelGenerator) {
+		BlockModelGenerators blockStateModelGenerator
+	) {
 		// Iron sign
 		generateSignBlockStates(blockStateModelGenerator, Main.ironSign);
 		// Color signs

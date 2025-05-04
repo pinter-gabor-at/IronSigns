@@ -1,15 +1,13 @@
 package eu.pintergabor.ironsigns.mixin;
 
 import eu.pintergabor.ironsigns.config.ModConfigData;
-
-import net.minecraft.ChatFormatting;
-
-import net.minecraft.util.StringUtil;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.util.StringUtil;
 
 
 @Mixin(StringUtil.class)

@@ -1,5 +1,6 @@
 package eu.pintergabor.ironsigns.util;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import eu.pintergabor.ironsigns.config.ModConfigData;
@@ -22,13 +23,13 @@ public class RecipeManagerUtil {
 	 */
 	public static void configRecipes(Map<ResourceLocation, ?> map) {
 		if (!ModConfigData.getInstance().enableColorSigns) {
-			for (int i = 0; i < Main.colorSigns.length; i++) {
-				SignVariant sv = Main.colorSigns[i];
-				removeItemRecipe(map, sv);
-				removeHangingItemRecipe(map, sv);
-				removePaintItemRecipe(map, sv);
-				removePaintHangingItemRecipe(map, sv);
-			}
+			Arrays.stream(Main.colorSigns)
+				.forEach(sv -> {
+					removeItemRecipe(map, sv);
+					removeHangingItemRecipe(map, sv);
+					removePaintItemRecipe(map, sv);
+					removePaintHangingItemRecipe(map, sv);
+				});
 		}
 	}
 

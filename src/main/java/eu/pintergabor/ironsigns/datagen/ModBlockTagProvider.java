@@ -18,7 +18,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
 	public ModBlockTagProvider(
 		FabricDataOutput output,
-		CompletableFuture<HolderLookup.Provider> registriesFuture) {
+		CompletableFuture<HolderLookup.Provider> registriesFuture
+	) {
 		super(output, registriesFuture);
 	}
 
@@ -29,7 +30,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 		// Iron sign.
 		builderAdd(tagBuilder, Main.ironSign);
 		// Color signs.
-		Arrays.stream(Main.colorSigns).forEach(sv -> builderAdd(tagBuilder, sv));
+		Arrays.stream(Main.colorSigns)
+			.forEach(sv -> builderAdd(tagBuilder, sv));
 		// Make them mineable with axe and pickaxe.
 		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE)
 			.forceAddTag(Main.IRON_SIGN_BLOCK_TAG);
