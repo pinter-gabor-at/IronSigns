@@ -11,7 +11,8 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 
 
-public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
+public final class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
+
 	public ModItemTagProvider(
 		FabricDataOutput output,
 		CompletableFuture<HolderLookup.Provider> completableFuture
@@ -25,10 +26,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 			getOrCreateTagBuilder(Main.IRON_SIGN_ITEM_TAG);
 		FabricTagBuilder hangingTagBuilder =
 			getOrCreateTagBuilder(Main.IRON_SIGN_ITEM_TAG);
-		// Iron sign
+		// Iron sign.
 		tagBuilder.add(Main.ironSign.item);
 		hangingTagBuilder.add(Main.ironSign.hangingItem);
-		// Color signs
+		// Color signs.
 		Arrays.stream(Main.colorSigns)
 			.forEach(sv -> {
 				tagBuilder.add(sv.item);
