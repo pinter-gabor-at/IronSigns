@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.TagAppender;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 
@@ -23,7 +24,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 	}
 
 	private static void addVariant(
-		SignVariant sv, IntrinsicTagAppender<Block> modTag
+		SignVariant sv, TagAppender<Block, Block> modTag
 	) {
 		modTag.add(
 			sv.standingSign.get(), sv.wallSign.get(),
@@ -32,7 +33,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
 	@Override
 	protected void addTags(@NotNull HolderLookup.Provider lookupProvider) {
-		IntrinsicTagAppender<Block> modBlockTag = tag(Main.IRON_SIGN_BLOCK_TAG);
+		TagAppender<Block, Block> modBlockTag = tag(Main.IRON_SIGN_BLOCK_TAG);
 		// Iron sign.
 		addVariant(Main.ironSign, modBlockTag);
 		// Color signs.
