@@ -7,6 +7,9 @@ import eu.pintergabor.ironsigns.config.ModConfigData;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
 import eu.pintergabor.ironsigns.mixin.AbstractSignEditScreenAccessor;
+
+import net.minecraft.client.input.CharacterEvent;
+
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.ChatFormatting;
@@ -90,8 +93,8 @@ public class FormatButtonsHandler {
 				.builder(
 					Component.literal(label),
 					cod -> {
-						screen.charTyped(ChatFormatting.PREFIX_CODE, 0);
-						screen.charTyped(formatting.getChar(), 0);
+						screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE, 0));
+						screen.charTyped(new CharacterEvent(formatting.getChar(), 0));
 					}
 				)
 				.pos(buttonX, buttonY)
@@ -108,8 +111,8 @@ public class FormatButtonsHandler {
 			.builder(
 				Component.literal(label),
 				cod -> {
-					screen.charTyped(ChatFormatting.PREFIX_CODE, 0);
-					screen.charTyped(formatting.getChar(), 0);
+					screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE, 0));
+					screen.charTyped(new CharacterEvent(formatting.getChar(), 0));
 				}
 			)
 			.pos(buttonX, buttonY)
