@@ -53,7 +53,7 @@ public class ModRecipeGenerator extends RecipeProvider {
 			.pattern("C C")
 			.pattern("SPS")
 			.pattern("SSS")
-			.define('C', Items.CHAIN)
+			.define('C', Items.IRON_CHAIN)
 			.define('P', tag)
 			.define('S', Items.IRON_INGOT)
 			.unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
