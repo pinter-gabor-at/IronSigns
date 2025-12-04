@@ -118,9 +118,9 @@ public class SignVariant {
 		final Item.Properties itemProps = new Item.Properties().stacksTo(64);
 		item = Main.ITEMS.registerItem(name,
 			props -> new SignItem(standingSign.get(), wallSign.get(), props),
-			itemProps);
+			() -> itemProps);
 		hangingItem = Main.ITEMS.registerItem("hanging_" + name,
 			props -> new SignItem(ceilingHangingSign.get(), wallHangingSign.get(), props),
-			itemProps);
+			() -> itemProps);
 	}
 }
