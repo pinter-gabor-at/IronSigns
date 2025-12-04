@@ -100,7 +100,7 @@ public class SignVariant {
 		// Blocks.
 		final BlockBehaviour.Properties blockSettings = BlockBehaviour.Properties.of()
 			.forceSolidOn()
-			.noCollission()
+			.noCollision()
 			.strength(0.5F, 6.0F)
 			.requiresCorrectToolForDrops();
 		standingSign = Blocks.register(
