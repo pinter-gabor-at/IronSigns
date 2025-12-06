@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.Block;
 
 public class ModItemTagProvider extends KeyTagProvider<Item> {
 
+	@SuppressWarnings("unused")
 	public ModItemTagProvider(
 		PackOutput output,
 		CompletableFuture<HolderLookup.Provider> lookupProvider,
@@ -29,9 +30,9 @@ public class ModItemTagProvider extends KeyTagProvider<Item> {
 	}
 
 	private static void addVariant(
-		SignVariant ironSign,
-		TagAppender<ResourceKey<Item>, Item> modTag,
-		TagAppender<ResourceKey<Item>, Item> modHangingTag
+		@NotNull SignVariant ironSign,
+		@NotNull TagAppender<ResourceKey<Item>, Item> modTag,
+		@NotNull TagAppender<ResourceKey<Item>, Item> modHangingTag
 	) {
 		modTag.add(ironSign.item.getKey());
 		modHangingTag.add(ironSign.hangingItem.getKey());
