@@ -7,7 +7,7 @@ import eu.pintergabor.ironsigns.config.ModConfigData;
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 
 public class RecipeManagerUtil {
@@ -21,7 +21,7 @@ public class RecipeManagerUtil {
 	 *
 	 * @param map Map of all recipes.
 	 */
-	public static void configRecipes(Map<ResourceLocation, ?> map) {
+	public static void configRecipes(Map<Identifier, ?> map) {
 		if (!ModConfigData.getInstance().enableColorSigns) {
 			Arrays.stream(Main.colorSigns)
 				.forEach(sv -> {
@@ -40,9 +40,9 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removeItemRecipe(
-		Map<ResourceLocation, ?> map, SignVariant sv
+		Map<Identifier, ?> map, SignVariant sv
 	) {
-		map.remove(ResourceLocation.parse(sv.item.toString()));
+		map.remove(Identifier.parse(sv.item.toString()));
 	}
 
 	/**
@@ -52,9 +52,9 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removeHangingItemRecipe(
-		Map<ResourceLocation, ?> map, SignVariant sv
+		Map<Identifier, ?> map, SignVariant sv
 	) {
-		map.remove(ResourceLocation.parse(sv.hangingItem.toString()));
+		map.remove(Identifier.parse(sv.hangingItem.toString()));
 	}
 
 	/**
@@ -64,9 +64,9 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removePaintItemRecipe(
-		Map<ResourceLocation, ?> map, SignVariant sv
+		Map<Identifier, ?> map, SignVariant sv
 	) {
-		map.remove(ResourceLocation.parse(sv.item.toString() + "_dye"));
+		map.remove(Identifier.parse(sv.item.toString() + "_dye"));
 	}
 
 	/**
@@ -76,8 +76,8 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant
 	 */
 	private static void removePaintHangingItemRecipe(
-		Map<ResourceLocation, ?> map, SignVariant sv
+		Map<Identifier, ?> map, SignVariant sv
 	) {
-		map.remove(ResourceLocation.parse(sv.hangingItem.toString() + "_dye"));
+		map.remove(Identifier.parse(sv.hangingItem.toString() + "_dye"));
 	}
 }
