@@ -1,8 +1,11 @@
 package eu.pintergabor.ironsigns;
 
+import java.util.Arrays;
+
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
 import eu.pintergabor.ironsigns.util.FormatButtonsHandler;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -18,7 +21,7 @@ import net.fabricmc.api.Environment;
 @Environment(EnvType.CLIENT)
 public final class ModClient implements ClientModInitializer {
 
-	private static void texture(SignVariant sv) {
+	private static void texture(@NonNull SignVariant sv) {
 		final WoodType woodType = sv.woodType;
 		Sheets.SIGN_MATERIALS.put(woodType,
 			Sheets.getSignMaterial(woodType));
@@ -35,9 +38,7 @@ public final class ModClient implements ClientModInitializer {
 			HangingSignRenderer::new);
 		// Textures.
 		texture(Main.ironSign);
-		for (int i = 0; i < Main.colorSigns.length; i++) {
-			texture(Main.colorSigns[i]);
-		}
+		Arrays.stream(Main.colorSigns).forEach(ModClient::texture);
 		// Screen handler.
 		FormatButtonsHandler.init();
 	}

@@ -1,7 +1,7 @@
 package eu.pintergabor.ironsigns.entities;
 
 import eu.pintergabor.ironsigns.main.Main;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
@@ -40,8 +40,7 @@ public class HangingIronSignBlockEntity extends SignBlockEntity {
 	}
 
 	@Override
-	@NotNull
-	public SoundEvent getSignInteractionFailedSoundEvent() {
+	public @NonNull SoundEvent getSignInteractionFailedSoundEvent() {
 		return SoundEvents.WAXED_HANGING_SIGN_INTERACT_FAIL;
 	}
 }

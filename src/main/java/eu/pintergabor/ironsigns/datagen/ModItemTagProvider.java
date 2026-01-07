@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 
 import eu.pintergabor.ironsigns.main.Main;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.tags.TagAppender;
@@ -23,7 +24,7 @@ public final class ModItemTagProvider extends FabricTagProvider.ItemTagProvider 
 	}
 
 	@Override
-	protected void addTags(HolderLookup.Provider wrapperLookup) {
+	protected void addTags(HolderLookup.@NonNull Provider wrapperLookup) {
 		TagAppender<Item, Item> tagBuilder =
 			valueLookupBuilder(Main.IRON_SIGN_ITEM_TAG);
 		TagAppender<Item, Item> hangingTagBuilder =

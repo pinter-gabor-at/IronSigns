@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
@@ -24,7 +25,8 @@ public final class ModModelProvider extends FabricModelProvider {
 	 * @param sv {@link SignVariant}.
 	 */
 	private void generateSignBlockStates(
-		BlockModelGenerators blockStateModelGenerator, SignVariant sv
+		@NonNull BlockModelGenerators blockStateModelGenerator,
+		@NonNull SignVariant sv
 	) {
 		// Generate blockstates, block and item models for Sign and WallSign.
 		// There is no WoodBlock associated with Sign, so it behaves like a HangingSign,
@@ -41,7 +43,7 @@ public final class ModModelProvider extends FabricModelProvider {
 	 */
 	@Override
 	public void generateBlockStateModels(
-		BlockModelGenerators blockStateModelGenerator
+		@NonNull BlockModelGenerators blockStateModelGenerator
 	) {
 		// Iron sign.
 		generateSignBlockStates(blockStateModelGenerator, Main.ironSign);
@@ -52,6 +54,8 @@ public final class ModModelProvider extends FabricModelProvider {
 	}
 
 	@Override
-	public void generateItemModels(ItemModelGenerators itemModelGenerator) {
+	public void generateItemModels(
+		@NonNull ItemModelGenerators itemModelGenerator
+	) {
 	}
 }

@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.HolderLookup;
 
@@ -26,7 +27,7 @@ public final class ModBlockLootTableGenerator extends FabricBlockLootTableProvid
 	 *
 	 * @param sv {@link SignVariant}.
 	 */
-	private void generateSignBlockLoot(SignVariant sv) {
+	private void generateSignBlockLoot(@NonNull SignVariant sv) {
 		dropOther(sv.standingSign, sv.item);
 		dropOther(sv.wallSign, sv.item);
 		dropOther(sv.ceilingHangingSign, sv.hangingItem);
