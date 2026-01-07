@@ -5,7 +5,7 @@ import java.util.Set;
 
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -25,7 +25,7 @@ public class ModBlockLootTableGenerator extends BlockLootSubProvider {
 	 *
 	 * @param sv {@link SignVariant}.
 	 */
-	private void generateSignBlockLoot(SignVariant sv) {
+	private void generateSignBlockLoot(@NonNull SignVariant sv) {
 		dropOther(sv.standingSign.get(), sv.item.get());
 		dropOther(sv.wallSign.get(), sv.item.get());
 		dropOther(sv.ceilingHangingSign.get(), sv.hangingItem.get());
@@ -33,7 +33,7 @@ public class ModBlockLootTableGenerator extends BlockLootSubProvider {
 	}
 
 	@Override
-	@NotNull
+	@NonNull
 	protected Iterable<Block> getKnownBlocks() {
 		return Main.BLOCKS.getEntries()
 			.stream()

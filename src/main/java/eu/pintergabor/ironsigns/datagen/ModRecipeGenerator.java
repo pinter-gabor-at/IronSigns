@@ -27,7 +27,8 @@ public class ModRecipeGenerator extends RecipeProvider {
 	 * @param tag      ItemTag.PLANKS for IronSign, DyeTag for color signs.
 	 */
 	private void generateIronSignItemRecipe(
-		Item signitem, TagKey<Item> tag) {
+		Item signitem, TagKey<Item> tag
+	) {
 		shaped(RecipeCategory.MISC, signitem, 20)
 			.pattern("SSS")
 			.pattern("SPS")

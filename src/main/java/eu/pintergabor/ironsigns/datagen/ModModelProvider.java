@@ -1,17 +1,17 @@
 package eu.pintergabor.ironsigns.datagen;
 
+import java.util.Arrays;
+
 import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Blocks;
-
-import java.util.Arrays;
 
 
 public class ModModelProvider extends ModelProvider {
@@ -26,7 +26,8 @@ public class ModModelProvider extends ModelProvider {
 	 * @param sv {@link SignVariant}.
 	 */
 	private void generateSignBlockStates(
-		BlockModelGenerators blockStateModelGenerator, SignVariant sv
+		@NonNull BlockModelGenerators blockStateModelGenerator,
+		@NonNull SignVariant sv
 	) {
 		// Generate blockstates, block and item models for StandingSign and WallSign.
 		// There is no WoodBlock associated with Sign, so it behaves like a HangingSign,
@@ -43,8 +44,8 @@ public class ModModelProvider extends ModelProvider {
 	 */
 	@Override
 	protected void registerModels(
-		@NotNull BlockModelGenerators blockModels,
-		@NotNull ItemModelGenerators itemModels
+		@NonNull BlockModelGenerators blockModels,
+		@NonNull ItemModelGenerators itemModels
 	) {
 		// Iron sign.
 		generateSignBlockStates(blockModels, Main.ironSign);

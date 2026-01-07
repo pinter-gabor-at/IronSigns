@@ -9,18 +9,19 @@ import eu.pintergabor.ironsigns.datagen.ModItemTagProvider;
 import eu.pintergabor.ironsigns.datagen.ModModelProvider;
 import eu.pintergabor.ironsigns.datagen.ModRecipeRunner;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
 
-public final class DataGen {
+public final class ModDataGenerator {
 
-	public DataGen() {
+	private ModDataGenerator() {
 		// Static class.
 	}
 
-	public static void init(GatherDataEvent.Client event) {
+	public static void init(GatherDataEvent.@NonNull Client event) {
 		// Create recipes.
 		event.createProvider(ModRecipeRunner::new);
 		// Create models.

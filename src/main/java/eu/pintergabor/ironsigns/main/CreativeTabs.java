@@ -5,6 +5,7 @@ import static net.minecraft.world.item.CreativeModeTab.TabVisibility;
 import java.util.Arrays;
 
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +19,7 @@ public final class CreativeTabs {
 	 * Add one item to creative tabs.
 	 */
 	private static void add(
-		BuildCreativeModeTabContentsEvent event, ItemLike item
+		@NonNull BuildCreativeModeTabContentsEvent event, ItemLike item
 	) {
 		event.insertBefore(
 			new ItemStack(Items.CHEST), new ItemStack(item),
@@ -29,7 +30,7 @@ public final class CreativeTabs {
 	 * Add one sign variant to creative tabs.
 	 */
 	private static void add(
-		BuildCreativeModeTabContentsEvent event, SignVariant ironSign
+		BuildCreativeModeTabContentsEvent event, @NonNull SignVariant ironSign
 	) {
 		add(event, ironSign.item);
 		add(event, ironSign.hangingItem);
@@ -38,7 +39,7 @@ public final class CreativeTabs {
 	/**
 	 * Add items to creative tabs.
 	 */
-	public static void init(BuildCreativeModeTabContentsEvent event) {
+	public static void init(@NonNull BuildCreativeModeTabContentsEvent event) {
 		if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
 			// Iron sign.
 			add(event, Main.ironSign);

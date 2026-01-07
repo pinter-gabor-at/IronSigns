@@ -24,6 +24,6 @@ public final class ModClient {
 		// Creative tabs.
 		modEventBus.addListener(CreativeTabs::init);
 		// Data generator.
-		modEventBus.addListener(DataGen::init);
+		modEventBus.addListener(ModDataGenerator::init);
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import eu.pintergabor.ironsigns.config.ModConfigData;
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.resources.Identifier;
 
@@ -40,7 +41,7 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removeItemRecipe(
-		Map<Identifier, ?> map, SignVariant sv
+		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
 	) {
 		map.remove(Identifier.parse(sv.item.toString()));
 	}
@@ -52,7 +53,7 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removeHangingItemRecipe(
-		Map<Identifier, ?> map, SignVariant sv
+		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
 	) {
 		map.remove(Identifier.parse(sv.hangingItem.toString()));
 	}
@@ -64,7 +65,7 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removePaintItemRecipe(
-		Map<Identifier, ?> map, SignVariant sv
+		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
 	) {
 		map.remove(Identifier.parse(sv.item.toString() + "_dye"));
 	}
@@ -76,7 +77,7 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant
 	 */
 	private static void removePaintHangingItemRecipe(
-		Map<Identifier, ?> map, SignVariant sv
+		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
 	) {
 		map.remove(Identifier.parse(sv.hangingItem.toString() + "_dye"));
 	}

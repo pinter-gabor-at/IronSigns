@@ -3,7 +3,7 @@ package eu.pintergabor.ironsigns.blocks;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.SignBlock;
@@ -30,15 +30,13 @@ public class IronWallHangingSignBlock extends WallHangingSignBlock {
 	}
 
 	@Override
-	@NotNull
-	public MapCodec<WallHangingSignBlock> codec() {
+	public @NonNull MapCodec<WallHangingSignBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
-	@NotNull
-	public BlockEntity newBlockEntity(
-		@NotNull BlockPos pos, @NotNull BlockState state
+	public @NonNull BlockEntity newBlockEntity(
+		@NonNull BlockPos pos, @NonNull BlockState state
 	) {
 		return new HangingIronSignBlockEntity(pos, state);
 	}

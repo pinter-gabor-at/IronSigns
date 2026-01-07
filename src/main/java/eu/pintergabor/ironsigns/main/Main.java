@@ -12,7 +12,7 @@ import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -146,8 +146,8 @@ public final class Main {
 	/**
 	 * @return an array of all standing and wall sign blocks.
 	 */
-	@NotNull
-	private static Block[] getIronSignBlocks() {
+	@NonNull
+	private static Block @NonNull [] getIronSignBlocks() {
 		// Create an array of blocks associated with the entity.
 		Block[] signBlocks = new Block[2 * signColors.length + 2];
 		signBlocks[0] = ironSign.standingSign.get();
@@ -174,8 +174,8 @@ public final class Main {
 	/**
 	 * @return an array of all ceiling and wall hanging sign blocks.
 	 */
-	@NotNull
-	private static Block[] getHangingSignBlocks() {
+	@NonNull
+	private static Block @NonNull [] getHangingSignBlocks() {
 		// Create an array of blocks associated with the entity.
 		var hangingSignBlocks = new Block[2 * signColors.length + 2];
 		hangingSignBlocks[0] = ironSign.ceilingHangingSign.get();

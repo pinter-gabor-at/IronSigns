@@ -3,7 +3,7 @@ package eu.pintergabor.ironsigns.datagen;
 import java.util.concurrent.CompletableFuture;
 
 import eu.pintergabor.ironsigns.Global;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -21,17 +21,15 @@ public class ModRecipeRunner extends RecipeProvider.Runner {
 	}
 
 	@Override
-	@NotNull
-	protected RecipeProvider createRecipeProvider(
-		@NotNull HolderLookup.Provider registryLookup,
-		@NotNull RecipeOutput output
+	protected @NonNull RecipeProvider createRecipeProvider(
+		HolderLookup.@NonNull Provider registryLookup,
+		@NonNull RecipeOutput output
 	) {
 		return new ModRecipeGenerator(registryLookup, output);
 	}
 
 	@Override
-	@NotNull
-	public String getName() {
+	public @NonNull String getName() {
 		return Global.MODID + " recipes";
 	}
 }

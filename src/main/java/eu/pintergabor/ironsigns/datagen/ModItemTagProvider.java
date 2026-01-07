@@ -6,7 +6,7 @@ import java.util.concurrent.CompletableFuture;
 import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -30,16 +30,16 @@ public class ModItemTagProvider extends KeyTagProvider<Item> {
 	}
 
 	private static void addVariant(
-		@NotNull SignVariant ironSign,
-		@NotNull TagAppender<ResourceKey<Item>, Item> modTag,
-		@NotNull TagAppender<ResourceKey<Item>, Item> modHangingTag
+		@NonNull SignVariant ironSign,
+		@NonNull TagAppender<ResourceKey<Item>, Item> modTag,
+		@NonNull TagAppender<ResourceKey<Item>, Item> modHangingTag
 	) {
 		modTag.add(ironSign.item.getKey());
 		modHangingTag.add(ironSign.hangingItem.getKey());
 	}
 
 	@Override
-	protected void addTags(@NotNull HolderLookup.Provider lookupProvider) {
+	protected void addTags(HolderLookup.@NonNull Provider lookupProvider) {
 		TagAppender<ResourceKey<Item>, Item> modTag = tag(Main.IRON_SIGN_ITEM_TAG);
 		TagAppender<ResourceKey<Item>, Item> modHangingTag = tag(Main.IRON_SIGN_ITEM_TAG);
 		// Iron sign.

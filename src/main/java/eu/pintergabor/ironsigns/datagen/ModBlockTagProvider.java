@@ -7,7 +7,7 @@ import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -32,7 +32,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 	}
 
 	@Override
-	protected void addTags(@NotNull HolderLookup.Provider lookupProvider) {
+	protected void addTags(HolderLookup.@NonNull Provider lookupProvider) {
 		TagAppender<Block, Block> modBlockTag = tag(Main.IRON_SIGN_BLOCK_TAG);
 		// Iron sign.
 		addVariant(Main.ironSign, modBlockTag);

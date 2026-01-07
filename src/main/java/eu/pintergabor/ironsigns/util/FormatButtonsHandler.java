@@ -7,7 +7,7 @@ import eu.pintergabor.ironsigns.config.ModConfigData;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
 import eu.pintergabor.ironsigns.mixin.AbstractSignEditScreenAccessor;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.Button;
@@ -67,11 +67,11 @@ public class FormatButtonsHandler {
 	 * @return The button.
 	 */
 	@SuppressWarnings("SameParameterValue")
-	private static Button getFormatButton(
-		Screen screen,
+	private static @NonNull Button getFormatButton(
+		@NonNull Screen screen,
 		int buttonX, int buttonY,
 		int buttonWidth, int buttonHeight,
-		ChatFormatting formatting
+		@NonNull ChatFormatting formatting
 	) {
 		// Build a button that emulates the typing of two characters:
 		// The first is the formatting prefix '§',
@@ -123,8 +123,8 @@ public class FormatButtonsHandler {
 	 * @return The list.
 	 */
 	@SuppressWarnings("SameParameterValue")
-	private static @NotNull List<Button> getFormatButtons(
-		Screen screen, ChatFormatting[] formats,
+	private static @NonNull List<Button> getFormatButtons(
+		@NonNull Screen screen, ChatFormatting @NonNull [] formats,
 		int xOffset, int yOffset,
 		int rows
 	) {
@@ -149,7 +149,10 @@ public class FormatButtonsHandler {
 	 *
 	 * @param es edit screen.
 	 */
-	public static void addButtonsToScreen(AbstractSignEditScreen es, List<Button> buttons) {
+	public static void addButtonsToScreen(
+		AbstractSignEditScreen es,
+		@NonNull List<Button> buttons
+	) {
 		final AbstractSignEditScreenAccessor aes = (AbstractSignEditScreenAccessor) es;
 		buttons.forEach(aes::invokeAddRenderableWidget);
 	}
