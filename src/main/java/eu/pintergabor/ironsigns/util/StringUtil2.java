@@ -1,5 +1,7 @@
 package eu.pintergabor.ironsigns.util;
 
+import org.jspecify.annotations.NonNull;
+
 import net.minecraft.ChatFormatting;
 
 
@@ -29,7 +31,7 @@ public class StringUtil2 {
 	 * @param delta >=0.
 	 * @return the new cursor position.
 	 */
-	public static int moveCursorForward(String string, int cursor, int delta) {
+	public static int moveCursorForward(@NonNull String string, int cursor, int delta) {
 		final int len = string.length();
 		int i = 0;
 		while (cursor < len && i < delta) {
@@ -59,7 +61,7 @@ public class StringUtil2 {
 	 * @param delta >=0.
 	 * @return the new cursor position.
 	 */
-	public static int moveCursorBackward(String string, int cursor, int delta) {
+	public static int moveCursorBackward(@NonNull String string, int cursor, int delta) {
 		int i = 0;
 		while (0 < cursor && i < delta) {
 			final char cc = charAt(string, cursor - 1);
@@ -88,7 +90,7 @@ public class StringUtil2 {
 	 * @param delta if 0<=delta then move forward else move backward.
 	 * @return the new cursor position.
 	 */
-	public static int moveCursor(String string, int cursor, int delta) {
+	public static int moveCursor(@NonNull String string, int cursor, int delta) {
 		// Global.LOGGER.info("\"{}\", cursor={}, delta={}", string, cursor, delta);
 		if (0 < delta) {
 			// Move forward.

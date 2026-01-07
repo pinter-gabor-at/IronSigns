@@ -8,7 +8,8 @@ import eu.pintergabor.ironsigns.blocks.IronWallHangingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallSignBlock;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Contract;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -123,8 +124,8 @@ public final class Main {
 	/**
 	 * @return an array of all standing and wall sign blocks.
 	 */
-	@NotNull
-	private static Block[] getIronSignBlocks() {
+	@Contract(pure = true)
+	private static Block @NonNull [] getIronSignBlocks() {
 		// Create an array of blocks associated with the entity.
 		Block[] signBlocks = new Block[2 * signColors.length + 2];
 		signBlocks[0] = ironSign.standingSign;
@@ -155,8 +156,9 @@ public final class Main {
 	/**
 	 * @return an array of all ceiling and wall hanging sign blocks.
 	 */
-	@NotNull
-	private static Block[] getHangingSignBlocks() {
+	@Contract(pure = true)
+	@NonNull
+	private static Block @NonNull [] getHangingSignBlocks() {
 		// Create an array of blocks associated with the entity.
 		var hangingSignBlocks = new Block[2 * signColors.length + 2];
 		hangingSignBlocks[0] = ironSign.ceilingHangingSign;
