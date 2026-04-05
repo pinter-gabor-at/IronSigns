@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 
 
@@ -93,8 +93,8 @@ public class SignVariant {
 		// Add woodType to the known WoodTypes, and then they will be used just like the vanilla
 		// WoodTypes to do everything with the new signs the same ways as with the vanilla signs.
 		woodType = new WoodTypeBuilder()
-			.soundGroup(SoundType.IRON)
-			.hangingSignSoundGroup(SoundType.IRON)
+			.soundType(SoundType.IRON)
+			.hangingSignSoundType(SoundType.IRON)
 			.register(
 				Global.modId(name), BlockSetType.IRON);
 		// Blocks.
@@ -130,10 +130,10 @@ public class SignVariant {
 			props -> new SignItem(ceilingHangingSign, wallHangingSign, props),
 			itemSettings);
 		// Item groups.
-		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(
 			entries -> {
-				entries.addBefore(Items.CHEST, item);
-				entries.addBefore(Items.CHEST, hangingItem);
+				entries.insertBefore(Items.CHEST, item);
+				entries.insertBefore(Items.CHEST, hangingItem);
 			});
 	}
 }

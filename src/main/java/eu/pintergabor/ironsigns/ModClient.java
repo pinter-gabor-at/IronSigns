@@ -10,7 +10,7 @@ import org.jspecify.annotations.NonNull;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.blockentity.StandingSignRenderer;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 import net.fabricmc.api.ClientModInitializer;
@@ -23,17 +23,17 @@ public final class ModClient implements ClientModInitializer {
 
 	private static void texture(@NonNull SignVariant sv) {
 		final WoodType woodType = sv.woodType;
-		Sheets.SIGN_MATERIALS.put(woodType,
-			Sheets.getSignMaterial(woodType));
-		Sheets.HANGING_SIGN_MATERIALS.put(woodType,
-			Sheets.getHangingSignMaterial(woodType));
+		Sheets.SIGN_SPRITES.put(woodType,
+			Sheets.getSignSprite(woodType));
+		Sheets.HANGING_SIGN_SPRITES.put(woodType,
+			Sheets.getHangingSignSprite(woodType));
 	}
 
 	@Override
 	public void onInitializeClient() {
 		// Entity renderers.
 		BlockEntityRenderers.register(Main.ironSignEntity,
-			SignRenderer::new);
+			StandingSignRenderer::new);
 		BlockEntityRenderers.register(Main.hangingIronSignEntity,
 			HangingSignRenderer::new);
 		// Textures.
