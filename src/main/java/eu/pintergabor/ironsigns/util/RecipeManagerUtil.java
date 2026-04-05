@@ -18,6 +18,54 @@ public class RecipeManagerUtil {
 	}
 
 	/**
+	 * Remove Item recipe from map.
+	 *
+	 * @param map Map of all recipes.
+	 * @param sv  IronSign variant.
+	 */
+	private static void removeItemRecipe(
+		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
+	) {
+		map.remove(Identifier.parse(sv.item.asItem().toString()));
+	}
+
+	/**
+	 * Remove HangingItem recipe from map.
+	 *
+	 * @param map Map of all recipes.
+	 * @param sv  IronSign variant.
+	 */
+	private static void removeHangingItemRecipe(
+		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
+	) {
+		map.remove(Identifier.parse(sv.hangingItem.asItem().toString()));
+	}
+
+	/**
+	 * Remove paint Item recipe from map.
+	 *
+	 * @param map Map of all recipes.
+	 * @param sv  IronSign variant.
+	 */
+	private static void removePaintItemRecipe(
+		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
+	) {
+		map.remove(Identifier.parse(sv.item.asItem() + "_dye"));
+	}
+
+	/**
+	 * Remove paint HangingItem recipe from map
+	 *
+	 * @param map Map of all recipes
+	 * @param sv  IronSign variant
+	 */
+	private static void removePaintHangingItemRecipe(
+		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
+	) {
+		map.remove(Identifier.parse(sv.hangingItem.asItem() + "_dye"));
+	}
+
+	/**
 	 * Remove Color Sign Recipes, if they are disabled in config.
 	 *
 	 * @param map Map of all recipes.
@@ -32,53 +80,5 @@ public class RecipeManagerUtil {
 					removePaintHangingItemRecipe(map, sv);
 				});
 		}
-	}
-
-	/**
-	 * Remove Item recipe from map.
-	 *
-	 * @param map Map of all recipes.
-	 * @param sv  IronSign variant.
-	 */
-	private static void removeItemRecipe(
-		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
-	) {
-		map.remove(Identifier.parse(sv.item.toString()));
-	}
-
-	/**
-	 * Remove HangingItem recipe from map.
-	 *
-	 * @param map Map of all recipes.
-	 * @param sv  IronSign variant.
-	 */
-	private static void removeHangingItemRecipe(
-		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
-	) {
-		map.remove(Identifier.parse(sv.hangingItem.toString()));
-	}
-
-	/**
-	 * Remove paint Item recipe from map.
-	 *
-	 * @param map Map of all recipes.
-	 * @param sv  IronSign variant.
-	 */
-	private static void removePaintItemRecipe(
-		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
-	) {
-		map.remove(Identifier.parse(sv.item.toString() + "_dye"));
-	}
-
-	/**
-	 * Remove paint HangingItem recipe from map
-	 *
-	 * @param map Map of all recipes
-	 * @param sv  IronSign variant
-	 */
-	private static void removePaintHangingItemRecipe(
-		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
-	) {
-		map.remove(Identifier.parse(sv.hangingItem.toString() + "_dye"));
 	}
 }

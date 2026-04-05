@@ -2,6 +2,7 @@ package eu.pintergabor.ironsigns.datagen;
 
 import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.main.Main;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -16,7 +17,8 @@ import net.minecraft.world.item.Items;
 public class ModRecipeGenerator extends RecipeProvider {
 
 	public ModRecipeGenerator(
-		HolderLookup.Provider registryLookup, RecipeOutput output) {
+		HolderLookup.Provider registryLookup, RecipeOutput output
+	) {
 		super(registryLookup, output);
 	}
 
@@ -27,7 +29,7 @@ public class ModRecipeGenerator extends RecipeProvider {
 	 * @param tag      ItemTag.PLANKS for IronSign, DyeTag for color signs.
 	 */
 	private void generateIronSignItemRecipe(
-		Item signitem, TagKey<Item> tag
+		@NonNull Item signitem, @NonNull TagKey<Item> tag
 	) {
 		shaped(RecipeCategory.MISC, signitem, 20)
 			.pattern("SSS")
@@ -48,7 +50,7 @@ public class ModRecipeGenerator extends RecipeProvider {
 	 *                 signs.
 	 */
 	private void generateHangingIronSignItemRecipe(
-		Item signitem, TagKey<Item> tag
+		@NonNull Item signitem, @NonNull TagKey<Item> tag
 	) {
 		shaped(RecipeCategory.MISC, signitem, 20)
 			.pattern("C C")
@@ -68,7 +70,7 @@ public class ModRecipeGenerator extends RecipeProvider {
 	 * @param dye      DyeTag for color signs.
 	 */
 	private void paintIronSignItemRecipe(
-		Item signitem, TagKey<Item> dye
+		@NonNull Item signitem, @NonNull TagKey<Item> dye
 	) {
 		shapeless(RecipeCategory.MISC, signitem)
 			.requires(Main.IRON_SIGN_ITEM_TAG)
