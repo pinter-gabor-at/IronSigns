@@ -12,14 +12,14 @@ import net.minecraft.data.tags.TagAppender;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 
 
-public final class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
+public final class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
 
 	public ModBlockTagProvider(
-		FabricDataOutput output,
+		FabricPackOutput output,
 		CompletableFuture<HolderLookup.Provider> registriesFuture
 	) {
 		super(output, registriesFuture);

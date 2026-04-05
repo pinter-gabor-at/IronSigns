@@ -73,7 +73,7 @@ public class FormatButtonsHandler {
 	 * @param formatting   A formatting enum.
 	 * @return The button.
 	 */
-	@SuppressWarnings("SameParameterValue")
+	@SuppressWarnings({"SameParameterValue", "unused"})
 	private static @NonNull Button getFormatButton(
 		@NonNull Screen screen,
 		int buttonX, int buttonY,
@@ -91,8 +91,8 @@ public class FormatButtonsHandler {
 				.builder(
 					Component.literal(label),
 					cod -> {
-						screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE, 0));
-						screen.charTyped(new CharacterEvent(formatting.getChar(), 0));
+						screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE));
+						screen.charTyped(new CharacterEvent(formatting.getChar()));
 					}
 				)
 				.pos(buttonX, buttonY)
@@ -109,8 +109,8 @@ public class FormatButtonsHandler {
 			.builder(
 				Component.literal(label),
 				cod -> {
-					screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE, 0));
-					screen.charTyped(new CharacterEvent(formatting.getChar(), 0));
+					screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE));
+					screen.charTyped(new CharacterEvent(formatting.getChar()));
 				}
 			)
 			.pos(buttonX, buttonY)
@@ -166,13 +166,13 @@ public class FormatButtonsHandler {
 			es, modifierFormattings,
 			(es.width / 2) + 50, 70, modifierFormattings.length);
 		// Add them to the screen.
-		List<AbstractWidget> screenButtons = Screens.getButtons(es);
+		List<AbstractWidget> screenButtons = Screens.getWidgets(es);
 		screenButtons.addAll(colorButtons);
 		screenButtons.addAll(modifierButtons);
 	}
 
 	/**
-	 * @param screen edit screen.
+	 * @param es edit screen.
 	 * @return true if the edit screen is associated with a Wooden Sign or with a Hanging Wooden Sign.
 	 */
 	private static boolean isWoodenSign(AbstractSignEditScreen es) {
@@ -215,8 +215,9 @@ public class FormatButtonsHandler {
 	/**
 	 * Register {@link #onScreenOpened(Screen)} callback after opening the screen.
 	 */
+	@SuppressWarnings("unused")
 	public static void init() {
-		// But only if Text ChatFormatting is enabled.
+		// But only if text formatting is enabled.
 		if (ModConfigData.enableSignTextFormatting()) {
 			ScreenEvents.AFTER_INIT.register(
 				(client, screen, width, height) ->

@@ -9,14 +9,14 @@ import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.HolderLookup;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
 
 
-public final class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
+public final class ModBlockLootTableGenerator extends FabricBlockLootSubProvider {
 
 	public ModBlockLootTableGenerator(
-		FabricDataOutput dataOutput,
+		FabricPackOutput dataOutput,
 		CompletableFuture<HolderLookup.Provider> registryLookup) {
 		super(dataOutput, registryLookup);
 	}
