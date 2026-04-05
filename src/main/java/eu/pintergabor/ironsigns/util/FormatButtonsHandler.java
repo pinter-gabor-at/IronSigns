@@ -66,7 +66,7 @@ public class FormatButtonsHandler {
 	 * @param formatting   A formatting enum.
 	 * @return The button.
 	 */
-	@SuppressWarnings("SameParameterValue")
+	@SuppressWarnings({"SameParameterValue", "unused"})
 	private static @NonNull Button getFormatButton(
 		@NonNull Screen screen,
 		int buttonX, int buttonY,
@@ -84,8 +84,8 @@ public class FormatButtonsHandler {
 				.builder(
 					Component.literal(label),
 					cod -> {
-						screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE, 0));
-						screen.charTyped(new CharacterEvent(formatting.getChar(), 0));
+						screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE));
+						screen.charTyped(new CharacterEvent(formatting.getChar()));
 					}
 				)
 				.pos(buttonX, buttonY)
@@ -102,8 +102,8 @@ public class FormatButtonsHandler {
 			.builder(
 				Component.literal(label),
 				cod -> {
-					screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE, 0));
-					screen.charTyped(new CharacterEvent(formatting.getChar(), 0));
+					screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE));
+					screen.charTyped(new CharacterEvent(formatting.getChar()));
 				}
 			)
 			.pos(buttonX, buttonY)
