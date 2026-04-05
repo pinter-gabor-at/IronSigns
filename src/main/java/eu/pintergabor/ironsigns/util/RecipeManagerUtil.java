@@ -18,23 +18,6 @@ public class RecipeManagerUtil {
 	}
 
 	/**
-	 * Remove Color Sign Recipes, if they are disabled in config.
-	 *
-	 * @param map Map of all recipes.
-	 */
-	public static void configRecipes(Map<Identifier, ?> map) {
-		if (!ModConfigData.getInstance().enableColorSigns) {
-			Arrays.stream(Main.colorSigns)
-				.forEach(sv -> {
-					removeItemRecipe(map, sv);
-					removeHangingItemRecipe(map, sv);
-					removePaintItemRecipe(map, sv);
-					removePaintHangingItemRecipe(map, sv);
-				});
-		}
-	}
-
-	/**
 	 * Remove Item recipe from map.
 	 *
 	 * @param map Map of all recipes.
@@ -80,5 +63,22 @@ public class RecipeManagerUtil {
 		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
 	) {
 		map.remove(Identifier.parse(sv.hangingItem.toString() + "_dye"));
+	}
+
+	/**
+	 * Remove Color Sign Recipes, if they are disabled in config.
+	 *
+	 * @param map Map of all recipes.
+	 */
+	public static void configRecipes(Map<Identifier, ?> map) {
+		if (!ModConfigData.getInstance().enableColorSigns) {
+			Arrays.stream(Main.colorSigns)
+				.forEach(sv -> {
+					removeItemRecipe(map, sv);
+					removeHangingItemRecipe(map, sv);
+					removePaintItemRecipe(map, sv);
+					removePaintHangingItemRecipe(map, sv);
+				});
+		}
 	}
 }
