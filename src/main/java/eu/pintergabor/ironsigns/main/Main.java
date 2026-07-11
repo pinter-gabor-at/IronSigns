@@ -160,7 +160,7 @@ public final class Main {
 	@NonNull
 	private static Block @NonNull [] getHangingSignBlocks() {
 		// Create an array of blocks associated with the entity.
-		var hangingSignBlocks = new Block[2 * signColors.length + 2];
+		final Block[] hangingSignBlocks = new Block[2 * signColors.length + 2];
 		hangingSignBlocks[0] = ironSign.ceilingHangingSign;
 		hangingSignBlocks[1] = ironSign.wallHangingSign;
 		for (int i = 0; i < signColors.length; i++) {

@@ -16,16 +16,16 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 public final class ModRecipeRunner extends FabricRecipeProvider {
 
 	public ModRecipeRunner(
-		FabricPackOutput output,
-		CompletableFuture<HolderLookup.Provider> completableFuture
+		final FabricPackOutput output,
+		final CompletableFuture<HolderLookup.Provider> completableFuture
 	) {
 		super(output, completableFuture);
 	}
 
 	@Override
 	protected @NonNull RecipeProvider createRecipeProvider(
-		HolderLookup.@NonNull Provider registryLookup,
-		@NonNull RecipeOutput output
+		final HolderLookup.@NonNull Provider registryLookup,
+		final @NonNull RecipeOutput output
 	) {
 		return new ModRecipeGenerator(registryLookup, output);
 	}

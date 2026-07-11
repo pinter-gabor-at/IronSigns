@@ -27,6 +27,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
  * One IronSign variant.
  */
 public class SignVariant {
+
 	/**
 	 * Needed for loading textures.
 	 * <p>
@@ -42,11 +43,25 @@ public class SignVariant {
 	public Block standingSign;
 
 	/**
+	 * {@link #standingSign} id.
+	 * <p>
+	 * Read only outside class.
+	 */
+	public ResourceKey<Block> standingSignId;
+
+	/**
 	 * Sign block attached to a wall.
 	 * <p>
 	 * Read only outside class.
 	 */
 	public Block wallSign;
+
+	/**
+	 * {@link #wallSign} id.
+	 * <p>
+	 * Read only outside class.
+	 */
+	public ResourceKey<Block> wallSignId;
 
 	/**
 	 * Hanging sign block.
@@ -56,11 +71,25 @@ public class SignVariant {
 	public Block ceilingHangingSign;
 
 	/**
+	 * {@link #ceilingHangingSign} id.
+	 * <p>
+	 * Read only outside class.
+	 */
+	public ResourceKey<Block> ceilingHangingSignId;
+
+	/**
 	 * Hanging sign block attaced to a wall.
 	 * <p>
 	 * Read only outside class.
 	 */
 	public Block wallHangingSign;
+
+	/**
+	 * {@link #wallHangingSign} id.
+	 * <p>
+	 * Read only outside class.
+	 */
+	public ResourceKey<Block> wallHangingSignId;
 
 	/**
 	 * Sign item.
@@ -70,11 +99,25 @@ public class SignVariant {
 	public Item item;
 
 	/**
+	 * {@link #item} id.
+	 * <p>
+	 * Read only outside class.
+	 */
+	public ResourceKey<Item> itemId;
+
+	/**
 	 * Hanging sign item.
 	 * <p>
 	 * Read only outside class.
 	 */
 	public Item hangingItem;
+
+	/**
+	 * {@link #hangingItem} id.
+	 * <p>
+	 * Read only outside class.
+	 */
+	public ResourceKey<Item> hangingItemId;
 
 	/**
 	 * Create one variant of IronSign.
@@ -83,13 +126,7 @@ public class SignVariant {
 	 */
 	public SignVariant(String name) {
 		// WoodType is not really any type of wood, but a definition
-		// of the location of the texture files, and the definition of sounds.
-		// Sign entity: resources/assets/<MODID>/textures/entity/signs/<name>.png
-		// WallSign entity is the hard-coded part of the Sign entity.
-		// Sign and WallSign GUIs are the same, and they are hard-coded part of the Sign entity.
-		// HangingSign entity is the hard-coded part of the HangingWallSign entity.
-		// HangingWallSign entity: resources/assets/<MODID>/textures/entity/signs/hanging/<name>.png
-		// HangingSign GUI: resources/assets/<MODID>/textures/gui/hanging_signs/<name>.png
+		// of the location of the GUI texture files, and the definition of sounds.
 		// Add woodType to the known WoodTypes, and then they will be used just like the vanilla
 		// WoodTypes to do everything with the new signs the same ways as with the vanilla signs.
 		woodType = new WoodTypeBuilder()
@@ -103,30 +140,36 @@ public class SignVariant {
 			.noCollision()
 			.strength(0.5F, 6.0F)
 			.requiresCorrectToolForDrops();
+		standingSignId = ResourceKey.create(Registries.BLOCK, Global.modId(name));
 		standingSign = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.modId(name)),
+			standingSignId,
 			props -> new IronStandingSignBlock(woodType, props),
 			blockSettings);
+		wallSignId = ResourceKey.create(Registries.BLOCK, Global.modId("wall_" + name));
 		wallSign = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.modId("wall_" + name)),
+			wallSignId,
 			props -> new IronWallSignBlock(woodType, props),
 			blockSettings);
+		ceilingHangingSignId = ResourceKey.create(Registries.BLOCK, Global.modId("hanging_" + name));
 		ceilingHangingSign = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.modId("ceiling_hanging_" + name)),
+			ceilingHangingSignId,
 			props -> new IronCeilingHangingSignBlock(woodType, props),
 			blockSettings);
+		wallHangingSignId = ResourceKey.create(Registries.BLOCK, Global.modId("wall_hanging_" + name));
 		wallHangingSign = Blocks.register(
-			ResourceKey.create(Registries.BLOCK, Global.modId("wall_hanging_" + name)),
+			wallHangingSignId,
 			props -> new IronWallHangingSignBlock(woodType, props),
 			blockSettings);
 		// Items.
 		final Item.Properties itemSettings = new Item.Properties().stacksTo(64);
+		itemId = ResourceKey.create(Registries.ITEM, Global.modId(name));
 		item = Items.registerItem(
-			ResourceKey.create(Registries.ITEM, Global.modId(name)),
+			itemId,
 			props -> new SignItem(standingSign, wallSign, props),
 			itemSettings);
+		hangingItemId = ResourceKey.create(Registries.ITEM, Global.modId("hanging_" + name));
 		hangingItem = Items.registerItem(
-			ResourceKey.create(Registries.ITEM, Global.modId("hanging_" + name)),
+			hangingItemId,
 			props -> new SignItem(ceilingHangingSign, wallHangingSign, props),
 			itemSettings);
 		// Item groups.

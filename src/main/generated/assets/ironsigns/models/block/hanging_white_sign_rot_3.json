@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_hanging_sign_rot_3",
+  "textures": {
+    "all": "ironsigns:block/hanging_white_sign",
+    "particle": "minecraft:block/iron_block"
+  }
+}
