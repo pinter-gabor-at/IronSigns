@@ -1,17 +1,11 @@
 package eu.pintergabor.ironsigns;
 
-import java.util.Arrays;
-
 import eu.pintergabor.ironsigns.main.Main;
-import eu.pintergabor.ironsigns.main.SignVariant;
 import eu.pintergabor.ironsigns.util.FormatButtonsHandler;
-import org.jspecify.annotations.NonNull;
 
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.StandingSignRenderer;
-import net.minecraft.world.level.block.state.properties.WoodType;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -21,14 +15,6 @@ import net.fabricmc.api.Environment;
 @Environment(EnvType.CLIENT)
 public final class ModClient implements ClientModInitializer {
 
-	private static void texture(@NonNull SignVariant sv) {
-		final WoodType woodType = sv.woodType;
-		Sheets.SIGN_SPRITES.put(woodType,
-			Sheets.getSignSprite(woodType));
-		Sheets.HANGING_SIGN_SPRITES.put(woodType,
-			Sheets.getHangingSignSprite(woodType));
-	}
-
 	@Override
 	public void onInitializeClient() {
 		// Entity renderers.
@@ -36,9 +22,6 @@ public final class ModClient implements ClientModInitializer {
 			StandingSignRenderer::new);
 		BlockEntityRenderers.register(Main.hangingIronSignEntity,
 			HangingSignRenderer::new);
-		// Textures.
-		texture(Main.ironSign);
-		Arrays.stream(Main.colorSigns).forEach(ModClient::texture);
 		// Screen handler.
 		FormatButtonsHandler.init();
 	}
