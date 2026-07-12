@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "ironsigns:block/wall_hanging_light_blue_sign",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "ironsigns:block/wall_hanging_light_blue_sign",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "ironsigns:block/wall_hanging_light_blue_sign"
+    },
+    "facing=west": {
+      "model": "ironsigns:block/wall_hanging_light_blue_sign",
+      "y": 90
+    }
+  }
+}

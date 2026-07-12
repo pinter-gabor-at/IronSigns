@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": "minecraft:stick",
+    "P": "#c:dyes/purple",
+    "S": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "SSS",
+    "SPS",
+    " I "
+  ],
+  "result": {
+    "count": 20,
+    "id": "ironsigns:purple_sign"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": "minecraft:stick",
+    "P": "#c:dyes/green",
+    "S": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "SSS",
+    "SPS",
+    " I "
+  ],
+  "result": {
+    "count": 20,
+    "id": "ironsigns:green_sign"
+  }
+}

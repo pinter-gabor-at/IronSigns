@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": "minecraft:stick",
+    "P": "#c:dyes/light_gray",
+    "S": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "SSS",
+    "SPS",
+    " I "
+  ],
+  "result": {
+    "count": 20,
+    "id": "ironsigns:light_gray_sign"
+  }
+}

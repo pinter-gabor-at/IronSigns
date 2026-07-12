@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:iron_chain",
+    "P": "#minecraft:planks",
+    "S": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "C C",
+    "SPS",
+    "SSS"
+  ],
+  "result": {
+    "count": 20,
+    "id": "ironsigns:hanging_iron_sign"
+  }
+}
