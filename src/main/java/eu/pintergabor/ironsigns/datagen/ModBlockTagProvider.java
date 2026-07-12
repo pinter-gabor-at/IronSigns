@@ -19,38 +19,38 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 public final class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
 
 	public ModBlockTagProvider(
-		FabricPackOutput output,
-		CompletableFuture<HolderLookup.Provider> registriesFuture
+		final FabricPackOutput output,
+		final CompletableFuture<HolderLookup.Provider> registriesFuture
 	) {
 		super(output, registriesFuture);
 	}
 
 
 	@SuppressWarnings("UnusedReturnValue")
-	private @NonNull TagAppender<Block, Block> builderAdd(
-		@NonNull TagAppender<Block, Block> tagBuilder,
-		@NonNull SignVariant sv
+	private @NonNull TagAppender<Block> builderAdd(
+		final @NonNull TagAppender<Block> tagBuilder,
+		final @NonNull SignVariant sv
 	) {
 		return tagBuilder
-			.add(sv.standingSign)
-			.add(sv.wallSign)
-			.add(sv.ceilingHangingSign)
-			.add(sv.wallHangingSign);
+			.add(sv.standingSignId)
+			.add(sv.wallSignId)
+			.add(sv.ceilingHangingSignId)
+			.add(sv.wallHangingSignId);
 	}
 
 	@Override
-	protected void addTags(HolderLookup.@NonNull Provider wrapperLookup) {
-		TagAppender<Block, Block> tagBuilder =
-			valueLookupBuilder(Main.IRON_SIGN_BLOCK_TAG);
+	protected void addTags(final HolderLookup.@NonNull Provider wrapperLookup) {
+		TagAppender<Block> tagBuilder =
+			tag(Main.IRON_SIGN_BLOCK_TAG);
 		// Iron sign.
 		builderAdd(tagBuilder, Main.ironSign);
 		// Color signs.
 		Arrays.stream(Main.colorSigns)
 			.forEach(sv -> builderAdd(tagBuilder, sv));
 		// Make them mineable with axe and pickaxe.
-		valueLookupBuilder(BlockTags.MINEABLE_WITH_AXE)
+		tag(BlockTags.MINEABLE_WITH_AXE)
 			.addTag(Main.IRON_SIGN_BLOCK_TAG);
-		valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
+		tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.addTag(Main.IRON_SIGN_BLOCK_TAG);
 	}
 }

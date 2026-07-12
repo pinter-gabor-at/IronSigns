@@ -11,7 +11,7 @@ import org.jspecify.annotations.NonNull;
 import net.minecraft.resources.Identifier;
 
 
-public class RecipeManagerUtil {
+public final class RecipeManagerUtil {
 
 	private RecipeManagerUtil() {
 		// Static class.
@@ -24,7 +24,7 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removeItemRecipe(
-		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
+		final @NonNull Map<Identifier, ?> map, final @NonNull SignVariant sv
 	) {
 		map.remove(Identifier.parse(sv.item.toString()));
 	}
@@ -36,7 +36,7 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removeHangingItemRecipe(
-		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
+		final @NonNull Map<Identifier, ?> map, final @NonNull SignVariant sv
 	) {
 		map.remove(Identifier.parse(sv.hangingItem.toString()));
 	}
@@ -48,7 +48,7 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant.
 	 */
 	private static void removePaintItemRecipe(
-		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
+		final @NonNull Map<Identifier, ?> map, final @NonNull SignVariant sv
 	) {
 		map.remove(Identifier.parse(sv.item.toString() + "_dye"));
 	}
@@ -60,7 +60,7 @@ public class RecipeManagerUtil {
 	 * @param sv  IronSign variant
 	 */
 	private static void removePaintHangingItemRecipe(
-		@NonNull Map<Identifier, ?> map, @NonNull SignVariant sv
+		final @NonNull Map<Identifier, ?> map, final @NonNull SignVariant sv
 	) {
 		map.remove(Identifier.parse(sv.hangingItem.toString() + "_dye"));
 	}
@@ -70,7 +70,7 @@ public class RecipeManagerUtil {
 	 *
 	 * @param map Map of all recipes.
 	 */
-	public static void configRecipes(Map<Identifier, ?> map) {
+	public static void configRecipes(final Map<Identifier, ?> map) {
 		if (!ModConfigData.getInstance().enableColorSigns) {
 			Arrays.stream(Main.colorSigns)
 				.forEach(sv -> {

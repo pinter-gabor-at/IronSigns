@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
-      "model": "ironsigns:block/white_sign"
+    "facing=east": {
+      "model": "ironsigns:block/wall_white_sign",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "ironsigns:block/wall_white_sign",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "ironsigns:block/wall_white_sign"
+    },
+    "facing=west": {
+      "model": "ironsigns:block/wall_white_sign",
+      "y": 90
     }
   }
 }

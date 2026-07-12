@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_wall_sign",
+  "textures": {
+    "all": "ironsigns:block/iron_sign",
+    "particle": "minecraft:block/iron_block"
+  }
+}

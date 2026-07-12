@@ -27,7 +27,7 @@ public final class ModBlockLootTableGenerator extends FabricBlockLootSubProvider
 	 *
 	 * @param sv {@link SignVariant}.
 	 */
-	private void generateSignBlockLoot(@NonNull SignVariant sv) {
+	private void generateSignBlockLoot(final @NonNull SignVariant sv) {
 		dropOther(sv.standingSign, sv.item);
 		dropOther(sv.wallSign, sv.item);
 		dropOther(sv.ceilingHangingSign, sv.hangingItem);

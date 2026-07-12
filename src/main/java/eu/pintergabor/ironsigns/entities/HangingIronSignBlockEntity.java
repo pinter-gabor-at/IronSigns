@@ -25,7 +25,7 @@ public class HangingIronSignBlockEntity extends SignBlockEntity {
 	private static final int MAX_TEXT_WIDTH = 60;
 	private static final int TEXT_LINE_HEIGHT = 9;
 
-	public HangingIronSignBlockEntity(BlockPos pos, BlockState state) {
+	public HangingIronSignBlockEntity(final BlockPos pos, final BlockState state) {
 		super(Main.hangingIronSignEntity, pos, state);
 	}
 
