@@ -11,37 +11,36 @@ import org.jspecify.annotations.NonNull;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.KeyTagProvider;
 import net.minecraft.data.tags.TagAppender;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 
-public class ModItemTagProvider extends KeyTagProvider<Item> {
+public class ModItemTagProvider extends TagsProvider<Item> {
 
 	@SuppressWarnings("unused")
 	public ModItemTagProvider(
-		PackOutput output,
-		CompletableFuture<HolderLookup.Provider> lookupProvider,
-		CompletableFuture<TagLookup<Block>> blockTagProvider
+		final PackOutput output,
+		final CompletableFuture<HolderLookup.Provider> lookupProvider,
+		final CompletableFuture<TagsProvider.TagLookup<Block>> blockTagProvider
 	) {
 		super(output, Registries.ITEM, lookupProvider, Global.MODID);
 	}
 
 	private static void addVariant(
-		@NonNull SignVariant ironSign,
-		@NonNull TagAppender<ResourceKey<Item>, Item> modTag,
-		@NonNull TagAppender<ResourceKey<Item>, Item> modHangingTag
+		final @NonNull SignVariant ironSign,
+		final @NonNull TagAppender<Item> modTag,
+		final @NonNull TagAppender<Item> modHangingTag
 	) {
 		modTag.add(ironSign.item.getKey());
 		modHangingTag.add(ironSign.hangingItem.getKey());
 	}
 
 	@Override
-	protected void addTags(HolderLookup.@NonNull Provider lookupProvider) {
-		TagAppender<ResourceKey<Item>, Item> modTag = tag(Main.IRON_SIGN_ITEM_TAG);
-		TagAppender<ResourceKey<Item>, Item> modHangingTag = tag(Main.IRON_SIGN_ITEM_TAG);
+	protected void addTags(final HolderLookup.@NonNull Provider lookupProvider) {
+		TagAppender<Item> modTag = tag(Main.IRON_SIGN_ITEM_TAG);
+		TagAppender<Item> modHangingTag = tag(Main.IRON_SIGN_ITEM_TAG);
 		// Iron sign.
 		addVariant(Main.ironSign, modTag, modHangingTag);
 		// Color signs.

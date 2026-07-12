@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
  */
 public class IronSignBlockEntity extends SignBlockEntity {
 
-	public IronSignBlockEntity(BlockPos pos, BlockState state) {
+	public IronSignBlockEntity(final BlockPos pos, final BlockState state) {
 		super(Main.ironSignEntity.get(), pos, state);
 	}
 }

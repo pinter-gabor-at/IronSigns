@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.Block;
 
 public class ModBlockLootTableGenerator extends BlockLootSubProvider {
 
-	public ModBlockLootTableGenerator(HolderLookup.Provider lookupProvider) {
+	public ModBlockLootTableGenerator(final HolderLookup.Provider lookupProvider) {
 		super(Set.of(), FeatureFlags.DEFAULT_FLAGS, lookupProvider);
 	}
 
@@ -25,7 +25,7 @@ public class ModBlockLootTableGenerator extends BlockLootSubProvider {
 	 *
 	 * @param sv {@link SignVariant}.
 	 */
-	private void generateSignBlockLoot(@NonNull SignVariant sv) {
+	private void generateSignBlockLoot(final @NonNull SignVariant sv) {
 		dropOther(sv.standingSign.get(), sv.item.get());
 		dropOther(sv.wallSign.get(), sv.item.get());
 		dropOther(sv.ceilingHangingSign.get(), sv.hangingItem.get());

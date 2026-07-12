@@ -8,7 +8,11 @@ import net.minecraft.ChatFormatting;
 /**
  * String manipulating utilities.
  */
-public class StringUtil2 {
+public final class StringUtil2 {
+
+	private StringUtil2() {
+		// Static class.
+	}
 
 	/**
 	 * Returns the {@code char} value at the specified index.
@@ -31,7 +35,7 @@ public class StringUtil2 {
 	 * @param offset >=0.
 	 * @return the new cursor position.
 	 */
-	public static int moveCursorForward(@NonNull String input, int pos, int offset) {
+	public static int moveCursorForward(final @NonNull String input, int pos, int offset) {
 		final int len = input.length();
 		int i = 0;
 		while (pos < len && i < offset) {
@@ -61,7 +65,7 @@ public class StringUtil2 {
 	 * @param offset >=0.
 	 * @return the new cursor position.
 	 */
-	public static int moveCursorBackward(@NonNull String input, int pos, int offset) {
+	public static int moveCursorBackward(final @NonNull String input, int pos, int offset) {
 		int i = 0;
 		while (0 < pos && i < offset) {
 			final char cc = charAt(input, pos - 1);
@@ -90,7 +94,7 @@ public class StringUtil2 {
 	 * @param offset if 0<=delta then move forward else move backward.
 	 * @return the new cursor position.
 	 */
-	public static int moveCursor(@NonNull String input, int pos, int offset) {
+	public static int moveCursor(final @NonNull String input, int pos, int offset) {
 		// Global.LOGGER.info("\"{}\", pos={}, offset={}", input, pos, offset);
 		if (0 < offset) {
 			// Move forward.

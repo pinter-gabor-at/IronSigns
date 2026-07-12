@@ -19,21 +19,25 @@ import net.minecraft.world.level.block.Block;
 public class ModBlockTagProvider extends BlockTagsProvider {
 
 	public ModBlockTagProvider(
-		PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+		final PackOutput output,
+		final CompletableFuture<HolderLookup.Provider> lookupProvider
+	) {
 		super(output, lookupProvider, Global.MODID);
 	}
 
+	@SuppressWarnings("unchecked")
 	private static void addVariant(
-		SignVariant sv, TagAppender<Block, Block> modTag
+		final @NonNull SignVariant sv,
+		final @NonNull TagAppender<Block> modTag
 	) {
 		modTag.add(
-			sv.standingSign.get(), sv.wallSign.get(),
-			sv.ceilingHangingSign.get(), sv.wallHangingSign.get());
+			sv.standingSignId, sv.wallSignId,
+			sv.ceilingHangingSignId, sv.wallHangingSignId);
 	}
 
 	@Override
-	protected void addTags(HolderLookup.@NonNull Provider lookupProvider) {
-		TagAppender<Block, Block> modBlockTag = tag(Main.IRON_SIGN_BLOCK_TAG);
+	protected void addTags(final HolderLookup.@NonNull Provider lookupProvider) {
+		TagAppender<Block> modBlockTag = tag(Main.IRON_SIGN_BLOCK_TAG);
 		// Iron sign.
 		addVariant(Main.ironSign, modBlockTag);
 		// Color signs.

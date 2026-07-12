@@ -1,6 +1,7 @@
 package eu.pintergabor.ironsigns.main;
 
 import net.neoforged.neoforge.common.Tags;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -31,7 +32,11 @@ public enum SignColor {
 	private final int color;
 	private final TagKey<Item> dyeTagKey;
 
-	SignColor(String name, int color, TagKey<Item> dyetagkey) {
+	SignColor(
+		final @NonNull String name,
+		final int color,
+		final @NonNull TagKey<Item> dyetagkey
+	) {
 		this.name = name;
 		this.color = color;
 		this.dyeTagKey = dyetagkey;
@@ -40,7 +45,7 @@ public enum SignColor {
 	/**
 	 * Name of the color.
 	 */
-	public String getName() {
+	public @NonNull String getName() {
 		return this.name;
 	}
 
@@ -55,12 +60,12 @@ public enum SignColor {
 	/**
 	 * Dye used in the crafting recipes of the corresponding items.
 	 */
-	public TagKey<Item> getDyeTagKey() {
+	public @NonNull TagKey<Item> getDyeTagKey() {
 		return dyeTagKey;
 	}
 
 	@SuppressWarnings("unused")
-	public String asString() {
+	public @NonNull String asString() {
 		return this.name;
 	}
 }

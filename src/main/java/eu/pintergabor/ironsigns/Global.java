@@ -41,8 +41,9 @@ public final class Global {
 	 *
 	 * @param path Name without {@link #MODID}.
 	 */
+	@Contract("_ -> new")
 	@SuppressWarnings("unused")
-	public static Identifier modId(String path) {
+	public static @NonNull Identifier modId(String path) {
 		return Identifier.fromNamespaceAndPath(MODID, path);
 	}
 }

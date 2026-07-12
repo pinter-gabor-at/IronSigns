@@ -26,18 +26,25 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 public class SignVariant {
 
 	/**
-	 * Needed for loading textures and models.
+	 * Needed for loading textures.
 	 * <p>
 	 * Read only outside class.
 	 */
 	public WoodType woodType;
 
 	/**
-	 * Standing sign.
+	 * Standing sign block.
 	 * <p>
 	 * Read only outside class.
 	 */
 	public DeferredBlock<Block> standingSign;
+
+	/**
+	 * {@link #standingSign} id.
+	 * <p>
+	 * Read only outside class.
+	 */
+	public ResourceKey<Block> standingSignId;
 
 	/**
 	 * Sign attached to a wall.
@@ -47,6 +54,13 @@ public class SignVariant {
 	public DeferredBlock<Block> wallSign;
 
 	/**
+	 * {@link #wallSign} id.
+	 * <p>
+	 * Read only outside class.
+	 */
+	public ResourceKey<Block> wallSignId;
+
+	/**
 	 * Sign hanging from the ceiling.
 	 * <p>
 	 * Read only outside class.
@@ -54,11 +68,25 @@ public class SignVariant {
 	public DeferredBlock<Block> ceilingHangingSign;
 
 	/**
+	 * {@link #ceilingHangingSign} id.
+	 * <p>
+	 * Read only outside class.
+	 */
+	public ResourceKey<Block> ceilingHangingSignId;
+
+	/**
 	 * Hanging sign attached to a wall.
 	 * <p>
 	 * Read only outside class.
 	 */
 	public DeferredBlock<Block> wallHangingSign;
+
+	/**
+	 * {@link #wallHangingSign} id.
+	 * <p>
+	 * Read only outside class.
+	 */
+	public ResourceKey<Block> wallHangingSignId;
 
 	/**
 	 * Sign item.
@@ -81,39 +109,41 @@ public class SignVariant {
 	 */
 	public SignVariant(String name) {
 		// WoodType is not really any type of wood, but a definition
-		// of the location of the texture files, and the definition of sounds.
-		// Sign entity: resources/assets/<MODID>/textures/entity/signs/<name>.png
-		// WallSign entity is the hard-coded part of the Sign entity.
-		// Sign and WallSign GUIs are the same, and they are hard-coded part of the Sign entity.
-		// HangingSign entity is the hard-coded part of the HangingWallSign entity.
-		// HangingWallSign entity: resources/assets/<MODID>/textures/entity/signs/hanging/<name>.png
-		// HangingSign GUI: resources/assets/<MODID>/textures/gui/hanging_signs/<name>.png
+		// of the location of the GUI texture files, and the definition of sounds.
 		woodType = new WoodType(
 			Global.modName(name), BlockSetType.IRON,
 			SoundType.IRON, SoundType.IRON,
 			// Not used, but must be defined.
-			SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN);
+			SoundEvents.IRON_DOOR_CLOSE, SoundEvents.IRON_DOOR_OPEN);
 		// Add woodType to the known WoodTypes, and then they will be used just like the vanilla
 		// WoodTypes to do everything with the new signs the same ways as with the vanilla signs.
 		WoodType.register(woodType);
 		// Blocks.
-		final Block.Properties blockProps = BlockBehaviour.Properties.of()
+		final BlockBehaviour.Properties blockProps = BlockBehaviour.Properties.of()
 			.forceSolidOn()
 			.noCollision()
 			.strength(0.5F, 6.0F)
 			.requiresCorrectToolForDrops();
-		standingSign = Main.BLOCKS.register(name, id ->
-			new IronStandingSignBlock(woodType, blockProps
-				.setId(ResourceKey.create(Registries.BLOCK, id))));
-		wallSign = Main.BLOCKS.register("wall_" + name, id ->
-			new IronWallSignBlock(woodType, blockProps
-				.setId(ResourceKey.create(Registries.BLOCK, id))));
-		ceilingHangingSign = Main.BLOCKS.register("ceiling_hanging_" + name, id ->
-			new IronCeilingHangingSignBlock(woodType, blockProps
-				.setId(ResourceKey.create(Registries.BLOCK, id))));
-		wallHangingSign = Main.BLOCKS.register("wall_hanging_" + name, id ->
-			new IronWallHangingSignBlock(woodType, blockProps
-				.setId(ResourceKey.create(Registries.BLOCK, id))));
+		standingSign = Main.BLOCKS.register(name, id -> {
+			standingSignId = ResourceKey.create(Registries.BLOCK, id);
+			return new IronStandingSignBlock(woodType, blockProps
+				.setId(standingSignId));
+		});
+		wallSign = Main.BLOCKS.register("wall_" + name, id -> {
+			wallSignId = ResourceKey.create(Registries.BLOCK, id);
+			return new IronWallSignBlock(woodType, blockProps
+				.setId(wallSignId));
+		});
+		ceilingHangingSign = Main.BLOCKS.register("hanging_" + name, id -> {
+			ceilingHangingSignId = ResourceKey.create(Registries.BLOCK, id);
+			return new IronCeilingHangingSignBlock(woodType, blockProps
+				.setId(ceilingHangingSignId));
+		});
+		wallHangingSign = Main.BLOCKS.register("wall_hanging_" + name, id -> {
+			wallHangingSignId = ResourceKey.create(Registries.BLOCK, id);
+			return new IronWallHangingSignBlock(woodType, blockProps
+				.setId(wallHangingSignId));
+		});
 		// Items.
 		final Item.Properties itemProps = new Item.Properties().stacksTo(64);
 		item = Main.ITEMS.registerItem(name,
