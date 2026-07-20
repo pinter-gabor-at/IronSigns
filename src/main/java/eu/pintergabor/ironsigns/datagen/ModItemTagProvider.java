@@ -24,7 +24,7 @@ public final class ModItemTagProvider extends FabricTagsProvider.ItemTagsProvide
 	}
 
 	@Override
-	protected void addTags(HolderLookup.@NonNull Provider wrapperLookup) {
+	protected void addTags(HolderLookup.@NonNull Provider registries) {
 		TagAppender<Item, Item> tagBuilder =
 			valueLookupBuilder(Main.IRON_SIGN_ITEM_TAG);
 		TagAppender<Item, Item> hangingTagBuilder =

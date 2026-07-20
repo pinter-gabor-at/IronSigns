@@ -39,7 +39,7 @@ public final class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
 	}
 
 	@Override
-	protected void addTags(HolderLookup.@NonNull Provider wrapperLookup) {
+	protected void addTags(HolderLookup.@NonNull Provider registries) {
 		TagAppender<Block, Block> tagBuilder =
 			valueLookupBuilder(Main.IRON_SIGN_BLOCK_TAG);
 		// Iron sign.
