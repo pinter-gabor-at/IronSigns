@@ -1,6 +1,7 @@
 package eu.pintergabor.ironsigns.mixin;
 
 import eu.pintergabor.ironsigns.config.ModConfigData;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,6 +23,7 @@ import net.fabricmc.api.Environment;
 @Environment(EnvType.CLIENT)
 @Mixin(AbstractSignEditScreen.class)
 public abstract class AbstractSignEditScreenMixin {
+
 	@Shadow
 	@Nullable
 	private TextFieldHelper signField;
@@ -33,7 +35,8 @@ public abstract class AbstractSignEditScreenMixin {
 	 */
 	@Inject(method = "keyPressed", at = @At("HEAD"), cancellable = true)
 	private void keyPessed(
-		KeyEvent event, CallbackInfoReturnable<Boolean> cir
+		final @NonNull KeyEvent event,
+		CallbackInfoReturnable<Boolean> cir
 	) {
 		// Global.LOGGER.info("Keycode: {}, Modifiers: {}", event.key(), event.modifiers());
 		if (ModConfigData.enableSignTextFormatting() &&
