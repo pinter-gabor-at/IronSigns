@@ -4,6 +4,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import eu.pintergabor.ironsigns.config.ModConfigData;
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -18,7 +19,8 @@ public abstract class ServerPlayNetworkHandlerMixin {
 		at = @At(value = "INVOKE",
 			target = "Ljava/util/stream/Stream;map(Ljava/util/function/Function;)Ljava/util/stream/Stream;"))
 	private Stream<String> nothing(
-		Stream<String> instance, Function<String, String> function
+		final @NonNull Stream<String> instance,
+		final @NonNull Function<String, String> function
 	) {
 		// function === ChatFormatting::stripFormatting.
 		// Strip formatting only if text formatting is disabled in config.

@@ -4,6 +4,7 @@ import java.util.SortedMap;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import eu.pintergabor.ironsigns.util.RecipeManagerUtil;
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -29,10 +30,10 @@ public abstract class RecipeManagerMixin {
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/server/packs/resources/SimpleJsonResourceReloadListener;scanDirectory(Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/FileToIdConverter;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/util/Map;)V",
 			shift = At.Shift.AFTER))
 	private void editMap(
-		ResourceManager manager,
-		ProfilerFiller profiler,
+		final @NonNull ResourceManager manager,
+		final @NonNull ProfilerFiller profiler,
 		CallbackInfoReturnable<RecipeMap> cir,
-		@Local(name = "recipes") SortedMap<Identifier, Recipe<?>> recipes
+		@Local(name = "recipes") final @NonNull SortedMap<Identifier, Recipe<?>> recipes
 	) {
 		RecipeManagerUtil.configRecipes(recipes);
 	}

@@ -119,15 +119,18 @@ public class FormatButtonsHandler {
 		// the second is the formatting code.
 		// Text is a Black Large Square, (https://www.compart.com/en/unicode/U+2B1B),
 		// prefixed with the formatting code.
-		final String label = formatting.toString().concat("⬛");
+		final String formatString = formatting.toString();
+		final String label = formatString.concat("⬛");
 		final String tooltip = formatting.toString().concat(formattingName);
+		final char prefix = formatString.charAt(0);
+		final char code = formatString.charAt(1);
 		// Build a normal button.
 		return Button
 			.builder(
 				Component.literal(label),
 				cod -> {
-					screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE));
-					screen.charTyped(new CharacterEvent(formatting.code));
+					screen.charTyped(new CharacterEvent(prefix));
+					screen.charTyped(new CharacterEvent(code));
 				}
 			)
 			.pos(buttonX, buttonY)
@@ -160,14 +163,17 @@ public class FormatButtonsHandler {
 		// The first is the formatting prefix '§',
 		// the second is the formatting code.
 		// Text is the name of the formatting, prefixed with the formatting code.
-		final String label = formatting.toString().concat(formattingName);
+		final String formatString = formatting.toString();
+		final String label = formatString.concat(formattingName);
+		final char prefix = formatString.charAt(0);
+		final char code = formatString.charAt(1);
 		// Build a wide button.
 		return Button
 			.builder(
 				Component.literal(label),
 				cod -> {
-					screen.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE));
-					screen.charTyped(new CharacterEvent(formatting.code));
+					screen.charTyped(new CharacterEvent(prefix));
+					screen.charTyped(new CharacterEvent(code));
 				}
 			)
 			.pos(buttonX, buttonY)

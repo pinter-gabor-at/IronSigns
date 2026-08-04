@@ -2,6 +2,7 @@ package eu.pintergabor.ironsigns.mixin;
 
 import eu.pintergabor.ironsigns.config.ModConfigData;
 import eu.pintergabor.ironsigns.util.StringUtil2;
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,7 +19,9 @@ public abstract class UtilMixin {
 	 */
 	@Inject(method = "offsetByCodepoints", at = @At("HEAD"), cancellable = true)
 	private static void newMoveCursor(
-		String input, int pos, int offset,
+		final @NonNull String input,
+		final int pos,
+		final int offset,
 		CallbackInfoReturnable<Integer> cir
 	) {
 		if (ModConfigData.enableSignTextFormatting()) {

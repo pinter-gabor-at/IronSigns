@@ -20,7 +20,8 @@ public abstract class StringUtilMixin {
 	 */
 	@Inject(method = "isAllowedChatCharacter", at = @At("HEAD"), cancellable = true)
 	private static void isAllowedChatCharacter(
-		int ch, CallbackInfoReturnable<Boolean> cir
+		final int ch,
+		CallbackInfoReturnable<Boolean> cir
 	) {
 		if (ModConfigData.enableSignTextFormatting()) {
 			// Allow sign texts to contain the formatting code prefix.
