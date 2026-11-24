@@ -5,6 +5,10 @@ import eu.pintergabor.ironsigns.blocks.IronCeilingHangingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronStandingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallHangingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallSignBlock;
+
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.HangingSignItem;
+
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -12,7 +16,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -47,7 +51,7 @@ public class SignVariant {
 	public ResourceKey<Block> standingSignId;
 
 	/**
-	 * Sign attached to a wall.
+	 * Sign block attatched to a wall.
 	 * <p>
 	 * Read only outside class.
 	 */
@@ -75,7 +79,7 @@ public class SignVariant {
 	public ResourceKey<Block> ceilingHangingSignId;
 
 	/**
-	 * Hanging sign attached to a wall.
+	 * Hanging sign block attatced to a wall.
 	 * <p>
 	 * Read only outside class.
 	 */
@@ -147,10 +151,10 @@ public class SignVariant {
 		// Items.
 		final Item.Properties itemProps = new Item.Properties().stacksTo(64);
 		item = Main.ITEMS.registerItem(name,
-			props -> new SignItem(standingSign.get(), wallSign.get(), props),
+			props -> new StandingAndWallBlockItem(standingSign.get(), wallSign.get(), Direction.DOWN, props),
 			() -> itemProps);
 		hangingItem = Main.ITEMS.registerItem("hanging_" + name,
-			props -> new SignItem(ceilingHangingSign.get(), wallHangingSign.get(), props),
+			props -> new HangingSignItem(ceilingHangingSign.get(), wallHangingSign.get(), props),
 			() -> itemProps);
 	}
 }

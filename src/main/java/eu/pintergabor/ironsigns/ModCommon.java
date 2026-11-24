@@ -7,6 +7,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import org.jspecify.annotations.NonNull;
 
 
 /**
@@ -15,8 +16,11 @@ import net.neoforged.fml.config.ModConfig;
 @Mod(Global.MODID)
 public final class ModCommon {
 
-	@SuppressWarnings("unused")
-	public ModCommon(IEventBus modEventBus, ModContainer modContainer, Dist dist) {
+	public ModCommon(
+		@NonNull IEventBus modEventBus,
+		@NonNull ModContainer modContainer,
+		@NonNull Dist dist
+	) {
 		// Use configuration parameters on both sides and load them on startup.
 		modContainer.registerConfig(ModConfig.Type.STARTUP, ModConfigData.SPEC);
 		// Create and register everything.

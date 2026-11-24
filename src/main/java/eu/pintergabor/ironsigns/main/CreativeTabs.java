@@ -39,7 +39,7 @@ public final class CreativeTabs {
 	/**
 	 * Add items to creative tabs.
 	 */
-	public static void init(@NonNull BuildCreativeModeTabContentsEvent event) {
+	public static void listen(@NonNull BuildCreativeModeTabContentsEvent event) {
 		if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
 			// Iron sign.
 			add(event, Main.ironSign);

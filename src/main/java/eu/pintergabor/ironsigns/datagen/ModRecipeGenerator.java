@@ -2,25 +2,33 @@ package eu.pintergabor.ironsigns.datagen;
 
 import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.main.Main;
+import org.jetbrains.annotations.Contract;
 import org.jspecify.annotations.NonNull;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.core.registries.MultiRegistryBootstrap;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 
 
-public class ModRecipeGenerator extends RecipeProvider {
+public final class ModRecipeGenerator extends RecipeProvider {
 
 	public ModRecipeGenerator(
-		final HolderLookup.Provider registryLookup, 
-		final RecipeOutput output
+		final BootstrapContext<Recipe<?>> recipes,
+		final BootstrapContext<Advancement> advancements
 	) {
-		super(registryLookup, output);
+		super(recipes, advancements);
+	}
+
+	@Contract(value = " -> new", pure = true)
+	public static @NonNull MultiRegistryBootstrap create() {
+		return RecipeProvider.asBootstrap(ModRecipeGenerator::new);
 	}
 
 	/**

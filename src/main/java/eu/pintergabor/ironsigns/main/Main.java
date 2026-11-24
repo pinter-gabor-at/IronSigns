@@ -1,12 +1,7 @@
 package eu.pintergabor.ironsigns.main;
 
-import com.mojang.serialization.MapCodec;
 import eu.pintergabor.ironsigns.Global;
 import eu.pintergabor.ironsigns.ModCommon;
-import eu.pintergabor.ironsigns.blocks.IronCeilingHangingSignBlock;
-import eu.pintergabor.ironsigns.blocks.IronStandingSignBlock;
-import eu.pintergabor.ironsigns.blocks.IronWallHangingSignBlock;
-import eu.pintergabor.ironsigns.blocks.IronWallSignBlock;
 import eu.pintergabor.ironsigns.entities.HangingIronSignBlockEntity;
 import eu.pintergabor.ironsigns.entities.IronSignBlockEntity;
 import net.neoforged.bus.api.IEventBus;
@@ -14,7 +9,6 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jspecify.annotations.NonNull;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -39,8 +33,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 public final class Main {
 	public static final DeferredRegister.Items ITEMS =
 		DeferredRegister.createItems(Global.MODID);
-	public static final DeferredRegister<MapCodec<? extends Block>> BLOCK_TYPES =
-		DeferredRegister.create(BuiltInRegistries.BLOCK_TYPE, Global.MODID);
 	public static final DeferredRegister.Blocks BLOCKS =
 		DeferredRegister.createBlocks(Global.MODID);
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES =
@@ -101,24 +93,6 @@ public final class Main {
 	 * Used in coloring recipes. Read-only outside its class.
 	 */
 	public static TagKey<Item> HANGING_IRON_SIGN_ITEM_TAG;
-
-	/**
-	 * Initialize block types.
-	 */
-	private static void initBlockTypes() {
-		BLOCK_TYPES.register(
-			"iron_sign",
-			() -> IronStandingSignBlock.CODEC);
-		BLOCK_TYPES.register(
-			"iron_wall_sign",
-			() -> IronWallSignBlock.CODEC);
-		BLOCK_TYPES.register(
-			"iron_ceiling_hanging_sign",
-			() -> IronCeilingHangingSignBlock.CODEC);
-		BLOCK_TYPES.register(
-			"iron_wall_hanging_sign",
-			() -> IronWallHangingSignBlock.CODEC);
-	}
 
 	/**
 	 * Initialize tags.
@@ -211,9 +185,6 @@ public final class Main {
 	 * Called from {@link ModCommon}.
 	 */
 	public static void init(IEventBus modEventBus) {
-		// Block types.
-		initBlockTypes();
-		BLOCK_TYPES.register(modEventBus);
 		// Tags.
 		initTags();
 		// Signs.

@@ -13,8 +13,7 @@ public final class ModClientSetup {
 	/**
 	 * Entity renderers and textures are used only on the client side.
 	 */
-	@SuppressWarnings("unused")
-	public static void init(FMLClientSetupEvent event) {
+	public static void listen(FMLClientSetupEvent event) {
 		// Entities.
 		BlockEntityRenderers.register(Main.ironSignEntity.get(),
 			StandingSignRenderer::new);

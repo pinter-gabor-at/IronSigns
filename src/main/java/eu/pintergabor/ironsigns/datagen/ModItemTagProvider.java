@@ -14,18 +14,15 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagAppender;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 
 
 public class ModItemTagProvider extends TagsProvider<Item> {
 
-	@SuppressWarnings("unused")
 	public ModItemTagProvider(
 		final PackOutput output,
-		final CompletableFuture<HolderLookup.Provider> lookupProvider,
-		final CompletableFuture<TagsProvider.TagLookup<Block>> blockTagProvider
+		final CompletableFuture<HolderLookup.Provider> lookup
 	) {
-		super(output, Registries.ITEM, lookupProvider, Global.MODID);
+		super(output, Registries.ITEM, lookup, Global.MODID);
 	}
 
 	private static void addVariant(
@@ -33,8 +30,8 @@ public class ModItemTagProvider extends TagsProvider<Item> {
 		final @NonNull TagAppender<Item> modTag,
 		final @NonNull TagAppender<Item> modHangingTag
 	) {
-		modTag.add(ironSign.item.getKey());
-		modHangingTag.add(ironSign.hangingItem.getKey());
+		modTag.add(ironSign.item.key());
+		modHangingTag.add(ironSign.hangingItem.key());
 	}
 
 	@Override

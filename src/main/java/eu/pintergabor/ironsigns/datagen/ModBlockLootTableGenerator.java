@@ -7,16 +7,16 @@ import eu.pintergabor.ironsigns.main.Main;
 import eu.pintergabor.ironsigns.main.SignVariant;
 import org.jspecify.annotations.NonNull;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 
 
 public class ModBlockLootTableGenerator extends BlockLootSubProvider {
 
-	public ModBlockLootTableGenerator(final HolderLookup.Provider lookupProvider) {
-		super(Set.of(), FeatureFlags.DEFAULT_FLAGS, lookupProvider);
+	public ModBlockLootTableGenerator(final LootTableSubProvider.Context output) {
+		super(Set.of(), FeatureFlags.DEFAULT_FLAGS, output);
 	}
 
 	/**

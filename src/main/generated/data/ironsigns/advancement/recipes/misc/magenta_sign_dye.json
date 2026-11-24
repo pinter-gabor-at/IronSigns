@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ironsigns:magenta_sign_dye"
+        "recipes": "ironsigns:magenta_sign_dye"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
