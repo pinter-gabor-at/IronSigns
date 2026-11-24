@@ -17,23 +17,23 @@ import net.minecraft.world.level.block.state.properties.WoodType;
  * Identical to its parent, but associated with a different entity.
  */
 public class IronWallSignBlock extends WallSignBlock {
-	public static final MapCodec<WallSignBlock> CODEC =
-		RecordCodecBuilder.mapCodec((instance) ->
-			instance.group(
-					WoodType.CODEC.fieldOf("wood_type")
-						.forGetter(SignBlock::type),
-					propertiesCodec())
-				.apply(instance, IronWallSignBlock::new));
+//	public static final MapCodec<WallSignBlock> CODEC =
+//		RecordCodecBuilder.mapCodec((instance) ->
+//			instance.group(
+//					WoodType.CODEC.fieldOf("wood_type")
+//						.forGetter(SignBlock::type),
+//					propertiesCodec())
+//				.apply(instance, IronWallSignBlock::new));
 
 
 	public IronWallSignBlock(WoodType woodType, Properties props) {
 		super(woodType, props);
 	}
 
-	@Override
-	public @NonNull MapCodec<WallSignBlock> codec() {
-		return CODEC;
-	}
+//	@Override
+//	public @NonNull MapCodec<WallSignBlock> codec() {
+//		return CODEC;
+//	}
 
 	@Override
 	public @NonNull BlockEntity newBlockEntity(

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ironsigns:hanging_green_sign_dye"
+        "recipes": "ironsigns:hanging_green_sign_dye"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

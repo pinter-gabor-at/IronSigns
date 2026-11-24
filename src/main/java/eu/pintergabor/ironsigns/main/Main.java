@@ -81,24 +81,6 @@ public final class Main {
 	public static TagKey<Item> HANGING_IRON_SIGN_ITEM_TAG;
 
 	/**
-	 * Initialize block types.
-	 */
-	private static void initBlockTypes() {
-		Registry.register(BuiltInRegistries.BLOCK_TYPE,
-			"iron_sign",
-			IronStandingSignBlock.CODEC);
-		Registry.register(BuiltInRegistries.BLOCK_TYPE,
-			"iron_wall_sign",
-			IronWallSignBlock.CODEC);
-		Registry.register(BuiltInRegistries.BLOCK_TYPE,
-			"iron_ceiling_hanging_sign",
-			IronCeilingHangingSignBlock.CODEC);
-		Registry.register(BuiltInRegistries.BLOCK_TYPE,
-			"iron_wall_hanging_sign",
-			IronWallHangingSignBlock.CODEC);
-	}
-
-	/**
 	 * Initialize tags.
 	 */
 	private static void initTags() {
@@ -198,8 +180,6 @@ public final class Main {
 	 * Called from {@link Mod#onInitialize()}.
 	 */
 	public static void init() {
-		// Block types.
-		initBlockTypes();
 		// Tags.
 		initTags();
 		// Signs.

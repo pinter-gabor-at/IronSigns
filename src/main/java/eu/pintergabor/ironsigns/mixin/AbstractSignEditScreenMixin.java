@@ -1,9 +1,10 @@
 package eu.pintergabor.ironsigns.mixin;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import eu.pintergabor.ironsigns.config.ModConfigData;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
-import org.lwjgl.glfw.GLFW;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,6 +25,7 @@ import net.fabricmc.api.Environment;
 @Mixin(AbstractSignEditScreen.class)
 public abstract class AbstractSignEditScreenMixin {
 
+	@Final
 	@Shadow
 	@Nullable
 	private TextFieldHelper signField;
@@ -40,7 +42,8 @@ public abstract class AbstractSignEditScreenMixin {
 	) {
 		// Global.LOGGER.info("Keycode: {}, Modifiers: {}", event.key(), event.modifiers());
 		if (ModConfigData.enableSignTextFormatting() &&
-			event.key() == GLFW.GLFW_KEY_LEFT_BRACKET && ((event.modifiers() & GLFW.GLFW_MOD_CONTROL) != 0)) {
+			event.key() == InputConstants.KEY_LBRACKET &&
+			((event.modifiers() & InputConstants.MOD_CONTROL) != 0)) {
 			// Global.LOGGER.info("Ctrl+[");
 			if (signField != null) {
 				signField.charTyped(new CharacterEvent(ChatFormatting.PREFIX_CODE));
