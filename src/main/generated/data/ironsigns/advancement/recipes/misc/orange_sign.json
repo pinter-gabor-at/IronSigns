@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ironsigns:orange_sign"
+        "recipes": "ironsigns:orange_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

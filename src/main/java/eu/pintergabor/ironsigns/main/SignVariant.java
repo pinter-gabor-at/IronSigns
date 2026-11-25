@@ -9,15 +9,17 @@ import eu.pintergabor.ironsigns.blocks.IronWallHangingSignBlock;
 import eu.pintergabor.ironsigns.blocks.IronWallSignBlock;
 import org.jspecify.annotations.NonNull;
 
+import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -210,12 +212,12 @@ public class SignVariant {
 		itemId = ResourceKey.create(Registries.ITEM, Global.modId(name));
 		item = registerItem(
 			itemId,
-			props -> new SignItem(standingSign, wallSign, props),
+			props -> new StandingAndWallBlockItem(standingSign, wallSign, Direction.DOWN, props),
 			itemSettings);
 		hangingItemId = ResourceKey.create(Registries.ITEM, Global.modId("hanging_" + name));
 		hangingItem = registerItem(
 			hangingItemId,
-			props -> new SignItem(ceilingHangingSign, wallHangingSign, props),
+			props -> new HangingSignItem(ceilingHangingSign, wallHangingSign, props),
 			itemSettings);
 		// Item groups.
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(

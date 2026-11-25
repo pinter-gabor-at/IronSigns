@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ironsigns:gray_sign_dye"
+        "recipes": "ironsigns:gray_sign_dye"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

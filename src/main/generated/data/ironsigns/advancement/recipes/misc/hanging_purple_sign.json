@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ironsigns:hanging_purple_sign"
+        "recipes": "ironsigns:hanging_purple_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ironsigns:blue_sign"
+        "recipes": "ironsigns:blue_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
